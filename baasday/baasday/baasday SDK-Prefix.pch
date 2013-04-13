@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'baasday' target in the 'baasday' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
