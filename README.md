@@ -10,6 +10,8 @@ baasday iOS FrameworkはiOS用のbaasdayフレームワークです。baasday[1]
 * ゲームスコアランキング
 * リアルタイムチャット
 
+Android版はこちら[3]
+
 # 追加予定の機能
 
 * プッシュ通知
@@ -18,3 +20,4 @@ baasday iOS FrameworkはiOS用のbaasdayフレームワークです。baasday[1]
 
 [1]: http://baasday.com/
 [2]: http://nyampass.com/
+[3]: https://github.com/nyampass/baasday-Android-Library
