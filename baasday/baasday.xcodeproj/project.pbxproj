@@ -21,14 +21,14 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		DB59FB5B171E4A260036EF79 /* baasday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB59FB5A171E4A260036EF79 /* baasday.framework */; };
+		DB59FB5C171E4A260036EF79 /* baasday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB59FB5A171E4A260036EF79 /* baasday.framework */; };
 		DB5D75FD1706DDD200B2DE4D /* BDObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75FC1706DDD200B2DE4D /* BDObject.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		DB5D76001706DFB700B2DE4D /* BDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75FF1706DFB700B2DE4D /* BDUser.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		DB5D76031706E03700B2DE4D /* BDConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D76021706E03600B2DE4D /* BDConnection.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		DB80A5EB1705C57E00C8D728 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB80A5E91705C56200C8D728 /* UIKit.framework */; };
 		DB8F5D1B1705ED1F00A7E9AC /* BDBaasday.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8F5D1A1705ED1F00A7E9AC /* BDBaasday.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		DBC96B7D16F7D4D7001B8498 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC96B7C16F7D4D7001B8498 /* Foundation.framework */; };
-		DBC96B8216F7D4D7001B8498 /* baasday.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC96B8116F7D4D7001B8498 /* baasday.h */; };
-		DBC96B8416F7D4D7001B8498 /* baasday.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC96B8316F7D4D7001B8498 /* baasday.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		DBC96B8C16F7D4D7001B8498 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC96B8B16F7D4D7001B8498 /* SenTestingKit.framework */; };
 		DBC96B8F16F7D4D7001B8498 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC96B7C16F7D4D7001B8498 /* Foundation.framework */; };
 		DBC96B9216F7D4D7001B8498 /* libbaasday.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC96B7916F7D4D7001B8498 /* libbaasday.a */; };
@@ -52,8 +52,6 @@
 		DBCCA95E171E418A00F090D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC96B7C16F7D4D7001B8498 /* Foundation.framework */; };
 		DBCCA966171E418A00F090D2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBCCA964171E418A00F090D2 /* InfoPlist.strings */; };
 		DBCCA969171E418A00F090D2 /* SampleAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCCA968171E418A00F090D2 /* SampleAppTests.m */; };
-		DBCCA973171E42F700F090D2 /* baasday.1.0.0.zip in Resources */ = {isa = PBXBuildFile; fileRef = DBCCA972171E42F200F090D2 /* baasday.1.0.0.zip */; };
-		DBCCA975171E431A00F090D2 /* baasday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCCA974171E431A00F090D2 /* baasday.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,13 +69,6 @@
 			remoteGlobalIDString = DBCCA932171E418900F090D2;
 			remoteInfo = SampleApp;
 		};
-		DBCCA970171E41E400F090D2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DBC96B7116F7D4D7001B8498 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DBC96BAA16F7D7A5001B8498;
-			remoteInfo = baasday.framework;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -87,13 +78,13 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				DBC96B8216F7D4D7001B8498 /* baasday.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DB59FB5A171E4A260036EF79 /* baasday.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = baasday.framework; path = Framework/baasday.framework; sourceTree = "<group>"; };
 		DB5D75FA1706D2E500B2DE4D /* BDBaasday(Private).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BDBaasday(Private).h"; sourceTree = "<group>"; };
 		DB5D75FB1706DDD200B2DE4D /* BDObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDObject.h; path = ../BDObject.h; sourceTree = "<group>"; };
 		DB5D75FC1706DDD200B2DE4D /* BDObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDObject.m; sourceTree = "<group>"; };
@@ -109,8 +100,6 @@
 		DBC96B7916F7D4D7001B8498 /* libbaasday.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbaasday.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBC96B7C16F7D4D7001B8498 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DBC96B8016F7D4D7001B8498 /* baasday SDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "baasday SDK-Prefix.pch"; sourceTree = "<group>"; };
-		DBC96B8116F7D4D7001B8498 /* baasday.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baasday.h; sourceTree = "<group>"; };
-		DBC96B8316F7D4D7001B8498 /* baasday.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baasday.m; sourceTree = "<group>"; };
 		DBC96B8A16F7D4D7001B8498 /* baasday SDKTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "baasday SDKTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBC96B8B16F7D4D7001B8498 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		DBC96B9516F7D4D7001B8498 /* baasday SDKTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "baasday SDKTests-Info.plist"; sourceTree = "<group>"; };
@@ -140,8 +129,6 @@
 		DBCCA965171E418A00F090D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DBCCA967171E418A00F090D2 /* SampleAppTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleAppTests.h; sourceTree = "<group>"; };
 		DBCCA968171E418A00F090D2 /* SampleAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleAppTests.m; sourceTree = "<group>"; };
-		DBCCA972171E42F200F090D2 /* baasday.1.0.0.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = baasday.1.0.0.zip; path = Framework/baasday.1.0.0.zip; sourceTree = "<group>"; };
-		DBCCA974171E431A00F090D2 /* baasday.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = baasday.framework; path = Framework/baasday.framework; sourceTree = "<group>"; };
 		DBFB0B3116F7F5AC0045338D /* baasday.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = baasday.h; sourceTree = "<group>"; };
 		DBFB0B3216F7F5C60045338D /* empty */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = empty; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +140,7 @@
 			files = (
 				DB80A5EB1705C57E00C8D728 /* UIKit.framework in Frameworks */,
 				DBC96B7D16F7D4D7001B8498 /* Foundation.framework in Frameworks */,
+				DB59FB5B171E4A260036EF79 /* baasday.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +161,7 @@
 				DBCCA934171E418900F090D2 /* UIKit.framework in Frameworks */,
 				DBCCA935171E418900F090D2 /* Foundation.framework in Frameworks */,
 				DBCCA937171E418900F090D2 /* CoreGraphics.framework in Frameworks */,
-				DBCCA975171E431A00F090D2 /* baasday.framework in Frameworks */,
+				DB59FB5C171E4A260036EF79 /* baasday.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,8 +201,7 @@
 				DBCCA961171E418A00F090D2 /* SampleAppTests */,
 				DBC96B7B16F7D4D7001B8498 /* Frameworks */,
 				DBC96B7A16F7D4D7001B8498 /* Products */,
-				DBCCA972171E42F200F090D2 /* baasday.1.0.0.zip */,
-				DBCCA974171E431A00F090D2 /* baasday.framework */,
+				DB59FB5A171E4A260036EF79 /* baasday.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -246,8 +233,6 @@
 				DB8F5D181705E8B700A7E9AC /* Classes */,
 				DBC96BA516F7D601001B8498 /* Resources */,
 				DBC96BA416F7D5F4001B8498 /* Headers */,
-				DBC96B8116F7D4D7001B8498 /* baasday.h */,
-				DBC96B8316F7D4D7001B8498 /* baasday.m */,
 				DBC96BAE16F7D7EF001B8498 /* Info.plist */,
 				DBC96B7F16F7D4D7001B8498 /* Supporting Files */,
 			);
@@ -400,7 +385,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				DBCCA971171E41E400F090D2 /* PBXTargetDependency */,
 			);
 			name = SampleApp;
 			productName = SampleApp;
@@ -475,7 +459,6 @@
 				DBCCA949171E418900F090D2 /* Default-568h@2x.png in Resources */,
 				DBCCA952171E418900F090D2 /* MasterViewController.xib in Resources */,
 				DBCCA955171E418900F090D2 /* DetailViewController.xib in Resources */,
-				DBCCA973171E42F700F090D2 /* baasday.1.0.0.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,7 +519,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBC96B8416F7D4D7001B8498 /* baasday.m in Sources */,
 				DB8F5D1B1705ED1F00A7E9AC /* BDBaasday.m in Sources */,
 				DB5D75FD1706DDD200B2DE4D /* BDObject.m in Sources */,
 				DB5D76001706DFB700B2DE4D /* BDUser.m in Sources */,
@@ -583,11 +565,6 @@
 			isa = PBXTargetDependency;
 			target = DBCCA932171E418900F090D2 /* SampleApp */;
 			targetProxy = DBCCA95F171E418A00F090D2 /* PBXContainerItemProxy */;
-		};
-		DBCCA971171E41E400F090D2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DBC96BAA16F7D7A5001B8498 /* baasday.framework */;
-			targetProxy = DBCCA970171E41E400F090D2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -695,6 +672,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "baasday/baasday SDK-Prefix.pch";
@@ -713,6 +691,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "baasday/baasday SDK-Prefix.pch";
@@ -887,6 +866,7 @@
 				DBCCA96B171E418A00F090D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DBCCA96F171E418A00F090D2 /* Build configuration list for PBXNativeTarget "SampleAppTests" */ = {
 			isa = XCConfigurationList;
@@ -895,6 +875,7 @@
 				DBCCA96D171E418A00F090D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

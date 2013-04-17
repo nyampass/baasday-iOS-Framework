@@ -10,12 +10,16 @@
 
 #import "MasterViewController.h"
 
-#import <baasday/baasday.h>
+#import <baasday/BDBaasday.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+    [BDBaasday setApplicationId:@"2AocRg4c8VQ2q78VDfrFVzgtM5wcnDLq" apiKey:@"WUOZj30m5NOWWazC3BWWZPfRwQZGpsKD"];
+    NSLog(@"%@", [BDBaasday version]);
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
 
