@@ -9,6 +9,8 @@
 #import "BDBaasday.h"
 #import "BDBaasday(Private).h"
 
+#import "BDSettings.h"
+
 @implementation BDBaasday
 
 __strong static NSString* _applicationId = nil;
@@ -32,7 +34,7 @@ __strong static NSString* _apiKey = nil;
 
 +(NSString *)version
 {
-    return @"1.0";
+    return BDClientVersion;
 }
 
 @end

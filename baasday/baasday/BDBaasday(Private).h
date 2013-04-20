@@ -9,6 +9,8 @@
 #ifndef baasday_BDBaasday_Private__h
 #define baasday_BDBaasday_Private__h
 
+#import "BDBaasday.h"
+
 @interface BDBaasday (Private)
 
 + (NSString *)applicationId;

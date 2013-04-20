@@ -10,6 +10,11 @@
 
 @class DetailViewController;
 
+typedef enum {
+    MenuTypeAuthorizeUser,
+    MenuTypeCount
+} MenuType;
+
 @interface MasterViewController : UITableViewController
 
 @property (strong, nonatomic) DetailViewController *detailViewController;

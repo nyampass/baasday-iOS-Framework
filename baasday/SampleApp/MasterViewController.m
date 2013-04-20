@@ -10,6 +10,8 @@
 
 #import "DetailViewController.h"
 
+#import "BDUser.h"
+
 @interface MasterViewController () {
     NSMutableArray *_objects;
 }
@@ -25,12 +27,29 @@
     }
     return self;
 }
+
+-(NSString *)menuTitle:(MenuType)type
+{
+    switch (type) {
+        case MenuTypeAuthorizeUser:
+            return NSLocalizedString(@"Retrieve User", nil);
+            break;
+            
+        default:
+            return nil;
+    }
+}
 							
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
+
+    _objects = [NSMutableArray new];
+    for (NSInteger i = 0; i < MenuTypeCount; i++) {
+        [_objects addObject:[self menuTitle:i]];
+    }
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
@@ -75,7 +94,6 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
-
     NSDate *object = _objects[indexPath.row];
     cell.textLabel.text = [object description];
     return cell;
@@ -113,14 +131,42 @@
 }
 */
 
+- (void)willPresentAlertView:(UIAlertView *)alertView {
+    
+    [alertView setFrame:CGRectMake(0, 0, 320, 460)];}
+
+
+- (void)authorizeUser
+{
+    BDUser* user = [[BDUser alloc] init];
+    BOOL success = [user save];
+   
+    [[[UIAlertView alloc] initWithTitle:nil message:@"ユーザを作成しました"
+                               delegate:nil
+                      cancelButtonTitle:nil
+                      otherButtonTitles:@"OK", nil] show];
+
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    MenuType type = indexPath.row;
+    switch (type) {
+        case MenuTypeAuthorizeUser:
+            [self authorizeUser];
+            break;
+            
+        default:
+            break;
+    }
+    /*
     if (!self.detailViewController) {
         self.detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
     }
     NSDate *object = _objects[indexPath.row];
     self.detailViewController.detailItem = object;
     [self.navigationController pushViewController:self.detailViewController animated:YES];
+     */
 }
 
 @end

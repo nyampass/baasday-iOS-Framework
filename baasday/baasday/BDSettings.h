@@ -10,6 +10,6 @@
 #define baasday_BDSettings_h
 
 #define BDAPIURL    @"http://baasday.com/api"
-#define BDClientVersion @"1.0"
+#define BDClientVersion @"0.5"
 
 #endif

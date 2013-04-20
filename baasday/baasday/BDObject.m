@@ -8,11 +8,10 @@
 
 #import "BDObject.h"
 
-#import "BDConnection.h"
-
 @interface BDObject ()
 
-@property (nonatomic, retain) NSString* collectionName;
+@property (nonatomic, strong) NSString* collectionName;
+@property (nonatomic, strong) NSDictionary* fields;
 
 @end
 
@@ -28,16 +27,40 @@
     return self;
 }
 
+- (void)updateFromDictionary:(NSDictionary *)dic
+{
+    NSLog(@"%@", dic);
+    self.fields = dic;
+}
+
 - (void)saveWithBlock:(BDObjectResultBlock)block
 {
+    self.block = block;
     BDConnection* connection = [[BDConnection alloc] init];
-    [[connection post:self] requstWithBlock:block];
+    [[connection postWithCollectionName:self.collectionName parameters:nil]
+     doRequestWithDelegate:self];
 }
 
 - (BOOL)save
 {
     BDConnection* connection = [[BDConnection alloc] init];
-    return [[connection post:self] request] == nil;
+    NSError* error;
+    NSDictionary* params = [NSDictionary dictionary];
+    NSDictionary* dic = [[connection postWithCollectionName:self.collectionName
+                                                 parameters:params] doRequestWithError:&error];
+    
+    if (!error) {
+        [self updateFromDictionary:dic];
+    } else {
+        NSLog(@"%@", error);
+    }
+    
+    return (error == nil);
+}
+
+-(void)connection:(BDConnection *)connection finishedWithDictionary:(NSDictionary *)dictionary error:(NSError *)error
+{
+//    self.block(
 }
 
 @end

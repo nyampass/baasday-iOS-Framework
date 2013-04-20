@@ -8,14 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BDConnection.h"
+
 @class BDObject;
 
 typedef void (^BDObjectResultBlock) (BDObject*, BOOL, NSError*);
 
-@interface BDObject : NSObject
+@interface BDObject : NSObject <BDConnectionDelegate>
 
-@property (nonatomic, retain, readonly) NSString* collectionName;
-@property (nonatomic, retain) NSString* objectId;
+@property (nonatomic, assign) BDObjectResultBlock block;
+@property (nonatomic, strong, readonly) NSString* collectionName;
+@property (nonatomic, strong) NSString* objectId;
 
 - initWithCollectionName:(NSString *)collectionName;
 - (BOOL)save;

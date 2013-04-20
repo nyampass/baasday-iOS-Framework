@@ -16,8 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-    [BDBaasday setApplicationId:@"2AocRg4c8VQ2q78VDfrFVzgtM5wcnDLq" apiKey:@"WUOZj30m5NOWWazC3BWWZPfRwQZGpsKD"];
+    [BDBaasday setApplicationId:@"jQbsNOARdzH4C0RkjMrLuVrP7LKEapZo" apiKey:@"X4yCUaggzEb6UPjGQiwRDm9bEyDIKbmc"];
     NSLog(@"%@", [BDBaasday version]);
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
