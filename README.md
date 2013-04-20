@@ -1,6 +1,6 @@
-# baasday SDK 0.2 (アルファリリース)
+# baasday SDK 0.5 (アルファリリース)
 
-baasday iOS FrameworkはiOS用のbaasdayフレームワークです。baasday[1]はニャンパス[2]により開発されているモバイルアプリケーション向けのバックエンドサービスです。
+baasday iOS FrameworkはiOS用のbaasdayフレームワークです。[baasday](http://baasday.com/)は[ニャンパス](http://nyampass.com/)により開発されているモバイルアプリケーション向けのバックエンドサービスです。
 
 アルファリリースのbaasdayでは、現在以下のサービスをサポートしています。
 
@@ -10,14 +10,16 @@ baasday iOS FrameworkはiOS用のbaasdayフレームワークです。baasday[1]
 * ゲームスコアランキング
 * リアルタイムチャット
 
-Android版はこちら[3]
+Android版は[こちら](https://github.com/nyampass/baasday-Android-Library)
+
+# 利用方法
+
+[ここ](https://github.com/nyampass/baasday-iOS-Framework/tree/master/baasday/Framework)から最新版のbaasdayフレームワークをダウンロードし、Xcodeのプロジェクトにフレームワークを追加して下さい。
+
+またこのbaasday-iOS-Frameworkには、フレームワークのソースコードとサンプルコードが含まれていますのでXcodeから直接コンパイルすることも可能です。
 
 # 追加予定の機能
 
 * プッシュ通知
 * 位置情報サービス
 * イベントロギング
-
-[1]: http://baasday.com/
-[2]: http://nyampass.com/
-[3]: https://github.com/nyampass/baasday-Android-Library
