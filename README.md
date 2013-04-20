@@ -18,6 +18,11 @@ Android版は[こちら](https://github.com/nyampass/baasday-Android-Library)
 
 またこのbaasday-iOS-Frameworkには、フレームワークのソースコードとサンプルコードが含まれていますのでXcodeから直接コンパイルすることも可能です。
 
+# API
+
+[こちら](https://github.com/nyampass/baasday-iOS-Framework/tree/master/API.md)をご確認下さい。
+
+
 # 追加予定の機能
 
 * プッシュ通知
