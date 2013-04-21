@@ -12,4 +12,6 @@
 #define BDAPIURL    @"http://baasday.com/api"
 #define BDClientVersion @"0.5"
 
+#define BDUserDefaultsKeyPrefix @"BAASDAY_FRMWORK_"
+
 #endif

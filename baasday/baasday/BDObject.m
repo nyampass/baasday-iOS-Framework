@@ -27,6 +27,16 @@
     return self;
 }
 
+- (id)initWithDictionary:(NSDictionary *)dictionary
+{
+    self = [super init];
+    if (self) {
+        self.objectId = nil;
+        self.fields = dictionary;
+    }
+    return self;
+}
+
 - (void)updateFromDictionary:(NSDictionary *)dic
 {
     NSLog(@"%@", dic);
@@ -37,8 +47,21 @@
 {
     self.block = block;
     BDConnection* connection = [[BDConnection alloc] init];
-    [[connection postWithCollectionName:self.collectionName parameters:nil]
-     doRequestWithDelegate:self];
+    [[connection postWithPath:self.collectionName] doRequestWithDelegate:self];
+}
+
++ (BDObject *)findWithPath:(NSString *)path
+{
+    BDConnection* connection = [[BDConnection alloc] init];
+    NSError* error;
+
+    NSDictionary* dic = [[connection getWithPath:path] doRequestWithError:&error];
+
+    if (!error)
+        return [[self alloc] initWithDictionary:dic];
+
+    NSLog(@"%@", error);
+    return nil;
 }
 
 - (BOOL)save
@@ -46,8 +69,8 @@
     BDConnection* connection = [[BDConnection alloc] init];
     NSError* error;
     NSDictionary* params = [NSDictionary dictionary];
-    NSDictionary* dic = [[connection postWithCollectionName:self.collectionName
-                                                 parameters:params] doRequestWithError:&error];
+    NSDictionary* dic = [[[connection postWithPath:self.collectionName]
+                          requestJson:params] doRequestWithError:&error];
     
     if (!error) {
         [self updateFromDictionary:dic];
@@ -56,6 +79,11 @@
     }
     
     return (error == nil);
+}
+
+- (NSString *)stringForKey:(NSString *)key
+{
+    return [self.fields objectForKey:key];
 }
 
 -(void)connection:(BDConnection *)connection finishedWithDictionary:(NSDictionary *)dictionary error:(NSError *)error

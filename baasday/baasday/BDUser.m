@@ -9,7 +9,27 @@
 #import "BDUser.h"
 #import "BDConnection.h"
 
+#import "BDSettings.h"
+
 @implementation BDUser
+
+static NSString* authorizedKey = nil;
+
++ (void)setAuthorizedKey:(NSString *)key
+{
+    authorizedKey = key;
+}
+
++ (NSString *)authorizedKey
+{
+    return authorizedKey;
+}
+
++ (BDUser *)me
+{
+    NSAssert(authorizedKey, @"authorizedKey is undefined");
+    return (BDUser *)[BDUser findWithPath:@"me"];
+}
 
 -(NSString *)collectionName
 {

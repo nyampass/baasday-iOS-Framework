@@ -12,6 +12,10 @@
 
 typedef enum {
     MenuTypeAuthorizeUser,
+    MenuTypeFetchMe,
+    MenuTypeAddPoint,
+    MenuTypeAddScore,
+    MenuTypeViewRanking,
     MenuTypeCount
 } MenuType;
 

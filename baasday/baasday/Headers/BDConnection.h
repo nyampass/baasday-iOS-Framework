@@ -21,8 +21,11 @@
 
 @property (nonatomic, assign) id<BDConnectionDelegate> delegate;
 
-- (BDConnection *)postWithCollectionName:(NSString *)collectionName
-                              parameters:(NSDictionary *)parameters;
+- (BDConnection *)getWithPath:(NSString *)path;
+- (BDConnection *)postWithPath:(NSString *)path;
+
+- (BDConnection *)query:(NSDictionary *)query;
+- (BDConnection *)requestJson:(NSDictionary *)dic;
 
 - (NSDictionary *)doRequestWithError:(NSError **)error;
 - (void)doRequestWithDelegate:(id<BDConnectionDelegate>)delegate;

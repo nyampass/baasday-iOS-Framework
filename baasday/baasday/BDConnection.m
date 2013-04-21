@@ -7,10 +7,11 @@
 //
 
 #import "BDConnection.h"
-#import "BDObject.h"
 #import "BDSettings.h"
 
 #import "BDBaasday(Private).h"
+
+#import "BDUser.h"
 
 #import "JSONKit.h"
 
@@ -21,6 +22,11 @@ typedef enum {
 
 @interface BDConnection ()
 
+@property (nonatomic, strong) NSString* method;
+@property (nonatomic, strong) NSString* path;
+@property (nonatomic, strong) NSDictionary* query;
+@property (nonatomic, strong) NSDictionary* requestJson;
+
 @property (nonatomic, strong) NSMutableURLRequest* request;
 @property (nonatomic, strong) NSMutableData* response;
 
@@ -28,17 +34,27 @@ typedef enum {
 
 @implementation BDConnection
 
--(NSMutableURLRequest *)requestWithPath:(NSString *)path requestType:(BDConnectionRequestType)requestType
++ (void)setHeadersWithRequest:(NSMutableURLRequest *)request
+{
+    [request setValue:[BDBaasday applicationId] forHTTPHeaderField:@"X-Baasday-Application-Id"];
+    [request setValue:[BDBaasday apiKey] forHTTPHeaderField:@"X-Baasday-Application-Api-Key"];
+    if ([BDUser authorizedKey]) {
+        NSLog(@"user-authentication-key: %@",
+              [BDUser authorizedKey]);
+
+        [request setValue:[BDUser authorizedKey] forHTTPHeaderField:@"X-Baasday-Application-User-Authentication-Key"];
+    }
+}
+
+- (NSMutableURLRequest *)requestWithPath:(NSString *)path requestType:(BDConnectionRequestType)requestType
 {
     NSAssert(path, @"path is undefined");
-    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BDAPIURL, path]];
+    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", BDAPIURL, path]];
     
     NSLog(@"%@", url);
     
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
-    
-    [request setValue:[BDBaasday applicationId] forHTTPHeaderField:@"X-Baasday-Application-Id"];
-    [request setValue:[BDBaasday apiKey] forHTTPHeaderField:@"X-Baasday-Application-Api-Key"];
+    [BDConnection setHeadersWithRequest:request];
 
     // [request setValue:VALUE forHTTPHeaderField:@"Field You Want To Set"];
     switch (requestType) {
@@ -65,20 +81,75 @@ typedef enum {
 #pragma -
 #pragma Operation
 
-- (BDConnection *)postWithCollectionName:(NSString *)collectionName
-                              parameters:(NSDictionary *)parameters
+- (BDConnection *)setMethod:(NSString *)method path:(NSString *)path
 {
-    NSString* path = [NSString stringWithFormat:@"/%@", collectionName];
-    self.request = [self requestWithPath:path requestType:BDConnectionRequestTypeJSON];
+    NSAssert(method &&
+             ([method isEqualToString:@"GET"] ||
+              [method isEqualToString:@"POST"] ||
+              [method isEqualToString:@"PUT"] ||
+              [method isEqualToString:@"DELETE"]), @"HTTP method is wrong");
     
-    NSData* jsonData = [parameters JSONData];
+    NSAssert(path, @"undefined path");
 
-    [self.request setHTTPMethod:@"POST"];
-    [self.request addValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"content-Length"];
+    self.method = method;
+    self.path = path;
     
-    [self.request setHTTPBody:jsonData];
-
     return self;
+}
+
+- (BDConnection *)getWithPath:(NSString *)path
+{
+    return [self setMethod:@"GET" path:path];
+}
+
+- (BDConnection *)postWithPath:(NSString *)path
+{
+    return [self setMethod:@"POST" path:path];
+}
+
+- (BDConnection *)query:(NSDictionary *)query
+{
+    self.query = query;
+    return self;
+}
+
+- (NSString *)encode:(id)object
+{
+    NSString *string = [NSString stringWithFormat: @"%@", object];
+    return [string stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+}
+
+- (NSString*)urlEncodeFromDictionary:(NSDictionary *)dic
+{
+    NSMutableArray *q = [NSMutableArray array];
+
+    for (id key in dic) {
+        id value = [dic objectForKey: key];
+        NSString *part = [NSString stringWithFormat: @"%@=%@",
+                          [self encode:key],
+                          [self encode:value]];
+        [q addObject:part];
+    }
+    return [q componentsJoinedByString: @"&"];
+}
+
+- (BDConnection *)requestJson:(NSDictionary *)json
+{
+    self.requestJson = json;
+    return self;
+}
+
+- (void)buildRequest
+{
+    self.request = [self requestWithPath:self.path requestType:BDConnectionRequestTypeJSON];
+    [self.request setHTTPMethod:self.method];
+    NSLog(@"HTTP method: %@", self.method);
+
+    if (self.requestJson) {
+        NSData* jsonData = [self.requestJson JSONData];
+        [self.request addValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"content-Length"];
+        [self.request setHTTPBody:jsonData];
+    }
 }
 
 #pragma -
@@ -86,6 +157,7 @@ typedef enum {
 
 - (NSDictionary *)doRequestWithError:(NSError **)error
 {
+    [self buildRequest];
     NSAssert(self.request, @"not set request");
     NSURLResponse* returningResponse;
     NSData* response = [NSURLConnection sendSynchronousRequest:self.request
@@ -99,6 +171,7 @@ typedef enum {
 
 - (void)doRequestWithDelegate:(id<BDConnectionDelegate>)delegate;
 {
+    [self buildRequest];
     NSAssert(self.request, @"not set request");
     NSURLConnection* connection = [[NSURLConnection alloc] initWithRequest:self.request
                                                                   delegate:self];
@@ -127,7 +200,7 @@ typedef enum {
 
 - (NSDictionary *)dictionaryFromData:(NSData *)data
 {
-    NSLog(@"dictionaryFromData: %@, %@", data, [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    NSLog(@"dictionaryFromData: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 
     JSONDecoder *decoder = [JSONDecoder decoder];
     NSError* error;

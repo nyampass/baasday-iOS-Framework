@@ -32,8 +32,20 @@
 {
     switch (type) {
         case MenuTypeAuthorizeUser:
-            return NSLocalizedString(@"Retrieve User", nil);
+            return NSLocalizedString(@"Create user", nil);
             break;
+
+        case MenuTypeFetchMe:
+            return NSLocalizedString(@"Fetch my user data", nil);
+            
+        case MenuTypeAddPoint:
+            return NSLocalizedString(@"Add point", nil);
+            
+        case MenuTypeAddScore:
+            return NSLocalizedString(@"Add score", nil);
+
+        case MenuTypeViewRanking:
+            return NSLocalizedString(@"View ranking", nil);
             
         default:
             return nil;
@@ -53,12 +65,6 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)insertNewObject:(id)sender
@@ -135,17 +141,43 @@
     
     [alertView setFrame:CGRectMake(0, 0, 320, 460)];}
 
+static BOOL saveAuthorizedKey = NO;
 
-- (void)authorizeUser
+- (void)authorizeUser:(BOOL)showMessage
 {
     BDUser* user = [[BDUser alloc] init];
     BOOL success = [user save];
+    
+    NSString *message;
+    NSString *authorizedKey = [user stringForKey:@"_authenticationKey"];
+    
+    if (success) {
+        message = [NSString stringWithFormat:@"Created user\n%@",
+                   authorizedKey];
+        [BDUser setAuthorizedKey:authorizedKey];
+
+    } else {
+        message = @"Failed create user";
+    }
    
-    [[[UIAlertView alloc] initWithTitle:nil message:@"ユーザを作成しました"
+    if (showMessage)
+        [[[UIAlertView alloc] initWithTitle:nil
+                                    message:message
+                                   delegate:nil
+                          cancelButtonTitle:nil
+                          otherButtonTitles:@"OK", nil] show];
+}
+
+- (void)fetchMe
+{
+    if (saveAuthorizedKey)
+        [self authorizeUser:NO];
+    BDUser* user = [BDUser me];
+    [[[UIAlertView alloc] initWithTitle:nil
+                                message:[NSString stringWithFormat:@"%@", user]
                                delegate:nil
                       cancelButtonTitle:nil
                       otherButtonTitles:@"OK", nil] show];
-
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -153,20 +185,15 @@
     MenuType type = indexPath.row;
     switch (type) {
         case MenuTypeAuthorizeUser:
-            [self authorizeUser];
+            [self authorizeUser:YES];
             break;
+
+        case MenuTypeFetchMe:
+            [self fetchMe];
             
         default:
             break;
     }
-    /*
-    if (!self.detailViewController) {
-        self.detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
-    }
-    NSDate *object = _objects[indexPath.row];
-    self.detailViewController.detailItem = object;
-    [self.navigationController pushViewController:self.detailViewController animated:YES];
-     */
 }
 
 @end
