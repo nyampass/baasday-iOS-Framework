@@ -10,4 +10,9 @@
 
 @interface BDUser : BDObject
 
++ (void)setAuthorizedKey:(NSString *)key;
++ (NSString *)authorizedKey;
+
++ (BDUser *)me;
+
 @end

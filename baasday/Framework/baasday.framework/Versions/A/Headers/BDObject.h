@@ -21,7 +21,13 @@ typedef void (^BDObjectResultBlock) (BDObject*, BOOL, NSError*);
 @property (nonatomic, strong) NSString* objectId;
 
 - initWithCollectionName:(NSString *)collectionName;
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+
 - (BOOL)save;
 - (void)saveWithBlock:(BDObjectResultBlock)block;
+
+- (NSString *)stringForKey:(NSString *)key;
+
++ (BDObject *)findWithPath:(NSString *)path;
 
 @end
