@@ -300,24 +300,6 @@ APIは基本的に`application/json`を返します。
 
 `_createdAt`、`_updatedAt`は`{"$type":"datetime", "$value": "..."}`による日付型で返されます。
 
-##### アプリケーションプロバイダ
-
-    {"_id": <アプリケーションプロバイダID>,
-     "_createdAt": <作成日時>,
-     "_updatedAt": <更新日時>}
-
-非公開。
-
-##### アプリケーション
-
-    {"_id": <アプリケーションID>,
-     "_name": <アプリケーション名>,
-     "_apiKey": <APIキー>,
-     "_createdAt": <作成日時>,
-     "_updatedAt": <更新日時>}
-
-非公開。
-
 ##### ユーザ
 
     {"_id": <ユーザID>,
