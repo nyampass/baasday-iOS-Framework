@@ -26,7 +26,10 @@ typedef void (^BDObjectResultBlock) (BDObject*, BOOL, NSError*);
 - (BOOL)save;
 - (void)saveWithBlock:(BDObjectResultBlock)block;
 
+- (void)incrementKey:(NSString *)key amountBy:(NSInteger)amount;
+
 - (NSString *)stringForKey:(NSString *)key;
+- (NSNumber *)numberForKey:(NSString *)key;
 
 + (BDObject *)findWithPath:(NSString *)path;
 
