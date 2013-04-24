@@ -17,4 +17,6 @@
 
 + (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values;
 
++ (NSArray *)leaderboardEntries:(NSString *)leaderboardName skip:(NSInteger)skip limit:(NSInteger)limit;
+
 @end
