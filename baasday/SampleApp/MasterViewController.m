@@ -12,6 +12,7 @@
 
 #import "BDBaasday.h"
 #import "BDAuthenticatedUser.h"
+#import "BDLeaderboardEntry.h"
 
 @interface MasterViewController () {
     NSMutableArray *_objects;
@@ -188,10 +189,18 @@ static BOOL saveAuthenticationKey = NO;
         [self authorizeUser:NO];
     BDAuthenticatedUser* user = [BDAuthenticatedUser me];
     [user update:@{@"point": @{@"$inc": [NSNumber numberWithInt:10]}}];
-//    [user incrementKey:@"point" amountBy:10];
-//    [user save];
     [[[UIAlertView alloc] initWithTitle:nil
                                 message:[NSString stringWithFormat:@"Point: %@", [user valueForKey:@"point"]]
+                               delegate:nil
+                      cancelButtonTitle:nil
+                      otherButtonTitles:@"OK", nil] show];
+}
+
+- (void)addScore
+{
+    BDLeaderboardEntry *entry = [BDLeaderboardEntry createWithLeaderboardName:@"normal-mode" values:@{@"_score": [NSNumber numberWithInt:100]}];
+    [[[UIAlertView alloc] initWithTitle:nil
+                                message:[NSString stringWithFormat:@"Rank: %@", [entry valueForKey:@"_rank"]]
                                delegate:nil
                       cancelButtonTitle:nil
                       otherButtonTitles:@"OK", nil] show];
@@ -211,6 +220,11 @@ static BOOL saveAuthenticationKey = NO;
             
         case MenuTypeAddPoint:
             [self addPoint];
+            break;
+            
+        case MenuTypeAddScore:
+            [self addScore];
+            break;
             
         default:
             break;

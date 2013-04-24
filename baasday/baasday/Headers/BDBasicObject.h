@@ -19,8 +19,6 @@ typedef void (^BDBasicObjectResultBlock) (BDBasicObject*, BOOL, NSError*);
 @property (nonatomic, strong) NSString* objectId;
 
 @property (readonly) NSString *collectionPath;
-@property (readonly) NSString *collectionPathForCreate;
-@property (readonly) NSString *collectionPathForFetch;
 @property (readonly) NSString *path;
 @property (readonly) NSString *pathForFetch;
 @property (readonly) NSString *pathForUpdate;
@@ -39,5 +37,6 @@ typedef void (^BDBasicObjectResultBlock) (BDBasicObject*, BOOL, NSError*);
 - (NSNumber *)numberForKey:(NSString *)key;
 
 + (BDBasicObject *)findWithPath:(NSString *)path;
++ (NSDictionary *)createWithPath:(NSString *)path values:(NSDictionary *)values;
 
 @end

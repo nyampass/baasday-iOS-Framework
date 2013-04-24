@@ -30,14 +30,6 @@
     return [self.fields valueForKey:key];
 }
 
-- (NSString *)collectionPathForCreate {
-    return self.collectionPath;
-}
-
-- (NSString *)collectionPathForFetch {
-    return self.collectionPath;
-}
-
 - (NSString *)path {
     return [NSString stringWithFormat:@"%@/%@", self.collectionPath, self.objectId];
 }
@@ -59,7 +51,6 @@
     NSLog(@"%@", dic);
     self.fields = dic;
 }
-
 
 - (BOOL)update:(NSDictionary *)values {
     BDConnection* connection = [[BDConnection alloc] init];
@@ -92,6 +83,17 @@
     
     NSLog(@"%@", error);
     return nil;
+}
+
++ (NSDictionary *)createWithPath:(NSString *)path values:(NSDictionary *)values {
+    BDConnection *connectin = [[BDConnection alloc] init];
+    NSError *error;
+    NSDictionary *result = [[[connectin postWithPath:path] requestJson:values] doRequestWithError:&error];
+    if (error) {
+        NSLog(@"%@", error);
+        return nil;
+    }
+    return result;
 }
 
 - (BOOL)save
