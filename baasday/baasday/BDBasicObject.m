@@ -96,7 +96,6 @@
     return result;
 }
 
-<<<<<<< HEAD
 + (NSArray *)fetchWithPath:(NSString *)path skip:(NSInteger)skip limit:(NSInteger)limit {
     BDConnection *connection = [[BDConnection alloc] init];
     NSError *error;
@@ -108,8 +107,6 @@
     return [result valueForKey:@"_contents"];
 }
 
-=======
->>>>>>> temp1
 - (BOOL)save
 {
     BDConnection* connection = [[BDConnection alloc] init];
