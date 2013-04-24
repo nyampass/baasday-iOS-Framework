@@ -8,9 +8,7 @@
 
 #import "BDConnection.h"
 #import "BDSettings.h"
-
 #import "BDBaasday(Private).h"
-
 #import "BDUser.h"
 
 #import "JSONKit.h"
@@ -38,11 +36,11 @@ typedef enum {
 {
     [request setValue:[BDBaasday applicationId] forHTTPHeaderField:@"X-Baasday-Application-Id"];
     [request setValue:[BDBaasday apiKey] forHTTPHeaderField:@"X-Baasday-Application-Api-Key"];
-    if ([BDUser authorizedKey]) {
+    if ([BDUser authenticationKey]) {
         NSLog(@"user-authentication-key: %@",
-              [BDUser authorizedKey]);
+              [BDUser authenticationKey]);
 
-        [request setValue:[BDUser authorizedKey] forHTTPHeaderField:@"X-Baasday-Application-User-Authentication-Key"];
+        [request setValue:[BDUser authenticationKey] forHTTPHeaderField:@"X-Baasday-Application-User-Authentication-Key"];
     }
 }
 

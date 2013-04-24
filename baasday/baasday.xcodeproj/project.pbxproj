@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		DB14FC991727A24A002C478A /* BDBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14FC981727A24A002C478A /* BDBasicObject.m */; };
 		DB5D75FD1706DDD200B2DE4D /* BDObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75FC1706DDD200B2DE4D /* BDObject.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		DB5D76001706DFB700B2DE4D /* BDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75FF1706DFB700B2DE4D /* BDUser.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		DB5D76031706E03700B2DE4D /* BDConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D76021706E03600B2DE4D /* BDConnection.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -85,13 +86,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DB14FC971727A24A002C478A /* BDBasicObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBasicObject.h; sourceTree = "<group>"; };
+		DB14FC981727A24A002C478A /* BDBasicObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBasicObject.m; sourceTree = "<group>"; };
 		DB5D75FA1706D2E500B2DE4D /* BDBaasday(Private).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BDBaasday(Private).h"; sourceTree = "<group>"; };
 		DB5D75FB1706DDD200B2DE4D /* BDObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDObject.h; sourceTree = "<group>"; };
 		DB5D75FC1706DDD200B2DE4D /* BDObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDObject.m; sourceTree = "<group>"; };
-		DB5D75FE1706DFB700B2DE4D /* BDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDUser.h; sourceTree = "<group>"; };
-		DB5D75FF1706DFB700B2DE4D /* BDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDUser.m; sourceTree = "<group>"; };
+		DB5D75FE1706DFB700B2DE4D /* BDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BDUser.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		DB5D75FF1706DFB700B2DE4D /* BDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDUser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DB5D76011706E03600B2DE4D /* BDConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDConnection.h; path = Headers/BDConnection.h; sourceTree = "<group>"; };
-		DB5D76021706E03600B2DE4D /* BDConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDConnection.m; sourceTree = "<group>"; };
+		DB5D76021706E03600B2DE4D /* BDConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDConnection.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DB5D76041706ED0200B2DE4D /* BDSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDSettings.h; sourceTree = "<group>"; };
 		DB6B717F1722C4F20001E842 /* baasday.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = baasday.framework; path = Framework/baasday.framework; sourceTree = "<group>"; };
 		DB80A5E81705C3F900C8D728 /* baasday-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "baasday-Prefix.pch"; sourceTree = "<group>"; };
@@ -120,7 +123,7 @@
 		DBCCA946171E418900F090D2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DBCCA948171E418900F090D2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DBCCA94A171E418900F090D2 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		DBCCA94B171E418900F090D2 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		DBCCA94B171E418900F090D2 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MasterViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DBCCA94D171E418900F090D2 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		DBCCA94E171E418900F090D2 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		DBCCA951171E418900F090D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController.xib; sourceTree = "<group>"; };
@@ -187,6 +190,7 @@
 				DB5D76041706ED0200B2DE4D /* BDSettings.h */,
 				DB5D75FA1706D2E500B2DE4D /* BDBaasday(Private).h */,
 				DB8F5D1A1705ED1F00A7E9AC /* BDBaasday.m */,
+				DB14FC981727A24A002C478A /* BDBasicObject.m */,
 				DB5D75FC1706DDD200B2DE4D /* BDObject.m */,
 				DB5D75FF1706DFB700B2DE4D /* BDUser.m */,
 				DB5D76011706E03600B2DE4D /* BDConnection.h */,
@@ -275,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				DB8F5D191705ED1F00A7E9AC /* BDBaasday.h */,
+				DB14FC971727A24A002C478A /* BDBasicObject.h */,
 				DB5D75FB1706DDD200B2DE4D /* BDObject.h */,
 				DB5D75FE1706DFB700B2DE4D /* BDUser.h */,
 				DBFB0B3116F7F5AC0045338D /* baasday.h */,
@@ -537,6 +542,7 @@
 				DB5D76001706DFB700B2DE4D /* BDUser.m in Sources */,
 				DB5D76031706E03700B2DE4D /* BDConnection.m in Sources */,
 				DBEAFC09172259F40041B388 /* JSONKit.m in Sources */,
+				DB14FC991727A24A002C478A /* BDBasicObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,21 +13,21 @@
 
 @implementation BDUser
 
-static NSString* authorizedKey = nil;
+static NSString* authenticationKey = nil;
 
-+ (void)setAuthorizedKey:(NSString *)key
++ (void)setAuthenticationKey:(NSString *)key
 {
-    authorizedKey = key;
+    authenticationKey = key;
 }
 
-+ (NSString *)authorizedKey
++ (NSString *)authenticationKey
 {
-    return authorizedKey;
+    return authenticationKey;
 }
 
 + (BDUser *)me
 {
-    NSAssert(authorizedKey, @"authorizedKey is undefined");
+    NSAssert(authenticationKey, @"authenticationKey is undefined");
     return (BDUser *)[BDUser findWithPath:@"me"];
 }
 

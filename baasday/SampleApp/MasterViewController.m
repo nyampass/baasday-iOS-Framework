@@ -141,7 +141,7 @@
     
     [alertView setFrame:CGRectMake(0, 0, 320, 460)];}
 
-static BOOL saveAuthorizedKey = NO;
+static BOOL saveAuthenticationKey = NO;
 
 - (void)authorizeUser:(BOOL)showMessage
 {
@@ -149,12 +149,12 @@ static BOOL saveAuthorizedKey = NO;
     BOOL success = [user save];
     
     NSString *message;
-    NSString *authorizedKey = [user stringForKey:@"_authenticationKey"];
+    NSString *authenticationKey = [user stringForKey:@"_authenticationKey"];
     
     if (success) {
         message = [NSString stringWithFormat:@"Created user\n%@",
-                   authorizedKey];
-        [BDUser setAuthorizedKey:authorizedKey];
+                   authenticationKey];
+        [BDUser setAuthenticationKey:authenticationKey];
 
     } else {
         message = @"Failed create user";
@@ -170,7 +170,7 @@ static BOOL saveAuthorizedKey = NO;
 
 - (void)fetchMe
 {
-    if (saveAuthorizedKey)
+    if (!saveAuthenticationKey)
         [self authorizeUser:NO];
     BDUser* user = [BDUser me];
     [[[UIAlertView alloc] initWithTitle:nil
@@ -178,6 +178,22 @@ static BOOL saveAuthorizedKey = NO;
                                delegate:nil
                       cancelButtonTitle:nil
                       otherButtonTitles:@"OK", nil] show];
+}
+
+- (void)addPoint
+{
+    if (!saveAuthenticationKey)
+        [self authorizeUser:NO];
+    BDUser* user = [BDUser me];
+    [user incrementKey:@"point" amountBy:10];
+    [user save];
+/*
+    [[[UIAlertView alloc] initWithTitle:nil
+                                message:[NSString stringWithFormat:@"Point: %@", [user ]
+                               delegate:nil
+                      cancelButtonTitle:nil
+                      otherButtonTitles:@"OK", nil] show];
+ */
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -190,10 +206,15 @@ static BOOL saveAuthorizedKey = NO;
 
         case MenuTypeFetchMe:
             [self fetchMe];
+            break;
+            
+        case MenuTypeAddPoint:
+            [self addPoint];
             
         default:
             break;
     }
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
