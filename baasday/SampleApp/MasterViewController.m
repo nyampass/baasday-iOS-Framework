@@ -206,6 +206,14 @@ static BOOL saveAuthenticationKey = NO;
                       otherButtonTitles:@"OK", nil] show];
 }
 
+- (void)viewRanking
+{
+    NSArray *entries = [BDLeaderboardEntry leaderboardEntries:@"normal-mode" skip:0 limit:100];
+    for (BDLeaderboardEntry *entry in entries) {
+        NSLog(@"%@ %@ %@", [entry valueForKey:@"_rank"], [entry valueForKey:@"_order"], [entry valueForKey:@"_score"]);
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MenuType type = indexPath.row;
@@ -224,6 +232,10 @@ static BOOL saveAuthenticationKey = NO;
             
         case MenuTypeAddScore:
             [self addScore];
+            break;
+            
+        case MenuTypeViewRanking:
+            [self viewRanking];
             break;
             
         default:

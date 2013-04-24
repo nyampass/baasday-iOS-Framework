@@ -40,4 +40,16 @@
     return [[self alloc] initWithLeaderboardName:leaderboardName withDictionary:dic];
 }
 
++ (NSArray *)leaderboardEntries:(NSString *)leaderboardName skip:(NSInteger)skip limit:(NSInteger)limit {
+    NSArray *result = [super fetchWithPath:[self collectionPathWithLeaderboardName:leaderboardName] skip:skip limit:limit];
+    if (!result) {
+        return nil;
+    }
+    NSMutableArray *entries = [NSMutableArray array];
+    for (NSDictionary *dic in result) {
+        [entries addObject:[[self alloc] initWithLeaderboardName:leaderboardName withDictionary:dic]];
+    }
+    return entries;
+}
+
 @end

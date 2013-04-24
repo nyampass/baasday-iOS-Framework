@@ -86,14 +86,25 @@
 }
 
 + (NSDictionary *)createWithPath:(NSString *)path values:(NSDictionary *)values {
-    BDConnection *connectin = [[BDConnection alloc] init];
+    BDConnection *connection = [[BDConnection alloc] init];
     NSError *error;
-    NSDictionary *result = [[[connectin postWithPath:path] requestJson:values] doRequestWithError:&error];
+    NSDictionary *result = [[[connection postWithPath:path] requestJson:values] doRequestWithError:&error];
     if (error) {
         NSLog(@"%@", error);
         return nil;
     }
     return result;
+}
+
++ (NSArray *)fetchWithPath:(NSString *)path skip:(NSInteger)skip limit:(NSInteger)limit {
+    BDConnection *connection = [[BDConnection alloc] init];
+    NSError *error;
+    NSDictionary *result = [[[connection getWithPath:path] query:@{@"skip": [NSNumber numberWithInt:skip], @"limit": [NSNumber numberWithInt:limit]}] doRequestWithError:&error];
+    if (error) {
+        NSLog(@"%@", error);
+        return nil;
+    }
+    return [result valueForKey:@"_contents"];
 }
 
 - (BOOL)save

@@ -38,5 +38,6 @@ typedef void (^BDBasicObjectResultBlock) (BDBasicObject*, BOOL, NSError*);
 
 + (BDBasicObject *)findWithPath:(NSString *)path;
 + (NSDictionary *)createWithPath:(NSString *)path values:(NSDictionary *)values;
++ (NSArray *)fetchWithPath:(NSString *)path skip:(NSInteger)skip limit:(NSInteger)limit;
 
 @end

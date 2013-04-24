@@ -14,6 +14,7 @@
 #import "JSONKit.h"
 
 typedef enum {
+    BDConnectionRequestTypeFormUrlencoded,
     BDConnectionRequestTypeJSON,
     BDConnectionRequestTypeMultipartFormData,
 } BDConnectionRequestType;
@@ -56,6 +57,9 @@ typedef enum {
 
     // [request setValue:VALUE forHTTPHeaderField:@"Field You Want To Set"];
     switch (requestType) {
+        case BDConnectionRequestTypeFormUrlencoded:
+            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+            break;
         case BDConnectionRequestTypeJSON:
             [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
             break;
@@ -149,17 +153,24 @@ typedef enum {
 
 - (void)buildRequest
 {
-    self.request = [self requestWithPath:self.path requestType:BDConnectionRequestTypeJSON];
-    [self.request setHTTPMethod:self.method];
-    NSLog(@"HTTP method: %@", self.method);
-
+    NSString *path;
+    if (self.query) {
+        path = [NSString stringWithFormat:@"%@?%@", self.path, [self urlEncodeFromDictionary:self.query]];
+    } else {
+        path = self.path;
+    }
     if (self.requestJson) {
+        self.request = [self requestWithPath:path requestType:BDConnectionRequestTypeJSON];
         int jsonOptionQuoteKeys = (1 << 5);
         NSData* jsonData = [self.requestJson JSONDataWithOptions:jsonOptionQuoteKeys error:nil];
         [self.request addValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"content-Length"];
         NSLog(@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
         [self.request setHTTPBody:jsonData];
+    } else {
+        self.request = [self requestWithPath:path requestType:BDConnectionRequestTypeFormUrlencoded];
     }
+    [self.request setHTTPMethod:self.method];
+    NSLog(@"HTTP method: %@", self.method);
 }
 
 #pragma -
