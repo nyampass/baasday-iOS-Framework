@@ -37,4 +37,16 @@ __strong static NSString* _apiKey = nil;
     return BDClientVersion;
 }
 
+static NSString* userAuthenticationKey = nil;
+
++ (void)setUserAuthenticationKey:(NSString *)key
+{
+    userAuthenticationKey = key;
+}
+
++ (NSString *)userAuthenticationKey
+{
+    return userAuthenticationKey;
+}
+
 @end
