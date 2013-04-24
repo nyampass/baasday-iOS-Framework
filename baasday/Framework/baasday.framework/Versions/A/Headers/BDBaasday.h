@@ -14,4 +14,8 @@
 
 + (NSString *)version;
 
++ (void)setUserAuthenticationKey:(NSString *)key;
+
++ (NSString *)userAuthenticationKey;
+
 @end

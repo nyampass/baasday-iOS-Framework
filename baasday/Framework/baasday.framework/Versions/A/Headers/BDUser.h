@@ -6,13 +6,8 @@
 //  Copyright (c) 2013年 Nyampass Corporation. All rights reserved.
 //
 
-#import "BDObject.h"
+#import "BDBasicObject.h"
 
-@interface BDUser : BDObject
-
-+ (void)setAuthorizedKey:(NSString *)key;
-+ (NSString *)authorizedKey;
-
-+ (BDUser *)me;
+@interface BDUser : BDBasicObject
 
 @end
