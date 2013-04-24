@@ -14,13 +14,21 @@
 
 typedef void (^BDBasicObjectResultBlock) (BDBasicObject*, BOOL, NSError*);
 
-
 @property (nonatomic, assign) BDBasicObjectResultBlock block;
-@property (nonatomic, strong, readonly) NSString* collectionName;
+
 @property (nonatomic, strong) NSString* objectId;
 
-- initWithCollectionName:(NSString *)collectionName;
+@property (readonly) NSString *collectionPath;
+@property (readonly) NSString *collectionPathForCreate;
+@property (readonly) NSString *collectionPathForFetch;
+@property (readonly) NSString *path;
+@property (readonly) NSString *pathForFetch;
+@property (readonly) NSString *pathForUpdate;
+@property (readonly) NSString *pathForDelete;
+
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+
+- (BOOL)update:(NSDictionary *)values;
 
 - (BOOL)save;
 - (void)saveWithBlock:(BDBasicObjectResultBlock)block;

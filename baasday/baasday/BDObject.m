@@ -10,5 +10,16 @@
 
 @implementation BDObject
 
+- (id)initWithCollectionName:(NSString *)collectionName {
+    if (self = [super init]) {
+        self.collectionName = collectionName;
+    }
+    return self;
+}
+
+- (NSString *)collectionPath {
+    return [NSString stringWithFormat:@"objects/%@", self.collectionName];
+}
+
 @end
 

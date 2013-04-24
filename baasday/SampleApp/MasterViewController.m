@@ -10,7 +10,8 @@
 
 #import "DetailViewController.h"
 
-#import "BDUser.h"
+#import "BDBaasday.h"
+#import "BDAuthenticatedUser.h"
 
 @interface MasterViewController () {
     NSMutableArray *_objects;
@@ -154,7 +155,8 @@ static BOOL saveAuthenticationKey = NO;
     if (success) {
         message = [NSString stringWithFormat:@"Created user\n%@",
                    authenticationKey];
-        [BDUser setAuthenticationKey:authenticationKey];
+        [BDBaasday setUserAuthenticationKey:authenticationKey];
+        saveAuthenticationKey = YES;
 
     } else {
         message = @"Failed create user";
@@ -172,7 +174,7 @@ static BOOL saveAuthenticationKey = NO;
 {
     if (!saveAuthenticationKey)
         [self authorizeUser:NO];
-    BDUser* user = [BDUser me];
+    BDAuthenticatedUser* user = [BDAuthenticatedUser me];
     [[[UIAlertView alloc] initWithTitle:nil
                                 message:[NSString stringWithFormat:@"%@", user]
                                delegate:nil
@@ -184,16 +186,15 @@ static BOOL saveAuthenticationKey = NO;
 {
     if (!saveAuthenticationKey)
         [self authorizeUser:NO];
-    BDUser* user = [BDUser me];
-    [user incrementKey:@"point" amountBy:10];
-    [user save];
-/*
+    BDAuthenticatedUser* user = [BDAuthenticatedUser me];
+    [user update:@{@"point": @{@"$inc": [NSNumber numberWithInt:10]}}];
+//    [user incrementKey:@"point" amountBy:10];
+//    [user save];
     [[[UIAlertView alloc] initWithTitle:nil
-                                message:[NSString stringWithFormat:@"Point: %@", [user ]
+                                message:[NSString stringWithFormat:@"Point: %@", [user valueForKey:@"point"]]
                                delegate:nil
                       cancelButtonTitle:nil
                       otherButtonTitles:@"OK", nil] show];
- */
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

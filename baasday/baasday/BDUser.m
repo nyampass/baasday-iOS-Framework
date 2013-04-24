@@ -13,26 +13,7 @@
 
 @implementation BDUser
 
-static NSString* authenticationKey = nil;
-
-+ (void)setAuthenticationKey:(NSString *)key
-{
-    authenticationKey = key;
-}
-
-+ (NSString *)authenticationKey
-{
-    return authenticationKey;
-}
-
-+ (BDUser *)me
-{
-    NSAssert(authenticationKey, @"authenticationKey is undefined");
-    return (BDUser *)[BDUser findWithPath:@"me"];
-}
-
--(NSString *)collectionName
-{
+- (NSString *)collectionPath {
     return @"users";
 }
 

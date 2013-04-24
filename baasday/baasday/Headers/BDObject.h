@@ -12,4 +12,8 @@
 
 @interface BDObject : BDBasicObject
 
+@property (nonatomic, strong) NSString* collectionName;
+
+- initWithCollectionName:(NSString *)collectionName;
+
 @end

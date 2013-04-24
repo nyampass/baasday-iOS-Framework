@@ -10,23 +10,11 @@
 
 @interface BDBasicObject ()
 
-@property (nonatomic, strong) NSString* collectionName;
 @property (nonatomic, strong) NSDictionary* fields;
-@property (nonatomic, strong) NSMutableArray* fieldsForUpdate;
 
 @end
 
 @implementation BDBasicObject
-
--(id)initWithCollectionName:(NSString *)collectionName
-{
-    self = [super init];
-    if (self) {
-        self.objectId = nil;
-        self.collectionName = collectionName;
-    }
-    return self;
-}
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
@@ -34,9 +22,36 @@
     if (self) {
         self.objectId = nil;
         self.fields = dictionary;
-        self.fieldsForUpdate = [NSMutableDictionary dictionary];
     }
     return self;
+}
+
+- (id)valueForKey:(NSString *)key {
+    return [self.fields valueForKey:key];
+}
+
+- (NSString *)collectionPathForCreate {
+    return self.collectionPath;
+}
+
+- (NSString *)collectionPathForFetch {
+    return self.collectionPath;
+}
+
+- (NSString *)path {
+    return [NSString stringWithFormat:@"%@/%@", self.collectionPath, self.objectId];
+}
+
+- (NSString *)pathForFetch {
+    return self.path;
+}
+
+- (NSString *)pathForUpdate {
+    return self.path;
+}
+
+- (NSString *)pathForDelete {
+    return self.path;
 }
 
 - (void)updateFromDictionary:(NSDictionary *)dic
@@ -45,11 +60,24 @@
     self.fields = dic;
 }
 
+
+- (BOOL)update:(NSDictionary *)values {
+    BDConnection* connection = [[BDConnection alloc] init];
+    NSError *error;
+    NSDictionary *result = [[[connection putWithPath:self.pathForUpdate] requestJson:values] doRequestWithError:&error];
+    if (error) {
+        NSLog(@"%@", error);
+        return false;
+    }
+    [self updateFromDictionary:result];
+    return true;
+}
+
 - (void)saveWithBlock:(BDBasicObjectResultBlock)block
 {
     self.block = block;
     BDConnection* connection = [[BDConnection alloc] init];
-    [[connection postWithPath:self.collectionName] doRequestWithDelegate:self];
+    [[connection postWithPath:self.collectionPath] doRequestWithDelegate:self];
 }
 
 + (BDBasicObject *)findWithPath:(NSString *)path
@@ -71,7 +99,7 @@
     BDConnection* connection = [[BDConnection alloc] init];
     NSError* error;
     NSDictionary* params = [NSDictionary dictionary];
-    NSDictionary* dic = [[[connection postWithPath:self.collectionName]
+    NSDictionary* dic = [[[connection postWithPath:self.collectionPath]
                           requestJson:params] doRequestWithError:&error];
     
     if (!error) {

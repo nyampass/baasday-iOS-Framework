@@ -10,9 +10,4 @@
 
 @interface BDUser : BDBasicObject
 
-+ (void)setAuthenticationKey:(NSString *)key;
-+ (NSString *)authenticationKey;
-
-+ (BDUser *)me;
-
 @end

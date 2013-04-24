@@ -23,6 +23,8 @@
 
 - (BDConnection *)getWithPath:(NSString *)path;
 - (BDConnection *)postWithPath:(NSString *)path;
+- (BDConnection *)putWithPath:(NSString *)path;
+- (BDConnection *)deleteWithPath:(NSString *)path;
 
 - (BDConnection *)query:(NSDictionary *)query;
 - (BDConnection *)requestJson:(NSDictionary *)dic;

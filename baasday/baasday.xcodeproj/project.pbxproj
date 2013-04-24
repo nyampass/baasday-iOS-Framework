@@ -14,6 +14,7 @@
 				DBC96BAF16F7D867001B8498 /* ShellScript */,
 			);
 			dependencies = (
+				DB8E330F17280FC500AA5106 /* PBXTargetDependency */,
 			);
 			name = baasday.framework;
 			productName = baasday.framework;
@@ -22,6 +23,7 @@
 
 /* Begin PBXBuildFile section */
 		DB14FC991727A24A002C478A /* BDBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14FC981727A24A002C478A /* BDBasicObject.m */; };
+		DB55A9E6172821120035291A /* BDAuthenticatedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB55A9E5172821120035291A /* BDAuthenticatedUser.m */; };
 		DB5D75FD1706DDD200B2DE4D /* BDObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75FC1706DDD200B2DE4D /* BDObject.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		DB5D76001706DFB700B2DE4D /* BDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75FF1706DFB700B2DE4D /* BDUser.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		DB5D76031706E03700B2DE4D /* BDConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D76021706E03600B2DE4D /* BDConnection.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -57,6 +59,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		DB8E330E17280FC500AA5106 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DBC96B7116F7D4D7001B8498 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DBC96B7816F7D4D7001B8498;
+			remoteInfo = baasday;
+		};
+		DB8E331017280FC900AA5106 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DBC96B7116F7D4D7001B8498 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DBC96BAA16F7D7A5001B8498;
+			remoteInfo = baasday.framework;
+		};
 		DBC96B9016F7D4D7001B8498 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DBC96B7116F7D4D7001B8498 /* Project object */;
@@ -88,6 +104,8 @@
 /* Begin PBXFileReference section */
 		DB14FC971727A24A002C478A /* BDBasicObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBasicObject.h; sourceTree = "<group>"; };
 		DB14FC981727A24A002C478A /* BDBasicObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBasicObject.m; sourceTree = "<group>"; };
+		DB55A9E4172821120035291A /* BDAuthenticatedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDAuthenticatedUser.h; sourceTree = "<group>"; };
+		DB55A9E5172821120035291A /* BDAuthenticatedUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDAuthenticatedUser.m; sourceTree = "<group>"; };
 		DB5D75FA1706D2E500B2DE4D /* BDBaasday(Private).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BDBaasday(Private).h"; sourceTree = "<group>"; };
 		DB5D75FB1706DDD200B2DE4D /* BDObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDObject.h; sourceTree = "<group>"; };
 		DB5D75FC1706DDD200B2DE4D /* BDObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDObject.m; sourceTree = "<group>"; };
@@ -195,6 +213,7 @@
 				DB5D75FF1706DFB700B2DE4D /* BDUser.m */,
 				DB5D76011706E03600B2DE4D /* BDConnection.h */,
 				DB5D76021706E03600B2DE4D /* BDConnection.m */,
+				DB55A9E5172821120035291A /* BDAuthenticatedUser.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -282,6 +301,7 @@
 				DB14FC971727A24A002C478A /* BDBasicObject.h */,
 				DB5D75FB1706DDD200B2DE4D /* BDObject.h */,
 				DB5D75FE1706DFB700B2DE4D /* BDUser.h */,
+				DB55A9E4172821120035291A /* BDAuthenticatedUser.h */,
 				DBFB0B3116F7F5AC0045338D /* baasday.h */,
 			);
 			path = Headers;
@@ -403,6 +423,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				DB8E331117280FC900AA5106 /* PBXTargetDependency */,
 			);
 			name = SampleApp;
 			productName = SampleApp;
@@ -543,6 +564,7 @@
 				DB5D76031706E03700B2DE4D /* BDConnection.m in Sources */,
 				DBEAFC09172259F40041B388 /* JSONKit.m in Sources */,
 				DB14FC991727A24A002C478A /* BDBasicObject.m in Sources */,
+				DB55A9E6172821120035291A /* BDAuthenticatedUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,6 +598,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		DB8E330F17280FC500AA5106 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DBC96B7816F7D4D7001B8498 /* baasday */;
+			targetProxy = DB8E330E17280FC500AA5106 /* PBXContainerItemProxy */;
+		};
+		DB8E331117280FC900AA5106 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DBC96BAA16F7D7A5001B8498 /* baasday.framework */;
+			targetProxy = DB8E331017280FC900AA5106 /* PBXContainerItemProxy */;
+		};
 		DBC96B9116F7D4D7001B8498 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DBC96B7816F7D4D7001B8498 /* baasday */;

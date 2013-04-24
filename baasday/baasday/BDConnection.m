@@ -36,11 +36,11 @@ typedef enum {
 {
     [request setValue:[BDBaasday applicationId] forHTTPHeaderField:@"X-Baasday-Application-Id"];
     [request setValue:[BDBaasday apiKey] forHTTPHeaderField:@"X-Baasday-Application-Api-Key"];
-    if ([BDUser authenticationKey]) {
+    if ([BDBaasday userAuthenticationKey]) {
         NSLog(@"user-authentication-key: %@",
-              [BDUser authenticationKey]);
+              [BDBaasday userAuthenticationKey]);
 
-        [request setValue:[BDUser authenticationKey] forHTTPHeaderField:@"X-Baasday-Application-User-Authentication-Key"];
+        [request setValue:[BDBaasday userAuthenticationKey] forHTTPHeaderField:@"X-Baasday-Application-User-Authentication-Key"];
     }
 }
 
@@ -105,6 +105,16 @@ typedef enum {
     return [self setMethod:@"POST" path:path];
 }
 
+- (BDConnection *)putWithPath:(NSString *)path
+{
+    return [self setMethod:@"PUT" path:path];
+}
+
+- (BDConnection *)deleteWithPath:(NSString *)path
+{
+    return [self setMethod:@"DELETE" path:path];
+}
+
 - (BDConnection *)query:(NSDictionary *)query
 {
     self.query = query;
@@ -144,8 +154,10 @@ typedef enum {
     NSLog(@"HTTP method: %@", self.method);
 
     if (self.requestJson) {
-        NSData* jsonData = [self.requestJson JSONData];
+        int jsonOptionQuoteKeys = (1 << 5);
+        NSData* jsonData = [self.requestJson JSONDataWithOptions:jsonOptionQuoteKeys error:nil];
         [self.request addValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"content-Length"];
+        NSLog(@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
         [self.request setHTTPBody:jsonData];
     }
 }
