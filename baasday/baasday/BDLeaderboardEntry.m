@@ -10,18 +10,15 @@
 
 @implementation BDLeaderboardEntry
 
-- (id)initWithLeaderboardName:(NSString *)leaderboardName {
-    if (self = [super init]) {
+- (id)initWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values {
+    if (self = [super initWithValues:values]) {
         self.leaderboardName = leaderboardName;
     }
     return self;
 }
 
-- (id)initWithLeaderboardName:(NSString *)leaderboardName withDictionary:(NSDictionary *)dictionary {
-    if (self = [super initWithDictionary:dictionary]) {
-        self.leaderboardName = leaderboardName;
-    }
-    return self;
+- (id)initWithLeaderboardName:(NSString *)leaderboardName {
+	return [self initWithLeaderboardName:leaderboardName values:@{}];
 }
 
 + (NSString *)collectionPathWithLeaderboardName:(NSString *)leaderboardName {
@@ -32,24 +29,45 @@
     return [BDLeaderboardEntry collectionPathWithLeaderboardName:self.leaderboardName];
 }
 
-+ (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values {
-    NSDictionary *dic = [super createWithPath:[self collectionPathWithLeaderboardName:leaderboardName] values:values];
-    if (!dic) {
-        return nil;
-    }
-    return [[self alloc] initWithLeaderboardName:leaderboardName withDictionary:dic];
+- (NSInteger)score {
+	return [self integerForKey:@"_score"];
 }
 
-+ (NSArray *)leaderboardEntries:(NSString *)leaderboardName skip:(NSInteger)skip limit:(NSInteger)limit {
-    NSArray *result = [super fetchWithPath:[self collectionPathWithLeaderboardName:leaderboardName] skip:skip limit:limit];
-    if (!result) {
-        return nil;
-    }
-    NSMutableArray *entries = [NSMutableArray array];
-    for (NSDictionary *dic in result) {
-        [entries addObject:[[self alloc] initWithLeaderboardName:leaderboardName withDictionary:dic]];
-    }
-    return entries;
+- (void)setScore:(NSInteger)score {
+	[self setObject:[NSNumber numberWithInteger:score] forKey:@"_score"];
+}
+
+- (NSUInteger)rank {
+	return [self integerForKey:@"_rank"];
+}
+
+- (NSUInteger)order {
+	return [self integerForKey:@"_order"];
+}
+
++ (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values error:(NSError **)error {
+	NSDictionary *result = [BDConnection createWithPath:[self collectionPathWithLeaderboardName:leaderboardName] values:values error:error];
+	if (!result) return nil;
+	return [[self alloc] initWithLeaderboardName:leaderboardName values:result];
+}
+
++ (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName score:(NSInteger)score values:(NSDictionary *)values error:(NSError * *)error {
+	NSMutableDictionary *mergedValues = [NSMutableDictionary dictionaryWithDictionary:values];
+	[mergedValues setObject:[NSNumber numberWithInteger:score] forKey:@"_score"];
+	return [self createWithLeaderboardName:leaderboardName values:mergedValues error:error];
+}
+
++ (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName score:(NSInteger)score error:(NSError **)error {
+	return [self createWithLeaderboardName:leaderboardName score:score values:@{} error:error];
+}
++ (BDListResult *)fetchAllWithLeaderboardName:(NSString *)leaderboardName skip:(NSInteger)skip limit:(NSInteger)limit error:(NSError **)error {
+	BDListResult *result = [BDConnection fetchAllWithPath:[self collectionPathWithLeaderboardName:leaderboardName] skip:skip limit:limit error:error];
+	if (!result) return nil;
+	NSMutableArray *entries = [NSMutableArray array];
+	for (NSDictionary *values in result.contents) {
+		[entries addObject:[[self alloc] initWithLeaderboardName:leaderboardName values:values]];
+	}
+	return [[BDListResult alloc] initWithObjects:entries count:result.count];
 }
 
 @end

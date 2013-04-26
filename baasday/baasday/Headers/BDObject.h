@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) NSString* collectionName;
 
+- initWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values;
 - initWithCollectionName:(NSString *)collectionName;
 
 @end

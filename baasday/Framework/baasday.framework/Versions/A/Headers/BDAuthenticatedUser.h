@@ -10,6 +10,10 @@
 
 @interface BDAuthenticatedUser : BDUser
 
-+ (BDAuthenticatedUser *)me;
+@property (readonly) NSString *authenticationKey;
+
++ (BDAuthenticatedUser *)createWithValues:(NSDictionary *)values error:(NSError **)error;
++ (BDAuthenticatedUser *)createWithError:(NSError **)error;
++ (BDAuthenticatedUser *)fetchWithError:(NSError **)error;
 
 @end

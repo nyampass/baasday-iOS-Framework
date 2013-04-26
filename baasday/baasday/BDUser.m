@@ -9,12 +9,24 @@
 #import "BDUser.h"
 #import "BDConnection.h"
 
-#import "BDSettings.h"
-
 @implementation BDUser
 
++ (NSString *)path {
+	return @"users";
+}
+
 - (NSString *)collectionPath {
-    return @"users";
+	return [BDUser path];
+}
+
++ (BDUser *)createWithValues:(NSDictionary *)values error:(NSError **)error {
+	NSDictionary *result = [BDConnection createWithPath:[self path] values:values error:error];
+	if (!result) return nil;
+	return [[self alloc] initWithValues:result];
+}
+
++ (BDUser *)createWithError:(NSError **)error {
+	return [self createWithValues:@{} error:error];
 }
 
 @end

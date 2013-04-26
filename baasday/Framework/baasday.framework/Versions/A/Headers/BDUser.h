@@ -10,4 +10,7 @@
 
 @interface BDUser : BDBasicObject
 
++ (BDUser *)createWithValues:(NSDictionary *)values error:(NSError **)error;
++ (BDUser *)createWithError:(NSError **)error;
+
 @end

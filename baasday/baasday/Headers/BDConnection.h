@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BDListResult.h"
 
 @class BDConnection;
 
@@ -31,5 +32,9 @@
 
 - (NSDictionary *)doRequestWithError:(NSError **)error;
 - (void)doRequestWithDelegate:(id<BDConnectionDelegate>)delegate;
+
++ (NSDictionary *)fetchWithPath:(NSString *)path error:(NSError **)error;
++ (NSDictionary *)createWithPath:(NSString *)path values:(NSDictionary *)values error:(NSError **)error;
++ (BDListResult *)fetchAllWithPath:(NSString *)path skip:(NSInteger)skip limit:(NSInteger)limit error:(NSError **)error;
 
 @end

@@ -10,5 +10,11 @@
 #define baasday_SDK_baasday_h
 
 #import "BDBaasday.h"
+#import "BDListResult.h"
+#import "BDBasicObject.h"
+#import "BDUser.h"
+#import "BDAuthenticatedUser.h"
+#import "BDObject.h"
+#import "BDLeaderboardEntry.h"
 
 #endif

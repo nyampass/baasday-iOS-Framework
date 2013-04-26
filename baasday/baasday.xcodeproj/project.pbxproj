@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		CA69105417299BCA00BAE086 /* BDListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA69105317299BCA00BAE086 /* BDListResult.m */; };
 		DB14FC991727A24A002C478A /* BDBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14FC981727A24A002C478A /* BDBasicObject.m */; };
 		DB55A9E6172821120035291A /* BDAuthenticatedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB55A9E5172821120035291A /* BDAuthenticatedUser.m */; };
 		DB55A9E91728273B0035291A /* BDLeaderboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = DB55A9E81728273B0035291A /* BDLeaderboardEntry.m */; };
@@ -103,6 +104,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CA69105217299BC900BAE086 /* BDListResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDListResult.h; sourceTree = "<group>"; };
+		CA69105317299BCA00BAE086 /* BDListResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDListResult.m; sourceTree = "<group>"; };
 		DB14FC971727A24A002C478A /* BDBasicObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBasicObject.h; sourceTree = "<group>"; };
 		DB14FC981727A24A002C478A /* BDBasicObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBasicObject.m; sourceTree = "<group>"; };
 		DB55A9E4172821120035291A /* BDAuthenticatedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDAuthenticatedUser.h; sourceTree = "<group>"; };
@@ -218,6 +221,7 @@
 				DB5D76011706E03600B2DE4D /* BDConnection.h */,
 				DB5D76021706E03600B2DE4D /* BDConnection.m */,
 				DB55A9E5172821120035291A /* BDAuthenticatedUser.m */,
+				CA69105317299BCA00BAE086 /* BDListResult.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -304,6 +308,7 @@
 				DB8F5D191705ED1F00A7E9AC /* BDBaasday.h */,
 				DB55A9E71728273B0035291A /* BDLeaderboardEntry.h */,
 				DB14FC971727A24A002C478A /* BDBasicObject.h */,
+				CA69105217299BC900BAE086 /* BDListResult.h */,
 				DB5D75FB1706DDD200B2DE4D /* BDObject.h */,
 				DB5D75FE1706DFB700B2DE4D /* BDUser.h */,
 				DB55A9E4172821120035291A /* BDAuthenticatedUser.h */,
@@ -571,6 +576,7 @@
 				DB14FC991727A24A002C478A /* BDBasicObject.m in Sources */,
 				DB55A9E6172821120035291A /* BDAuthenticatedUser.m in Sources */,
 				DB55A9E91728273B0035291A /* BDLeaderboardEntry.m in Sources */,
+				CA69105417299BCA00BAE086 /* BDListResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

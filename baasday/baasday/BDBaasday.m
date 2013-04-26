@@ -13,39 +13,33 @@
 
 @implementation BDBaasday
 
-__strong static NSString* _applicationId = nil;
-__strong static NSString* _apiKey = nil;
+static NSString* _applicationId = nil;
+static NSString* _apiKey = nil;
 
-+ (void)setApplicationId:(NSString *)applicationId apiKey:(NSString *)apiKey
-{
++ (void)setApplicationId:(NSString *)applicationId apiKey:(NSString *)apiKey {
     _applicationId = applicationId;
     _apiKey = apiKey;
 }
 
-+(NSString *)apiKey
-{
++ (NSString *)apiKey {
     return _apiKey;
 }
 
-+(NSString *)applicationId
-{
++ (NSString *)applicationId {
     return _applicationId;
 }
 
-+(NSString *)version
-{
++ (NSString *)version {
     return BDClientVersion;
 }
 
 static NSString* userAuthenticationKey = nil;
 
-+ (void)setUserAuthenticationKey:(NSString *)key
-{
++ (void)setUserAuthenticationKey:(NSString *)key {
     userAuthenticationKey = key;
 }
 
-+ (NSString *)userAuthenticationKey
-{
++ (NSString *)userAuthenticationKey {
     return userAuthenticationKey;
 }
 

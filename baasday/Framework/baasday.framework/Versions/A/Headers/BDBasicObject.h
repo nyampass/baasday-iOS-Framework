@@ -10,34 +10,29 @@
 
 #import "BDConnection.h"
 
-@interface BDBasicObject : NSObject <BDConnectionDelegate>
+@interface BDBasicObject : NSObject
 
-typedef void (^BDBasicObjectResultBlock) (BDBasicObject*, BOOL, NSError*);
-
-@property (nonatomic, assign) BDBasicObjectResultBlock block;
-
-@property (nonatomic, strong) NSString* objectId;
-
+@property (readonly) NSDictionary *values;
+@property (readonly) NSString *id;
 @property (readonly) NSString *collectionPath;
-@property (readonly) NSString *path;
-@property (readonly) NSString *pathForFetch;
-@property (readonly) NSString *pathForUpdate;
-@property (readonly) NSString *pathForDelete;
+@property (readonly) NSString *objectPath;
 
-- (id)initWithDictionary:(NSDictionary *)dictionary;
-
+- (id)initWithValues:(NSDictionary *)values;
+- (id)objectForKey:(NSString *)key;
+- (void)setObject:(id)object forKey:(NSString *)key;
+- (id)objectForKeyPath:(NSString *)keyPath;
+- (void)setObject:(id)object forKeyPath:(NSString *)keyPath;
+- (id)objectForKeyedSubscript:(NSString *)key;
+- (void)setObject:(id)object forKeyedSubscript:(NSString *)key;
+- (NSInteger)integerForKey:(NSString *)key;
+- (NSInteger)integerForKeyPath:(NSString *)keyPath;
+- (void)setInteger:(NSInteger)integerValue forKey:(NSString *)key;
+- (void)setInteger:(NSInteger)integerValue forKeyPath:(NSString *)keyPath;
+- (BOOL)boolForKey:(NSString *)key;
+- (BOOL)boolForKeyPath:(NSString *)keyPath;
+- (void)setBool:(BOOL)boolValue forKey:(NSString *)key;
+- (void)setBool:(BOOL)boolValue forKeyPath:(NSString *)keyPath;
+- (BOOL)update:(NSDictionary *)values error:(NSError **)error;
 - (BOOL)update:(NSDictionary *)values;
-
-- (BOOL)save;
-- (void)saveWithBlock:(BDBasicObjectResultBlock)block;
-
-- (void)incrementKey:(NSString *)key amountBy:(double)amount;
-
-- (NSString *)stringForKey:(NSString *)key;
-- (NSNumber *)numberForKey:(NSString *)key;
-
-+ (BDBasicObject *)findWithPath:(NSString *)path;
-+ (NSDictionary *)createWithPath:(NSString *)path values:(NSDictionary *)values;
-+ (NSArray *)fetchWithPath:(NSString *)path skip:(NSInteger)skip limit:(NSInteger)limit;
 
 @end

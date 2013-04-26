@@ -147,35 +147,28 @@ static BOOL saveAuthenticationKey = NO;
 
 - (void)authorizeUser:(BOOL)showMessage
 {
-    BDUser* user = [[BDUser alloc] init];
-    BOOL success = [user save];
-    
-    NSString *message;
-    NSString *authenticationKey = [user stringForKey:@"_authenticationKey"];
-    
-    if (success) {
-        message = [NSString stringWithFormat:@"Created user\n%@",
-                   authenticationKey];
-        [BDBaasday setUserAuthenticationKey:authenticationKey];
-        saveAuthenticationKey = YES;
-
-    } else {
-        message = @"Failed create user";
-    }
-   
-    if (showMessage)
+	NSError *error;
+	BDAuthenticatedUser *user = [BDAuthenticatedUser createWithError:&error];
+	if (error) {
+		NSLog(@"%@", error);
+		return;
+	}
+	[BDBaasday setUserAuthenticationKey:user.authenticationKey];
+    saveAuthenticationKey = YES;
+    if (showMessage) {
         [[[UIAlertView alloc] initWithTitle:nil
-                                    message:message
+                                    message:[NSString stringWithFormat:@"Created user\n%@", user.authenticationKey]
                                    delegate:nil
                           cancelButtonTitle:nil
                           otherButtonTitles:@"OK", nil] show];
+	}
 }
 
 - (void)fetchMe
 {
     if (!saveAuthenticationKey)
         [self authorizeUser:NO];
-    BDAuthenticatedUser* user = [BDAuthenticatedUser me];
+	BDAuthenticatedUser *user = [BDAuthenticatedUser fetchWithError:nil];
     [[[UIAlertView alloc] initWithTitle:nil
                                 message:[NSString stringWithFormat:@"%@", user]
                                delegate:nil
@@ -187,10 +180,10 @@ static BOOL saveAuthenticationKey = NO;
 {
     if (!saveAuthenticationKey)
         [self authorizeUser:NO];
-    BDAuthenticatedUser* user = [BDAuthenticatedUser me];
+	BDAuthenticatedUser *user = [BDAuthenticatedUser fetchWithError:nil];
     [user update:@{@"point": @{@"$inc": [NSNumber numberWithInt:10]}}];
     [[[UIAlertView alloc] initWithTitle:nil
-                                message:[NSString stringWithFormat:@"Point: %@", [user valueForKey:@"point"]]
+                                message:[NSString stringWithFormat:@"Point: %@", [user objectForKey:@"point"]]
                                delegate:nil
                       cancelButtonTitle:nil
                       otherButtonTitles:@"OK", nil] show];
@@ -198,9 +191,9 @@ static BOOL saveAuthenticationKey = NO;
 
 - (void)addScore
 {
-    BDLeaderboardEntry *entry = [BDLeaderboardEntry createWithLeaderboardName:@"normal-mode" values:@{@"_score": [NSNumber numberWithInt:100]}];
+	BDLeaderboardEntry *entry = [BDLeaderboardEntry createWithLeaderboardName:@"normal-mode" score:100 error:nil];
     [[[UIAlertView alloc] initWithTitle:nil
-                                message:[NSString stringWithFormat:@"Rank: %@", [entry valueForKey:@"_rank"]]
+                                message:[NSString stringWithFormat:@"Rank: %d", entry.rank]
                                delegate:nil
                       cancelButtonTitle:nil
                       otherButtonTitles:@"OK", nil] show];
@@ -208,9 +201,9 @@ static BOOL saveAuthenticationKey = NO;
 
 - (void)viewRanking
 {
-    NSArray *entries = [BDLeaderboardEntry leaderboardEntries:@"normal-mode" skip:0 limit:100];
-    for (BDLeaderboardEntry *entry in entries) {
-        NSLog(@"%@ %@ %@", [entry valueForKey:@"_rank"], [entry valueForKey:@"_order"], [entry valueForKey:@"_score"]);
+	BDListResult *entries = [BDLeaderboardEntry fetchAllWithLeaderboardName:@"normal-mode" skip:0 limit:100 error:nil];
+    for (BDLeaderboardEntry *entry in entries.contents) {
+        NSLog(@"%d %d %d", entry.rank, entry.order, entry.score);
     }
 }
 

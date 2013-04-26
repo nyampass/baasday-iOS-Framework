@@ -8,146 +8,99 @@
 
 #import "BDBasicObject.h"
 
-@interface BDBasicObject ()
-
-@property (nonatomic, strong) NSDictionary* fields;
+@interface BDBasicObject () {
+	NSMutableDictionary *_currentValues;
+}
 
 @end
 
 @implementation BDBasicObject
 
-- (id)initWithDictionary:(NSDictionary *)dictionary
-{
+- (id)initWithValues:(NSDictionary *)values {
     self = [super init];
     if (self) {
-        self.objectId = nil;
-        self.fields = dictionary;
+		_currentValues = [NSMutableDictionary dictionaryWithDictionary:values];
     }
     return self;
 }
 
-- (id)valueForKey:(NSString *)key {
-    return [self.fields valueForKey:key];
+- (NSDictionary *)values {
+	return _currentValues.copy;
 }
 
-- (NSString *)path {
-    return [NSString stringWithFormat:@"%@/%@", self.collectionPath, self.objectId];
+- (NSString *)id {
+	return [self objectForKey:@"_id"];
 }
 
-- (NSString *)pathForFetch {
-    return self.path;
+- (NSString *)objectPath {
+    return [NSString stringWithFormat:@"%@/%@", self.collectionPath, self.id];
 }
 
-- (NSString *)pathForUpdate {
-    return self.path;
+- (id)objectForKey:(NSString *)key {
+	return [_currentValues objectForKey:key];
 }
 
-- (NSString *)pathForDelete {
-    return self.path;
+- (void)setObject:(id)object forKey:(NSString *)key {
+	[_currentValues setObject:object forKey:key];
 }
 
-- (void)updateFromDictionary:(NSDictionary *)dic
-{
-    NSLog(@"%@", dic);
-    self.fields = dic;
+- (id)objectForKeyPath:(NSString *)keyPath {
+	return [_currentValues valueForKeyPath:keyPath];
+}
+
+- (void)setObject:(id)object forKeyPath:(NSString *)keyPath {
+	[_currentValues setValue:object forKeyPath:keyPath];
+}
+
+- (id)objectForKeyedSubscript:(NSString *)key {
+	return [self objectForKey:key];
+}
+
+- (void)setObject:(id)object forKeyedSubscript:(NSString *)key {
+	[self setObject:object forKey:key];
+}
+
+- (NSInteger)integerForKey:(NSString *)key {
+	return [[self objectForKey:key] integerValue];
+}
+
+- (NSInteger)integerForKeyPath:(NSString *)keyPath {
+	return [[self objectForKeyPath:keyPath] integerValue];
+}
+
+- (void)setInteger:(NSInteger)integerValue forKey:(NSString *)key {
+	[self setObject:[NSNumber numberWithInteger:integerValue] forKey:key];
+}
+
+- (void)setInteger:(NSInteger)integerValue forKeyPath:(NSString *)keyPath {
+	[self setObject:[NSNumber numberWithInteger:integerValue] forKeyPath:keyPath];
+}
+
+- (BOOL)boolForKey:(NSString *)key {
+	return [[self objectForKey:key] boolValue];
+}
+
+- (BOOL)boolForKeyPath:(NSString *)keyPath {
+	return [[self objectForKeyPath:keyPath] boolValue];
+}
+
+- (void)setBool:(BOOL)boolValue forKey:(NSString *)key {
+	[self setObject:[NSNumber numberWithBool:boolValue] forKey:key];
+}
+
+- (void)setBool:(BOOL)boolValue forKeyPath:(NSString *)keyPath {
+	[self setObject:[NSNumber numberWithBool:boolValue] forKeyPath:keyPath];
+}
+
+- (BOOL)update:(NSDictionary *)values error:(NSError **)error {
+    NSDictionary *newValues = [[[[[BDConnection alloc] init] putWithPath:self.objectPath] requestJson:values] doRequestWithError:error];
+	if (newValues == nil) return NO;
+	[_currentValues setDictionary:newValues];
+    return YES;
 }
 
 - (BOOL)update:(NSDictionary *)values {
-    BDConnection* connection = [[BDConnection alloc] init];
-    NSError *error;
-    NSDictionary *result = [[[connection putWithPath:self.pathForUpdate] requestJson:values] doRequestWithError:&error];
-    if (error) {
-        NSLog(@"%@", error);
-        return false;
-    }
-    [self updateFromDictionary:result];
-    return true;
-}
-
-- (void)saveWithBlock:(BDBasicObjectResultBlock)block
-{
-    self.block = block;
-    BDConnection* connection = [[BDConnection alloc] init];
-    [[connection postWithPath:self.collectionPath] doRequestWithDelegate:self];
-}
-
-+ (BDBasicObject *)findWithPath:(NSString *)path
-{
-    BDConnection* connection = [[BDConnection alloc] init];
-    NSError* error;
-    
-    NSDictionary* dic = [[connection getWithPath:path] doRequestWithError:&error];
-    
-    if (!error)
-        return [[self alloc] initWithDictionary:dic];
-    
-    NSLog(@"%@", error);
-    return nil;
-}
-
-+ (NSDictionary *)createWithPath:(NSString *)path values:(NSDictionary *)values {
-    BDConnection *connection = [[BDConnection alloc] init];
-    NSError *error;
-    NSDictionary *result = [[[connection postWithPath:path] requestJson:values] doRequestWithError:&error];
-    if (error) {
-        NSLog(@"%@", error);
-        return nil;
-    }
-    return result;
-}
-
-+ (NSArray *)fetchWithPath:(NSString *)path skip:(NSInteger)skip limit:(NSInteger)limit {
-    BDConnection *connection = [[BDConnection alloc] init];
-    NSError *error;
-    NSDictionary *result = [[[connection getWithPath:path] query:@{@"skip": [NSNumber numberWithInt:skip], @"limit": [NSNumber numberWithInt:limit]}] doRequestWithError:&error];
-    if (error) {
-        NSLog(@"%@", error);
-        return nil;
-    }
-    return [result valueForKey:@"_contents"];
-}
-
-- (BOOL)save
-{
-    BDConnection* connection = [[BDConnection alloc] init];
-    NSError* error;
-    NSDictionary* params = [NSDictionary dictionary];
-    NSDictionary* dic = [[[connection postWithPath:self.collectionPath]
-                          requestJson:params] doRequestWithError:&error];
-    
-    if (!error) {
-        [self updateFromDictionary:dic];
-    } else {
-        NSLog(@"%@", error);
-    }
-    
-    return (error == nil);
-}
-
-- (NSString *)stringForKey:(NSString *)key
-{
-    return [self.fields objectForKey:key];
-}
-
-- (NSNumber *)numberForKey:(NSString *)key
-{
-    return [self.fields objectForKey:key];
-}
-
--(void)connection:(BDConnection *)connection finishedWithDictionary:(NSDictionary *)dictionary error:(NSError *)error
-{
-    //    self.block(
-}
-
-- (void)incrementKey:(NSString *)key amountBy:(double)amount
-{
-    NSNumber* value = [self.fields valueForKey:key];
-    if (!value)
-        value = [NSNumber numberWithDouble:amount];
-    else
-        value = [NSNumber numberWithDouble:[value doubleValue] + amount];
-    [self.fields setValue:value forKey:key];
-    
+	return [self update:values error:nil];
 }
 
 @end

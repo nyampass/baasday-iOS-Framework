@@ -75,11 +75,6 @@ typedef enum {
     return request;
 }
 
--(NSMutableURLRequest *)requestWithPath:(NSString *)path
-{
-    return [self requestWithPath:path requestType:BDConnectionRequestTypeJSON];
-}
-
 #pragma -
 #pragma Operation
 
@@ -181,13 +176,16 @@ typedef enum {
     [self buildRequest];
     NSAssert(self.request, @"not set request");
     NSURLResponse* returningResponse;
+	NSError *requestError = nil;
     NSData* response = [NSURLConnection sendSynchronousRequest:self.request
                                              returningResponse:&returningResponse
-                                                         error:error];
-    if (!*error) {
-        return [self dictionaryFromData:response];
-    }
-    return nil;
+                                                         error:&requestError];
+	if (requestError) {
+		if (error) *error = requestError;
+		NSLog(@"request error: %@", requestError);
+		return nil;
+	}
+    return [self dictionaryFromData:response];
 }
 
 - (void)doRequestWithDelegate:(id<BDConnectionDelegate>)delegate;
@@ -232,6 +230,20 @@ typedef enum {
 {
     NSDictionary* dic = [self dictionaryFromData:self.response];
     return [self.delegate connection:self finishedWithDictionary:dic error:nil];
+}
+
++ (NSDictionary *)fetchWithPath:(NSString *)path error:(NSError **)error {
+    return [[[[self alloc] init] getWithPath:path] doRequestWithError:error];
+}
+
++ (NSDictionary *)createWithPath:(NSString *)path values:(NSDictionary *)values error:(NSError **)error {
+    return [[[[[self alloc] init] postWithPath:path] requestJson:values] doRequestWithError:error];
+}
+
++ (BDListResult *)fetchAllWithPath:(NSString *)path skip:(NSInteger)skip limit:(NSInteger)limit error:(NSError **)error {
+    NSDictionary *result = [[[[[self alloc] init] getWithPath:path] query:@{@"skip": [NSNumber numberWithInt:skip], @"limit": [NSNumber numberWithInt:limit]}] doRequestWithError:error];
+	if (!result) return nil;
+	return [[BDListResult alloc] initWithAPIResult:result];
 }
 
 @end

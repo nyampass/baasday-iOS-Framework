@@ -11,11 +11,10 @@
 @interface BDBaasday : NSObject
 
 + (void)setApplicationId:(NSString *)applicationId apiKey:(NSString *)apiKey;
-
++ (NSString *)applicationId;
++ (NSString *)apiKey;
 + (NSString *)version;
-
 + (void)setUserAuthenticationKey:(NSString *)key;
-
 + (NSString *)userAuthenticationKey;
 
 @end

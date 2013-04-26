@@ -10,11 +10,15 @@
 
 @implementation BDObject
 
+- (id)initWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values {
+	if (self = [super initWithValues:values]) {
+		self.collectionName = collectionName;
+	}
+	return self;
+}
+
 - (id)initWithCollectionName:(NSString *)collectionName {
-    if (self = [super init]) {
-        self.collectionName = collectionName;
-    }
-    return self;
+	return [self initWithCollectionName:collectionName values:@{}];
 }
 
 - (NSString *)collectionPath {
