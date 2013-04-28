@@ -10,15 +10,15 @@
 
 @implementation BDLeaderboardEntry
 
-- (id)initWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values {
-    if (self = [super initWithValues:values]) {
+- (id)initWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values saved:(BOOL)saved {
+    if (self = [super initWithValues:values saved:saved]) {
         self.leaderboardName = leaderboardName;
     }
     return self;
 }
 
-- (id)initWithLeaderboardName:(NSString *)leaderboardName {
-	return [self initWithLeaderboardName:leaderboardName values:@{}];
+- (id)initWithLeaderboardName:(NSString *)leaderboardName saved:(BOOL)saved{
+	return [self initWithLeaderboardName:leaderboardName values:@{} saved:saved];
 }
 
 + (NSString *)collectionPathWithLeaderboardName:(NSString *)leaderboardName {
@@ -48,7 +48,7 @@
 + (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values error:(NSError **)error {
 	NSDictionary *result = [BDConnection createWithPath:[self collectionPathWithLeaderboardName:leaderboardName] values:values error:error];
 	if (!result) return nil;
-	return [[self alloc] initWithLeaderboardName:leaderboardName values:result];
+	return [[self alloc] initWithLeaderboardName:leaderboardName values:result saved:YES];
 }
 
 + (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName score:(NSInteger)score values:(NSDictionary *)values error:(NSError * *)error {
@@ -65,7 +65,7 @@
 	if (!result) return nil;
 	NSMutableArray *entries = [NSMutableArray array];
 	for (NSDictionary *values in result.contents) {
-		[entries addObject:[[self alloc] initWithLeaderboardName:leaderboardName values:values]];
+		[entries addObject:[[self alloc] initWithLeaderboardName:leaderboardName values:values saved:YES]];
 	}
 	return [[BDListResult alloc] initWithObjects:entries count:result.count];
 }

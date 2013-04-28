@@ -16,8 +16,9 @@
 @property (readonly) NSString *id;
 @property (readonly) NSString *collectionPath;
 @property (readonly) NSString *objectPath;
+@property (readonly) BOOL saved;
 
-- (id)initWithValues:(NSDictionary *)values;
+- (id)initWithValues:(NSDictionary *)values saved:(BOOL)saved;
 - (id)objectForKey:(NSString *)key;
 - (void)setObject:(id)object forKey:(NSString *)key;
 - (id)objectForKeyPath:(NSString *)keyPath;
@@ -25,14 +26,16 @@
 - (id)objectForKeyedSubscript:(NSString *)key;
 - (void)setObject:(id)object forKeyedSubscript:(NSString *)key;
 - (NSInteger)integerForKey:(NSString *)key;
-- (NSInteger)integerForKeyPath:(NSString *)keyPath;
 - (void)setInteger:(NSInteger)integerValue forKey:(NSString *)key;
+- (NSInteger)integerForKeyPath:(NSString *)keyPath;
 - (void)setInteger:(NSInteger)integerValue forKeyPath:(NSString *)keyPath;
 - (BOOL)boolForKey:(NSString *)key;
-- (BOOL)boolForKeyPath:(NSString *)keyPath;
 - (void)setBool:(BOOL)boolValue forKey:(NSString *)key;
+- (BOOL)boolForKeyPath:(NSString *)keyPath;
 - (void)setBool:(BOOL)boolValue forKeyPath:(NSString *)keyPath;
 - (BOOL)update:(NSDictionary *)values error:(NSError **)error;
 - (BOOL)update:(NSDictionary *)values;
+- (BOOL)saveWithError:(NSError **)error;
+- (BOOL)save;
 
 @end
