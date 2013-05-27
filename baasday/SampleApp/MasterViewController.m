@@ -182,8 +182,6 @@ static BOOL saveAuthenticationKey = NO;
         [self authorizeUser:NO];
 	BDAuthenticatedUser *user = [BDAuthenticatedUser fetchWithError:nil];
     [user update:@{@"point": @{@"$inc": [NSNumber numberWithInt:10]}}];
-	[user setInteger:100 forKeyPath:@"foo.bar"];
-	[user save];
     [[[UIAlertView alloc] initWithTitle:nil
                                 message:[NSString stringWithFormat:@"Point: %@", [user objectForKey:@"point"]]
                                delegate:nil

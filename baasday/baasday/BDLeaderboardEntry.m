@@ -10,15 +10,15 @@
 
 @implementation BDLeaderboardEntry
 
-- (id)initWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values saved:(BOOL)saved {
-    if (self = [super initWithValues:values saved:saved]) {
+- (id)initWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values {
+    if (self = [super initWithValues:values]) {
         self.leaderboardName = leaderboardName;
     }
     return self;
 }
 
-- (id)initWithLeaderboardName:(NSString *)leaderboardName saved:(BOOL)saved{
-	return [self initWithLeaderboardName:leaderboardName values:@{} saved:saved];
+- (id)initWithLeaderboardName:(NSString *)leaderboardName {
+	return [self initWithLeaderboardName:leaderboardName values:@{}];
 }
 
 + (NSString *)collectionPathWithLeaderboardName:(NSString *)leaderboardName {
@@ -33,10 +33,6 @@
 	return [self integerForKey:@"_score"];
 }
 
-- (void)setScore:(NSInteger)score {
-	[self setObject:[NSNumber numberWithInteger:score] forKey:@"_score"];
-}
-
 - (NSUInteger)rank {
 	return [self integerForKey:@"_rank"];
 }
@@ -48,7 +44,7 @@
 + (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values error:(NSError **)error {
 	NSDictionary *result = [BDConnection createWithPath:[self collectionPathWithLeaderboardName:leaderboardName] values:values error:error];
 	if (!result) return nil;
-	return [[self alloc] initWithLeaderboardName:leaderboardName values:result saved:YES];
+	return [[self alloc] initWithLeaderboardName:leaderboardName values:result];
 }
 
 + (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName score:(NSInteger)score values:(NSDictionary *)values error:(NSError * *)error {
@@ -65,7 +61,7 @@
 	if (!result) return nil;
 	NSMutableArray *entries = [NSMutableArray array];
 	for (NSDictionary *values in result.contents) {
-		[entries addObject:[[self alloc] initWithLeaderboardName:leaderboardName values:values saved:YES]];
+		[entries addObject:[[self alloc] initWithLeaderboardName:leaderboardName values:values]];
 	}
 	return [[BDListResult alloc] initWithObjects:entries count:result.count];
 }

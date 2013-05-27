@@ -22,7 +22,7 @@
 + (BDUser *)createWithValues:(NSDictionary *)values error:(NSError **)error {
 	NSDictionary *result = [BDConnection createWithPath:[self path] values:values error:error];
 	if (!result) return nil;
-	return [[self alloc] initWithValues:result saved:YES];
+	return [[self alloc] initWithValues:result];
 }
 
 + (BDUser *)createWithError:(NSError **)error {

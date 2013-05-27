@@ -12,12 +12,12 @@
 @interface BDLeaderboardEntry : BDBasicObject
 
 @property (nonatomic) NSString* leaderboardName;
-@property (nonatomic) NSInteger score;
+@property (readonly) NSInteger score;
 @property (readonly) NSUInteger rank;
 @property (readonly) NSUInteger order;
 
-- (id)initWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values saved:(BOOL)saved;
-- (id)initWithLeaderboardName:(NSString *)leaderboardName saved:(BOOL)saved;
+- (id)initWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values;
+- (id)initWithLeaderboardName:(NSString *)leaderboardName;
 + (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values error:(NSError **)error;
 + (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName score:(NSInteger)score values:(NSDictionary *)values error:(NSError **)error;
 + (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName score:(NSInteger)score error:(NSError **)error;

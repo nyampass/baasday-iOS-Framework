@@ -26,7 +26,7 @@
 + (BDAuthenticatedUser *)createWithValues:(NSDictionary *)values error:(NSError **)error {
 	BDUser *user = [BDUser createWithValues:values error:error];
 	if (!user) return nil;
-	return [[self alloc] initWithValues:user.values saved:YES];
+	return [[self alloc] initWithValues:user.values];
 }
 
 + (BDAuthenticatedUser *)createWithError:(NSError **)error {
@@ -35,7 +35,7 @@
 
 + (BDAuthenticatedUser *)fetchWithError:(NSError **)error {
 	NSAssert([BDBaasday userAuthenticationKey], @"userAuthenticationKey is not set");
-	return [[self alloc] initWithValues:[BDConnection fetchWithPath:[self path] error:error] saved:YES];
+	return [[self alloc] initWithValues:[BDConnection fetchWithPath:[self path] error:error]];
 }
 
 @end
