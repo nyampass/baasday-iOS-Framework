@@ -23,6 +23,7 @@
 
 /* Begin PBXBuildFile section */
 		CA69105417299BCA00BAE086 /* BDListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA69105317299BCA00BAE086 /* BDListResult.m */; };
+		CAF389BA1753457300D86822 /* BDQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF389B91753457200D86822 /* BDQuery.m */; };
 		DB14FC991727A24A002C478A /* BDBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14FC981727A24A002C478A /* BDBasicObject.m */; };
 		DB55A9E6172821120035291A /* BDAuthenticatedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB55A9E5172821120035291A /* BDAuthenticatedUser.m */; };
 		DB55A9E91728273B0035291A /* BDLeaderboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = DB55A9E81728273B0035291A /* BDLeaderboardEntry.m */; };
@@ -106,6 +107,8 @@
 /* Begin PBXFileReference section */
 		CA69105217299BC900BAE086 /* BDListResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDListResult.h; sourceTree = "<group>"; };
 		CA69105317299BCA00BAE086 /* BDListResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDListResult.m; sourceTree = "<group>"; };
+		CAF389B81753457200D86822 /* BDQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDQuery.h; sourceTree = "<group>"; };
+		CAF389B91753457200D86822 /* BDQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDQuery.m; sourceTree = "<group>"; };
 		DB14FC971727A24A002C478A /* BDBasicObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBasicObject.h; sourceTree = "<group>"; };
 		DB14FC981727A24A002C478A /* BDBasicObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBasicObject.m; sourceTree = "<group>"; };
 		DB55A9E4172821120035291A /* BDAuthenticatedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDAuthenticatedUser.h; sourceTree = "<group>"; };
@@ -222,6 +225,7 @@
 				DB5D76021706E03600B2DE4D /* BDConnection.m */,
 				DB55A9E5172821120035291A /* BDAuthenticatedUser.m */,
 				CA69105317299BCA00BAE086 /* BDListResult.m */,
+				CAF389B91753457200D86822 /* BDQuery.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -305,6 +309,7 @@
 		DBC96BA416F7D5F4001B8498 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				CAF389B81753457200D86822 /* BDQuery.h */,
 				DB8F5D191705ED1F00A7E9AC /* BDBaasday.h */,
 				DB55A9E71728273B0035291A /* BDLeaderboardEntry.h */,
 				DB14FC971727A24A002C478A /* BDBasicObject.h */,
@@ -577,6 +582,7 @@
 				DB55A9E6172821120035291A /* BDAuthenticatedUser.m in Sources */,
 				DB55A9E91728273B0035291A /* BDLeaderboardEntry.m in Sources */,
 				CA69105417299BCA00BAE086 /* BDListResult.m in Sources */,
+				CAF389BA1753457300D86822 /* BDQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

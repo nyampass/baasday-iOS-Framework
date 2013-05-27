@@ -10,6 +10,7 @@
 #define baasday_SDK_baasday_h
 
 #import "BDBaasday.h"
+#import "BDQUery.h"
 #import "BDListResult.h"
 #import "BDBasicObject.h"
 #import "BDUser.h"

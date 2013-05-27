@@ -201,7 +201,10 @@ static BOOL saveAuthenticationKey = NO;
 
 - (void)viewRanking
 {
-	BDListResult *entries = [BDLeaderboardEntry fetchAllWithLeaderboardName:@"normal-mode" skip:0 limit:100 error:nil];
+	BDQuery *query = [[BDQuery alloc] init];
+	query.skip = 0;
+	query.limit = 100;
+	BDListResult *entries = [BDLeaderboardEntry fetchAllWithLeaderboardName:@"normal-mode" query:query error:nil];
     for (BDLeaderboardEntry *entry in entries.contents) {
         NSLog(@"%d %d %d", entry.rank, entry.order, entry.score);
     }

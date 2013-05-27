@@ -79,4 +79,15 @@
 	return [self update:values error:nil];
 }
 
+- (BOOL)deleteWithError:(NSError **)error {
+	if ([[[[BDConnection alloc] init] deleteWithPath:self.objectPath] doRequestWithError:error]) {
+		return YES;
+	}
+	return NO;
+}
+
+- (BOOL)delete {
+	return [self deleteWithError:nil];
+}
+
 @end

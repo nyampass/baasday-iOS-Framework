@@ -158,7 +158,7 @@ typedef enum {
         self.request = [self requestWithPath:path requestType:BDConnectionRequestTypeJSON];
         int jsonOptionQuoteKeys = (1 << 5);
         NSData* jsonData = [self.requestJson JSONDataWithOptions:jsonOptionQuoteKeys error:nil];
-        [self.request addValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"content-Length"];
+        [self.request addValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"Content-Length"];
         NSLog(@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
         [self.request setHTTPBody:jsonData];
     } else {
@@ -240,8 +240,10 @@ typedef enum {
     return [[[[[self alloc] init] postWithPath:path] requestJson:values] doRequestWithError:error];
 }
 
-+ (BDListResult *)fetchAllWithPath:(NSString *)path skip:(NSInteger)skip limit:(NSInteger)limit error:(NSError **)error {
-    NSDictionary *result = [[[[[self alloc] init] getWithPath:path] query:@{@"skip": [NSNumber numberWithInt:skip], @"limit": [NSNumber numberWithInt:limit]}] doRequestWithError:error];
++ (BDListResult *)fetchAllWithPath:(NSString *)path query:(BDQuery *)query error:(NSError **)error {
+	BDConnection *connection = [[[self alloc] init] getWithPath:path];
+	if (query) [connection query:query.apiRequestParameters];
+	NSDictionary *result = [connection doRequestWithError:error];
 	if (!result) return nil;
 	return [[BDListResult alloc] initWithAPIResult:result];
 }

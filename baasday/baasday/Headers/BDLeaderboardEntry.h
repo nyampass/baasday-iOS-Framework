@@ -21,6 +21,9 @@
 + (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values error:(NSError **)error;
 + (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName score:(NSInteger)score values:(NSDictionary *)values error:(NSError **)error;
 + (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName score:(NSInteger)score error:(NSError **)error;
-+ (BDListResult *)fetchAllWithLeaderboardName:(NSString *)leaderboardName skip:(NSInteger)skip limit:(NSInteger)limit error:(NSError **)error;
++ (BDListResult *)fetchAllWithLeaderboardName:(NSString *)leaderboardName query:(BDQuery *)query error:(NSError **)error;
++ (BDListResult *)fetchAllWithLeaderboardName:(NSString *)leaderboardName query:(BDQuery *)query;
++ (BDListResult *)fetchAllWithLeaderboardName:(NSString *)leaderboardName error:(NSError **)error;
++ (BDListResult *)fetchAllWithLeaderboardName:(NSString *)leaderboardName;
 
 @end

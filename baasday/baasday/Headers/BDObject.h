@@ -16,5 +16,11 @@
 
 - initWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values;
 - initWithCollectionName:(NSString *)collectionName;
++ (BDObject *)createWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values error:(NSError **)error;
++ (BDObject *)createWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values;
++ (BDListResult *)fetchAllWithCollectionName:(NSString *)collectionName query:(BDQuery *)query error:(NSError **)error;
++ (BDListResult *)fetchAllWithCollectionName:(NSString *)collectionName query:(BDQuery *)query;
++ (BDListResult *)fetchAllWithCollectionName:(NSString *)collectionName error:(NSError **)error;
++ (BDListResult *)fetchALlWIthCollectionName:(NSString *)collectionName;
 
 @end

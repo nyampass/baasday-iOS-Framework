@@ -27,5 +27,7 @@
 - (BOOL)boolForKeyPath:(NSString *)keyPath;
 - (BOOL)update:(NSDictionary *)values error:(NSError **)error;
 - (BOOL)update:(NSDictionary *)values;
+- (BOOL)deleteWithError:(NSError **)error;
+- (BOOL)delete;
 
 @end

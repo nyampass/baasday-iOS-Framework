@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BDListResult.h"
+#import "BDQuery.h"
 
 @class BDConnection;
 
@@ -35,6 +36,6 @@
 
 + (NSDictionary *)fetchWithPath:(NSString *)path error:(NSError **)error;
 + (NSDictionary *)createWithPath:(NSString *)path values:(NSDictionary *)values error:(NSError **)error;
-+ (BDListResult *)fetchAllWithPath:(NSString *)path skip:(NSInteger)skip limit:(NSInteger)limit error:(NSError **)error;
++ (BDListResult *)fetchAllWithPath:(NSString *)path query:(BDQuery *)query error:(NSError **)error;
 
 @end

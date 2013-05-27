@@ -7,6 +7,8 @@
 //
 
 #import "BDLeaderboardEntry.h"
+#import "BDConnection.h"
+#import "BDQuery.h"
 
 @implementation BDLeaderboardEntry
 
@@ -56,14 +58,27 @@
 + (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName score:(NSInteger)score error:(NSError **)error {
 	return [self createWithLeaderboardName:leaderboardName score:score values:@{} error:error];
 }
-+ (BDListResult *)fetchAllWithLeaderboardName:(NSString *)leaderboardName skip:(NSInteger)skip limit:(NSInteger)limit error:(NSError **)error {
-	BDListResult *result = [BDConnection fetchAllWithPath:[self collectionPathWithLeaderboardName:leaderboardName] skip:skip limit:limit error:error];
+
++ (BDListResult *)fetchAllWithLeaderboardName:(NSString *)leaderboardName query:(BDQuery *)query error:(NSError **)error {
+	BDListResult *result = [BDConnection fetchAllWithPath:[self collectionPathWithLeaderboardName:leaderboardName] query:query error:error];
 	if (!result) return nil;
 	NSMutableArray *entries = [NSMutableArray array];
 	for (NSDictionary *values in result.contents) {
 		[entries addObject:[[self alloc] initWithLeaderboardName:leaderboardName values:values]];
 	}
 	return [[BDListResult alloc] initWithObjects:entries count:result.count];
+}
+
++ (BDListResult *)fetchAllWithLeaderboardName:(NSString *)leaderboardName query:(BDQuery *)query {
+	return [self fetchAllWithLeaderboardName:leaderboardName query:query error:nil];
+}
+
++ (BDListResult *)fetchAllWithLeaderboardName:(NSString *)leaderboardName error:(NSError **)error {
+	return [self fetchAllWithLeaderboardName:leaderboardName query:nil error:error];
+}
+
++ (BDListResult *)fetchAllWithLeaderboardName:(NSString *)leaderboardName {
+	return [self fetchAllWithLeaderboardName:leaderboardName error:nil];
 }
 
 @end
