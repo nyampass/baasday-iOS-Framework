@@ -177,7 +177,7 @@ static BOOL saveAuthenticationKey = NO;
                       otherButtonTitles:@"OK", nil] show];
 	 */
 	[BDAuthenticatedUser fetchInBackground:^(BDAuthenticatedUser *user, NSError *error) {
-		[[[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"%@ in background", user] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+		[[[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"%@ : %@ in background", user, user.createdAt] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
 	}];
 	[[[UIAlertView alloc] initWithTitle:nil message:@"fetch user in background" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
 }

@@ -14,6 +14,8 @@
 
 @property (readonly) NSDictionary *values;
 @property (readonly) NSString *id;
+@property (readonly) NSDate *createdAt;
+@property (readonly) NSDate *updatedAt;
 @property (readonly) NSString *collectionPath;
 @property (readonly) NSString *objectPath;
 
@@ -25,6 +27,8 @@
 - (NSInteger)integerForKeyPath:(NSString *)keyPath;
 - (BOOL)boolForKey:(NSString *)key;
 - (BOOL)boolForKeyPath:(NSString *)keyPath;
+- (NSDate *)dateForKey:(NSString *)key;
+- (NSDate *)dateForKeyPath:(NSString *)keyPath;
 - (BOOL)update:(NSDictionary *)values error:(NSError **)error;
 - (BOOL)update:(NSDictionary *)values;
 - (void)updateInBackground:(NSDictionary *)values block:(void(^)(id object, NSError *error))block;
