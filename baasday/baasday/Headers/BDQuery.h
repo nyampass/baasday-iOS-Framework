@@ -12,6 +12,7 @@
 
 @property (nonatomic, assign) NSString *field;
 @property (nonatomic, assign) BOOL reversed;
+@property (readonly) NSString *parameterString;
 
 - (id)initWithField:(NSString *)field reversed:(BOOL)reversed;
 - (id)initWithField:(NSString *)field;

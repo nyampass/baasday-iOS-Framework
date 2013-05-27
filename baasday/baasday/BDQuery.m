@@ -7,6 +7,7 @@
 //
 
 #import "BDQuery.h"
+#import "JSONKit.h"
 
 @implementation BDFieldOrder
 
@@ -20,6 +21,10 @@
 
 - (id)initWithField:(NSString *)field {
 	return [self initWithField:field reversed:NO];
+}
+
+- (NSString *)parameterString {
+	return _reversed ? [NSString stringWithFormat:@"-%@", _field] : _field;
 }
 
 @end
@@ -51,6 +56,10 @@
 	return [_values.allKeys containsObject:@"filter"];
 }
 
+- (NSString *)fixedFilter {
+	return [self.filter JSONString];
+}
+
 - (NSArray *)order {
 	return [_values objectForKey:@"order"];
 }
@@ -61,6 +70,18 @@
 
 - (BOOL)hasOrder {
 	return [_values.allKeys containsObject:@"order"];
+}
+
+- (NSString *)fixedOrder {
+	NSMutableString *result = [NSMutableString string];
+	for (id field in self.order) {
+		if ([field respondsToSelector:@selector(parameterString)]) {
+			[result appendString:[field parameterString]];
+		} else {
+			[result appendFormat:@"%@", field];
+		}
+	}
+	return result;
 }
 
 - (NSInteger)skip {
@@ -100,7 +121,10 @@
 }
 
 - (NSDictionary *)apiRequestParameters {
-	return _values.copy;
+	NSMutableDictionary *parameters = _values.mutableCopy;
+	if (self.hasFilter) [parameters setObject:[self fixedFilter] forKey:@"filter"];
+	if (self.hasOrder) [parameters setObject:[self fixedOrder] forKey:@"order"];
+	return parameters;
 }
 
 @end
