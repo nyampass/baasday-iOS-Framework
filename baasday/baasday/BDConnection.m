@@ -13,6 +13,90 @@
 
 #import "JSONKit.h"
 
+@interface BDConnectionOperation : NSOperation {
+	NSURLRequest *_request;
+	NSMutableData *_responseData;
+	BDConnectionResultBlock _block;
+	BOOL _isExecuting;
+	BOOL _isFinished;
+}
+
+- (id)initWithRequest:(NSURLRequest *)request block:(BDConnectionResultBlock)block;
+
+@end
+
+@implementation BDConnectionOperation
+
+- (id)initWithRequest:(NSURLRequest *)request block:(BDConnectionResultBlock)block {
+	if (self = [super init]) {
+		_request = request;
+		_block = block;
+		_isExecuting = NO;
+		_isFinished = NO;
+	}
+	return self;
+}
+
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString*)key {
+	if ([key isEqualToString:@"_isExecuting"] ||
+		[key isEqualToString:@"_isFinished"]) {
+		return YES;
+	}
+	return [super automaticallyNotifiesObserversForKey:key];
+}
+
+- (BOOL)isConcurrent {
+	return YES;
+}
+
+- (BOOL)isExecuting {
+	return _isExecuting;
+}
+
+- (BOOL)isFinished {
+	return _isFinished;
+}
+
+- (void)start {
+	[self setValue:[NSNumber numberWithBool:YES] forKey:@"_isExecuting"];
+	[self setValue:[NSNumber numberWithBool:NO] forKey:@"_isFinished"];
+	NSURLConnection *connection = [NSURLConnection connectionWithRequest:_request delegate:self];
+	if (connection) {
+		do {
+			[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+		} while (_isExecuting);
+	}
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+	_responseData = [[NSMutableData alloc] init];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+	[_responseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"%@", error);
+	_block(nil, error);
+	[self setValue:[NSNumber numberWithBool:NO] forKey:@"_isExecuting"];
+	[self setValue:[NSNumber numberWithBool:YES] forKey:@"_isFinished"];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSError* error = nil;
+	NSDictionary *result = [[JSONDecoder decoder] objectWithData:_responseData error:&error];
+	if (error) {
+		_block(nil, error);
+	} else {
+		_block(result, nil);
+	}
+	[self setValue:[NSNumber numberWithBool:NO] forKey:@"_isExecuting"];
+	[self setValue:[NSNumber numberWithBool:YES] forKey:@"_isFinished"];
+}
+
+@end
+
 typedef enum {
     BDConnectionRequestTypeFormUrlencoded,
     BDConnectionRequestTypeJSON,
@@ -25,9 +109,7 @@ typedef enum {
 @property (nonatomic, strong) NSString* path;
 @property (nonatomic, strong) NSDictionary* query;
 @property (nonatomic, strong) NSDictionary* requestJson;
-
 @property (nonatomic, strong) NSMutableURLRequest* request;
-@property (nonatomic, strong) NSMutableData* response;
 
 @end
 
@@ -177,75 +259,71 @@ typedef enum {
     NSAssert(self.request, @"not set request");
     NSURLResponse* returningResponse;
 	NSError *requestError = nil;
-    NSData* response = [NSURLConnection sendSynchronousRequest:self.request
-                                             returningResponse:&returningResponse
-                                                         error:&requestError];
+    NSData* responseData = [NSURLConnection sendSynchronousRequest:self.request
+												 returningResponse:&returningResponse
+															 error:&requestError];
 	if (requestError) {
 		if (error) *error = requestError;
 		NSLog(@"request error: %@", requestError);
 		return nil;
 	}
-    return [self dictionaryFromData:response];
+	NSError *jsonError;
+	NSDictionary *result = [[JSONDecoder decoder] objectWithData:responseData error:&jsonError];
+	if (jsonError) {
+		if (error) *error = jsonError;
+		NSLog(@"JSON error: %@", jsonError);
+		return nil;
+	}
+    return result;
 }
 
-- (void)doRequestWithDelegate:(id<BDConnectionDelegate>)delegate;
+- (void)doRequestInBackground:(BDConnectionResultBlock)block
 {
     [self buildRequest];
     NSAssert(self.request, @"not set request");
-    NSURLConnection* connection = [[NSURLConnection alloc] initWithRequest:self.request
-                                                                  delegate:self];
-    if (!connection) {
-        NSLog(@"cant'init connection");
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    self.response = [[NSMutableData alloc] init];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [self.response appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    self.response = nil;
-    NSLog(@"%@", error);
-
-    [self.delegate connection:self finishedWithDictionary:nil error:error];
-}
-
-- (NSDictionary *)dictionaryFromData:(NSData *)data
-{
-    NSLog(@"dictionaryFromData: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-
-    JSONDecoder *decoder = [JSONDecoder decoder];
-    NSError* error;
-    return [decoder objectWithData:data error:&error];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    NSDictionary* dic = [self dictionaryFromData:self.response];
-    return [self.delegate connection:self finishedWithDictionary:dic error:nil];
+	BDConnectionOperation *operation = [[BDConnectionOperation alloc] initWithRequest:self.request block:block];
+	NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+	[queue addOperation:operation];
 }
 
 + (NSDictionary *)fetchWithPath:(NSString *)path error:(NSError **)error {
     return [[[[self alloc] init] getWithPath:path] doRequestWithError:error];
 }
 
++ (void)fetchInBackgroundWithPath:(NSString *)path block:(BDConnectionResultBlock)block {
+	[[[[self alloc] init] getWithPath:path] doRequestInBackground:block];
+}
+
++ (BDConnection *)connectionForCreateWithPath:(NSString *)path values:(NSDictionary *)values {
+	return [[[[self alloc] init] postWithPath:path] requestJson:values];
+}
+
 + (NSDictionary *)createWithPath:(NSString *)path values:(NSDictionary *)values error:(NSError **)error {
-    return [[[[[self alloc] init] postWithPath:path] requestJson:values] doRequestWithError:error];
+	return [[self connectionForCreateWithPath:path values:values] doRequestWithError:error];
+}
+
++ (void)createInBackgroundWithPath:(NSString *)path values:(NSDictionary *)values block:(BDConnectionResultBlock)block {
+	[[self connectionForCreateWithPath:path values:values] doRequestInBackground:block];
+}
+
++ (BDConnection *)connectionForFetchAllWithPath:(NSString *)path query:(BDQuery *)query {
+	BDConnection *connection = [[[self alloc] init] getWithPath:path];
+	if (query) [connection query:query.apiRequestParameters];
+	return connection;
 }
 
 + (BDListResult *)fetchAllWithPath:(NSString *)path query:(BDQuery *)query error:(NSError **)error {
-	BDConnection *connection = [[[self alloc] init] getWithPath:path];
-	if (query) [connection query:query.apiRequestParameters];
+	BDConnection *connection = [self connectionForFetchAllWithPath:path query:query];
 	NSDictionary *result = [connection doRequestWithError:error];
 	if (!result) return nil;
 	return [[BDListResult alloc] initWithAPIResult:result];
+}
+
++ (void)fetchAllInBackgroundWithPath:(NSString *)path query:(BDQuery *)query block:(void(^)(BDListResult *result, NSError *error))block {
+	BDConnection *connection = [self connectionForFetchAllWithPath:path query:query];
+	[connection doRequestInBackground:^(NSDictionary *result, NSError *error) {
+		block(result ? [[BDListResult alloc] initWithAPIResult:result] : nil, error);
+	}];
 }
 
 @end

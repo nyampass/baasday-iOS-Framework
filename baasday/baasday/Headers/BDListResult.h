@@ -17,3 +17,5 @@
 - (id)initWithAPIResult:(NSDictionary *)apiResult;
 
 @end
+
+typedef void (^BDListResultBlock)(BDListResult *result, NSError *error);

@@ -79,6 +79,17 @@
 	return [self update:values error:nil];
 }
 
+- (void)updateInBackground:(NSDictionary *)values block:(void (^)(id, NSError *))block {
+	[[[[[BDConnection alloc] init] putWithPath:self.objectPath] requestJson:values] doRequestInBackground:^(NSDictionary *result, NSError *error) {
+		if (result) {
+			[_currentValues setDictionary:result];
+			block(self, error);
+		} else {
+			block(self, error);
+		}
+	}];
+}
+
 - (BOOL)deleteWithError:(NSError **)error {
 	if ([[[[BDConnection alloc] init] deleteWithPath:self.objectPath] doRequestWithError:error]) {
 		return YES;
@@ -88,6 +99,12 @@
 
 - (BOOL)delete {
 	return [self deleteWithError:nil];
+}
+
+- (void)deleteInBackground:(void (^)(id, NSError *))block {
+	[[[[BDConnection alloc] init] deleteWithPath:self.objectPath] doRequestInBackground:^(NSDictionary *result, NSError *error) {
+		block(self, error);
+	}];
 }
 
 @end

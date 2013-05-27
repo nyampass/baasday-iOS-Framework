@@ -10,18 +10,9 @@
 #import "BDListResult.h"
 #import "BDQuery.h"
 
-@class BDConnection;
+typedef void (^BDConnectionResultBlock)(NSDictionary *result, NSError *error);
 
-@protocol BDConnectionDelegate
-
-- (void)connection:(BDConnection *)connection finishedWithDictionary:(NSDictionary *)dictionary
-             error:(NSError *)error;
-
-@end 
-
-@interface BDConnection : NSObject //RLConnectionDelegate>
-
-@property (nonatomic, assign) id<BDConnectionDelegate> delegate;
+@interface BDConnection : NSObject
 
 - (BDConnection *)getWithPath:(NSString *)path;
 - (BDConnection *)postWithPath:(NSString *)path;
@@ -32,10 +23,15 @@
 - (BDConnection *)requestJson:(NSDictionary *)dic;
 
 - (NSDictionary *)doRequestWithError:(NSError **)error;
-- (void)doRequestWithDelegate:(id<BDConnectionDelegate>)delegate;
+- (void)doRequestInBackground:(BDConnectionResultBlock)block;
 
 + (NSDictionary *)fetchWithPath:(NSString *)path error:(NSError **)error;
++ (void)fetchInBackgroundWithPath:(NSString *)path block:(BDConnectionResultBlock)block;
++ (BDConnection *)connectionForCreateWithPath:(NSString *)path values:(NSDictionary *)values;
 + (NSDictionary *)createWithPath:(NSString *)path values:(NSDictionary *)values error:(NSError **)error;
++ (void)createInBackgroundWithPath:(NSString *)path values:(NSDictionary *)values block:(BDConnectionResultBlock)block;
++ (BDConnection *)connectionForFetchAllWithPath:(NSString *)path query:(BDQuery *)query;
 + (BDListResult *)fetchAllWithPath:(NSString *)path query:(BDQuery *)query error:(NSError **)error;
++ (void)fetchAllInBackgroundWithPath:(NSString *)path query:(BDQuery *)query block:(void(^)(BDListResult *result, NSError *error))block;
 
 @end
