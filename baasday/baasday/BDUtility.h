@@ -10,4 +10,6 @@
 
 @interface BDUtility : NSObject
 
++ (id)fixObjectForJSON:(id)object;
+
 @end

@@ -23,7 +23,7 @@ typedef void (^BDObjectResultBlock)(BDObject *object, NSError *error);
 + (BDObject *)createWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values error:(NSError **)error;
 + (BDObject *)createWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values;
 + (BDObject *)createWithCollectionName:(NSString *)collectionName error:(NSError **)error;
-+ (BDObject *)createWithCollectionNAme:(NSString *)collectionName;
++ (BDObject *)createWithCollectionName:(NSString *)collectionName;
 + (void)createInBackgroundWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values block:(BDObjectResultBlock)block;
 + (void)createInBackgroundWithCollectionName:(NSString *)collectionName block:(BDObjectResultBlock)block;
 + (BDObject *)fetchWithCollectionName:(NSString *)collectionName id:(NSString *)id erorr:(NSError **)error;

@@ -146,7 +146,7 @@ static BOOL saveAuthenticationKey = NO;
 - (void)authorizeUser:(BOOL)showMessage
 {
 	NSError *error;
-	BDAuthenticatedUser *user = [BDAuthenticatedUser createWithError:&error];
+	BDAuthenticatedUser *user = [BDAuthenticatedUser createWithValues:@{@"registeredAt": [NSDate date]} error:&error];
 	if (error) {
 		NSLog(@"%@", error);
 		return;

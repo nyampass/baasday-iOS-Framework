@@ -10,6 +10,7 @@
 #import "BDSettings.h"
 #import "BDBaasday(Private).h"
 #import "BDUser.h"
+#import "BDUtility.h"
 
 #import "JSONKit.h"
 
@@ -122,7 +123,6 @@ typedef enum {
     if ([BDBaasday userAuthenticationKey]) {
         NSLog(@"user-authentication-key: %@",
               [BDBaasday userAuthenticationKey]);
-
         [request setValue:[BDBaasday userAuthenticationKey] forHTTPHeaderField:@"X-Baasday-Application-User-Authentication-Key"];
     }
 }
@@ -205,7 +205,7 @@ typedef enum {
 - (NSString *)encode:(id)object
 {
     NSString *string = [NSString stringWithFormat: @"%@", object];
-    return [string stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+	return  (__bridge_transfer NSString *) CFURLCreateStringByAddingPercentEscapes(nil, (__bridge CFStringRef) string, nil, (CFStringRef) @"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
 }
 
 - (NSString*)urlEncodeFromDictionary:(NSDictionary *)dic
@@ -239,7 +239,7 @@ typedef enum {
     if (self.requestJson) {
         self.request = [self requestWithPath:path requestType:BDConnectionRequestTypeJSON];
         int jsonOptionQuoteKeys = (1 << 5);
-        NSData* jsonData = [self.requestJson JSONDataWithOptions:jsonOptionQuoteKeys error:nil];
+        NSData* jsonData = [[BDUtility fixObjectForJSON:self.requestJson] JSONDataWithOptions:jsonOptionQuoteKeys error:nil];
         [self.request addValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"Content-Length"];
         NSLog(@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
         [self.request setHTTPBody:jsonData];

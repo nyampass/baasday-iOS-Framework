@@ -7,6 +7,7 @@
 //
 
 #import "BDQuery.h"
+#import "BDUtility.h"
 #import "JSONKit.h"
 
 @implementation BDFieldOrder
@@ -57,7 +58,7 @@
 }
 
 - (NSString *)fixedFilter {
-	return [self.filter JSONString];
+	return [[BDUtility fixObjectForJSON:self.filter] JSONString];
 }
 
 - (NSArray *)order {

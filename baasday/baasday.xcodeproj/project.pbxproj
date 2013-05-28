@@ -23,6 +23,7 @@
 
 /* Begin PBXBuildFile section */
 		CA69105417299BCA00BAE086 /* BDListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA69105317299BCA00BAE086 /* BDListResult.m */; };
+		CA7EE49E17545C0B0037971C /* BDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7EE49D17545C0B0037971C /* BDUtility.m */; };
 		CAF389BA1753457300D86822 /* BDQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF389B91753457200D86822 /* BDQuery.m */; };
 		DB14FC991727A24A002C478A /* BDBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14FC981727A24A002C478A /* BDBasicObject.m */; };
 		DB55A9E6172821120035291A /* BDAuthenticatedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB55A9E5172821120035291A /* BDAuthenticatedUser.m */; };
@@ -107,6 +108,8 @@
 /* Begin PBXFileReference section */
 		CA69105217299BC900BAE086 /* BDListResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDListResult.h; sourceTree = "<group>"; };
 		CA69105317299BCA00BAE086 /* BDListResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDListResult.m; sourceTree = "<group>"; };
+		CA7EE49C17545C0B0037971C /* BDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDUtility.h; sourceTree = "<group>"; };
+		CA7EE49D17545C0B0037971C /* BDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDUtility.m; sourceTree = "<group>"; };
 		CAF389B81753457200D86822 /* BDQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDQuery.h; sourceTree = "<group>"; };
 		CAF389B91753457200D86822 /* BDQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDQuery.m; sourceTree = "<group>"; };
 		DB14FC971727A24A002C478A /* BDBasicObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBasicObject.h; sourceTree = "<group>"; };
@@ -226,6 +229,8 @@
 				DB55A9E5172821120035291A /* BDAuthenticatedUser.m */,
 				CA69105317299BCA00BAE086 /* BDListResult.m */,
 				CAF389B91753457200D86822 /* BDQuery.m */,
+				CA7EE49C17545C0B0037971C /* BDUtility.h */,
+				CA7EE49D17545C0B0037971C /* BDUtility.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -583,6 +588,7 @@
 				DB55A9E91728273B0035291A /* BDLeaderboardEntry.m in Sources */,
 				CA69105417299BCA00BAE086 /* BDListResult.m in Sources */,
 				CAF389BA1753457300D86822 /* BDQuery.m in Sources */,
+				CA7EE49E17545C0B0037971C /* BDUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
