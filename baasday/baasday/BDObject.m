@@ -53,7 +53,7 @@
 	return [self createWithCollectionName:collectionName values:nil error:error];
 }
 
-+ (BDObject *)createWithCollectionNAme:(NSString *)collectionName {
++ (BDObject *)createWithCollectionName:(NSString *)collectionName {
 	return [self createWithCollectionName:collectionName error:nil];
 }
 

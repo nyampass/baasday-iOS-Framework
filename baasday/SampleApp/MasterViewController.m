@@ -10,9 +10,7 @@
 
 #import "DetailViewController.h"
 
-#import "BDBaasday.h"
-#import "BDAuthenticatedUser.h"
-#import "BDLeaderboardEntry.h"
+#import "baasday.h"
 
 @interface MasterViewController () {
     NSMutableArray *_objects;
