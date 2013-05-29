@@ -6,25 +6,25 @@
 //  Copyright (c) 2013年 Nyampass Corporation. All rights reserved.
 //
 
-#import "BDUser.h"
+#import "BDUser_Private.h"
 #import "BDAPIClient.h"
 
 @implementation BDUser
 
-+ (NSString *)path {
++ (NSString *)usersAPIPath {
 	return @"users";
 }
 
-+ (NSString *)userPathWithId:(NSString *)id {
-	return [NSString stringWithFormat:@"%@/%@", [self path], id];
++ (NSString *)apiPathWithId:(NSString *)id {
+	return [NSString stringWithFormat:@"%@/%@", [self usersAPIPath], id];
 }
 
-- (NSString *)collectionPath {
-	return [BDUser path];
+- (NSString *)apiPath {
+	return [BDUser apiPathWithId:self.id];
 }
 
 + (BDUser *)createWithValues:(NSDictionary *)values error:(NSError **)error {
-	NSDictionary *result = [BDAPIClient createWithPath:[self path] values:values error:error];
+	NSDictionary *result = [BDAPIClient createWithPath:[self usersAPIPath] values:values error:error];
 	if (!result) return nil;
 	return [[self alloc] initWithValues:result];
 }
@@ -42,7 +42,7 @@
 }
 
 + (void)createInBackgroundWithValues:(NSDictionary *)values block:(BDUserResultBlock)block {
-	[BDAPIClient createInBackgroundWithPath:[self path] values:values block:^(NSDictionary *result, NSError *error) {
+	[BDAPIClient createInBackgroundWithPath:[self usersAPIPath] values:values block:^(NSDictionary *result, NSError *error) {
 		block(result ? [[self alloc] initWithValues:result] : nil, error);
 	}];
 }
@@ -52,7 +52,7 @@
 }
 
 + (BDUser *)fetchWithId:(NSString *)id error:(NSError **)error {
-	NSDictionary *result = [BDAPIClient fetchWithPath:[self userPathWithId:id] error:error];
+	NSDictionary *result = [BDAPIClient fetchWithPath:[self apiPathWithId:id] error:error];
 	return result ? [[self alloc] initWithValues:result] : nil;
 }
 
@@ -61,7 +61,7 @@
 }
 
 + (void)fetchInBackgroundWithId:(NSString *)id block:(BDUserResultBlock)block {
-	[BDAPIClient fetchInBackgroundWithPath:[self userPathWithId:id] block:^(NSDictionary *result, NSError *error) {
+	[BDAPIClient fetchInBackgroundWithPath:[self apiPathWithId:id] block:^(NSDictionary *result, NSError *error) {
 		block(result ? [[self alloc] initWithValues:result] : nil, error);
 	}];
 }
@@ -75,7 +75,7 @@
 }
 
 + (BDListResult *)fetchAllWithQuery:(BDQuery *)query error:(NSError **)error {
-	BDListResult *result = [BDAPIClient fetchAllWithPath:[self path] query:query error:error];
+	BDListResult *result = [BDAPIClient fetchAllWithPath:[self usersAPIPath] query:query error:error];
 	return result ? [self userListResultWithDictionaryListResult:result] : nil;
 }
 
@@ -92,7 +92,7 @@
 }
 
 + (void)fetchAllInBackgroundWithQuery:(BDQuery *)query block:(BDListResultBlock)block {
-	[BDAPIClient fetchAllInBackgroundWithPath:[self path] query:query block:^(BDListResult *result, NSError *error) {
+	[BDAPIClient fetchAllInBackgroundWithPath:[self usersAPIPath] query:query block:^(BDListResult *result, NSError *error) {
 		block(result ? [self userListResultWithDictionaryListResult:result] : nil, error);
 	}];
 }

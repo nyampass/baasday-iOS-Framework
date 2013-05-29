@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "BDObject.h"
 #import "BDListResult.h"
 #import "BDQuery.h"

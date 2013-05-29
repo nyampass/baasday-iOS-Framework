@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Nyampass Corporation. All rights reserved.
 //
 
-#import "BDQuery.h"
+#import "BDQuery_Private.h"
 #import "BDUtility.h"
 #import "JSONKit.h"
 

@@ -12,7 +12,6 @@
 
 @property (nonatomic, assign) NSString *field;
 @property (nonatomic, assign) BOOL descending;
-@property (readonly) NSString *parameterString;
 
 - (id)initWithField:(NSString *)field descending:(BOOL)descending;
 - (id)initWithField:(NSString *)field;
@@ -31,6 +30,5 @@
 @property (readonly) BOOL hasLimit;
 @property (nonatomic, assign) NSInteger wait;
 @property (readonly) BOOL hasWait;
-@property (readonly) NSDictionary *apiRequestParameters;
 
 @end

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 Nyampass Corporation. All rights reserved.
 //
 
-#import "BDItem.h"
+#import "BDItem_Private.h"
 #import "BDAPIClient.h"
 
 @implementation BDItem
@@ -22,20 +22,20 @@
 	return [self initWithCollectionName:collectionName values:@{}];
 }
 
-+ (NSString *)collectionPathWithCollectionName:(NSString *)collectionName {
++ (NSString *)collectionAPIPathWithCollectionName:(NSString *)collectionName {
 	return [NSString stringWithFormat:@"objects/%@", collectionName];
 }
 
-+ (NSString *)objectPathWithCollectionName:(NSString *)collectionName id:(NSString *)id {
-	return [NSString stringWithFormat:@"%@/%@", [self collectionPathWithCollectionName:collectionName], id];
++ (NSString *)apiPathWithCollectionName:(NSString *)collectionName id:(NSString *)id {
+	return [NSString stringWithFormat:@"%@/%@", [self collectionAPIPathWithCollectionName:collectionName], id];
 }
 
-- (NSString *)collectionPath {
-	return [BDItem collectionPathWithCollectionName:self.collectionName];
+- (NSString *)apiPath {
+	return [BDItem apiPathWithCollectionName:_collectionName id:self.id];
 }
 
 + (BDAPIClient *)connectionForCreateWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values {
-	return [BDAPIClient connectionForCreateWithPath:[self collectionPathWithCollectionName:collectionName] values:values];
+	return [BDAPIClient apiClientForCreateWithPath:[self collectionAPIPathWithCollectionName:collectionName] values:values];
 }
 
 + (BDItem *)createWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values error:(NSError **)error {
@@ -67,7 +67,7 @@
 }
 
 + (BDItem *)fetchWithCollectionName:(NSString *)collectionName id:(NSString *)id erorr:(NSError **)error {
-	NSDictionary *result = [BDAPIClient fetchWithPath:[self objectPathWithCollectionName:collectionName id:id] error:error];
+	NSDictionary *result = [BDAPIClient fetchWithPath:[self apiPathWithCollectionName:collectionName id:id] error:error];
 	return result ? [[self alloc] initWithCollectionName:collectionName values:result] : nil;
 }
 
@@ -76,7 +76,7 @@
 }
 
 + (void)fetchInBackgroundWithCollectionName:(NSString *)collectionName id:(NSString *)id block:(BDItemResultBlock)block {
-	[BDAPIClient fetchInBackgroundWithPath:[self objectPathWithCollectionName:collectionName id:id] block:^(NSDictionary *result, NSError *error) {
+	[BDAPIClient fetchInBackgroundWithPath:[self apiPathWithCollectionName:collectionName id:id] block:^(NSDictionary *result, NSError *error) {
 		block(result ? [[self alloc] initWithCollectionName:collectionName values:result] : nil, error);
 	}];
 }
@@ -90,7 +90,7 @@
 }
 
 + (BDListResult *)fetchAllWithCollectionName:(NSString *)collectionName query:(BDQuery *)query error:(NSError **)error {
-	BDListResult *result = [BDAPIClient fetchAllWithPath:[self collectionPathWithCollectionName:collectionName] query:query error:error];
+	BDListResult *result = [BDAPIClient fetchAllWithPath:[self collectionAPIPathWithCollectionName:collectionName] query:query error:error];
 	return result ? [self objectListResultWithDictionaryListResult:result collectionName:collectionName] : nil;
 }
 
@@ -107,7 +107,7 @@
 }
 
 + (void)fetchAllInBackgroundWithCollectionName:(NSString *)collectionName query:(BDQuery *)query block:(BDListResultBlock)block {
-	[BDAPIClient fetchAllInBackgroundWithPath:[self collectionPathWithCollectionName:collectionName] query:query block:^(BDListResult *result, NSError *error) {
+	[BDAPIClient fetchAllInBackgroundWithPath:[self collectionAPIPathWithCollectionName:collectionName] query:query block:^(BDListResult *result, NSError *error) {
 		block(result ? [self objectListResultWithDictionaryListResult:result collectionName:collectionName] : nil, error);
 	}];
 }

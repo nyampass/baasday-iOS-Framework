@@ -6,6 +6,7 @@
 //  Copyright (c) 2013年 Nyampass Corporation. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "BDObject.h"
 #import "BDListResult.h"
 #import "BDQuery.h"

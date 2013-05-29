@@ -14,7 +14,6 @@
 @property (readonly) NSInteger count;
 
 - (id)initWithObjects:(NSArray *)objects count:(NSInteger)count;
-- (id)initWithAPIResult:(NSDictionary *)apiResult;
 
 @end
 

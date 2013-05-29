@@ -6,9 +6,8 @@
 //  Copyright (c) 2013年 Nyampass Corporation. All rights reserved.
 //
 
-#import "BDLeaderboardEntry.h"
+#import "BDLeaderboardEntry_Private.h"
 #import "BDAPIClient.h"
-#import "BDQuery.h"
 
 @implementation BDLeaderboardEntry
 
@@ -23,16 +22,16 @@
 	return [self initWithLeaderboardName:leaderboardName values:@{}];
 }
 
-+ (NSString *)collectionPathWithLeaderboardName:(NSString *)leaderboardName {
++ (NSString *)leaderboardAPIPathWithLeaderboardName:(NSString *)leaderboardName {
     return [NSString stringWithFormat:@"leaderboards/%@", leaderboardName];
 }
 
-+ (NSString *)entryPathWithLeaderboardName:(NSString *)leaderboardName id:(NSString *)id {
-	return [NSString stringWithFormat:@"%@/%@", [self collectionPathWithLeaderboardName:leaderboardName], id];
++ (NSString *)apiPathWithLeaderboardName:(NSString *)leaderboardName id:(NSString *)id {
+	return [NSString stringWithFormat:@"%@/%@", [self leaderboardAPIPathWithLeaderboardName:leaderboardName], id];
 }
 
-- (NSString *)collectionPath {
-    return [BDLeaderboardEntry collectionPathWithLeaderboardName:self.leaderboardName];
+- (NSString *)apiPath {
+	return [BDLeaderboardEntry apiPathWithLeaderboardName:_leaderboardName id:self.id];
 }
 
 - (NSInteger)score {
@@ -54,7 +53,7 @@
 }
 
 + (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values error:(NSError **)error {
-	NSDictionary *result = [BDAPIClient createWithPath:[self collectionPathWithLeaderboardName:leaderboardName] values:values error:error];
+	NSDictionary *result = [BDAPIClient createWithPath:[self leaderboardAPIPathWithLeaderboardName:leaderboardName] values:values error:error];
 	return result ? [[self alloc] initWithLeaderboardName:leaderboardName values:result] : nil;
 }
 
@@ -79,7 +78,7 @@
 }
 
 + (void)createInBackgroundWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values block:(BDLeaderboardEntryResultBlock)block {
-	[BDAPIClient createInBackgroundWithPath:[self collectionPathWithLeaderboardName:leaderboardName] values:values block:^(NSDictionary *result, NSError *error) {
+	[BDAPIClient createInBackgroundWithPath:[self leaderboardAPIPathWithLeaderboardName:leaderboardName] values:values block:^(NSDictionary *result, NSError *error) {
 		block(result ? [[self alloc] initWithLeaderboardName:leaderboardName values:result] : nil, error);
 	}];
 }
@@ -93,7 +92,7 @@
 }
 
 + (BDLeaderboardEntry *)fetchWithLeaderboardName:(NSString *)leaderboardName id:(NSString *)id error:(NSError **)error {
-	NSDictionary *result = [BDAPIClient fetchWithPath:[self entryPathWithLeaderboardName:leaderboardName id:id] error:error];
+	NSDictionary *result = [BDAPIClient fetchWithPath:[self apiPathWithLeaderboardName:leaderboardName id:id] error:error];
 	return result ? [[self alloc] initWithLeaderboardName:leaderboardName values:result] : nil;
 }
 
@@ -102,7 +101,7 @@
 }
 
 + (void)fetchInBackgroundWithLeaderboardName:(NSString *)leaderboardName id:(NSString *)id block:(BDLeaderboardEntryResultBlock)block {
-	[BDAPIClient fetchInBackgroundWithPath:[self entryPathWithLeaderboardName:leaderboardName id:id] block:^(NSDictionary *result, NSError *error) {
+	[BDAPIClient fetchInBackgroundWithPath:[self apiPathWithLeaderboardName:leaderboardName id:id] block:^(NSDictionary *result, NSError *error) {
 		block(result ? [[self alloc] initWithLeaderboardName:leaderboardName values:result] : nil, error);
 	}];
 }
@@ -116,7 +115,7 @@
 }
 
 + (BDListResult *)fetchAllWithLeaderboardName:(NSString *)leaderboardName query:(BDQuery *)query error:(NSError **)error {
-	BDListResult *result = [BDAPIClient fetchAllWithPath:[self collectionPathWithLeaderboardName:leaderboardName] query:query error:error];
+	BDListResult *result = [BDAPIClient fetchAllWithPath:[self leaderboardAPIPathWithLeaderboardName:leaderboardName] query:query error:error];
 	return result ? [self entryListResultWithDictionaryListResult:result leaderboardName:leaderboardName] : nil;
 }
 
@@ -133,7 +132,7 @@
 }
 
 + (void)fetchAllInBackgroundWithLeaderboardName:(NSString *)leaderboardName query:(BDQuery *)query block:(BDListResultBlock)block {
-	[BDAPIClient fetchAllInBackgroundWithPath:[self collectionPathWithLeaderboardName:leaderboardName] query:query block:^(BDListResult *result, NSError *error) {
+	[BDAPIClient fetchAllInBackgroundWithPath:[self leaderboardAPIPathWithLeaderboardName:leaderboardName] query:query block:^(BDListResult *result, NSError *error) {
 		block(result ? [self entryListResultWithDictionaryListResult:result leaderboardName:leaderboardName] : nil, error);
 	}];
 }

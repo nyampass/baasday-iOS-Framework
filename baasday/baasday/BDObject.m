@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 Nyampass Corporation. All rights reserved.
 //
 
-#import "BDObject.h"
+#import "BDObject_Private.h"
 #import "BDAPIClient.h"
 
 @interface BDObject () {
@@ -41,14 +41,6 @@
 	return [self dateForKey:@"_updatedAt"];
 }
 
-- (NSString *)collectionPath {
-	return nil;
-}
-
-- (NSString *)objectPath {
-    return [NSString stringWithFormat:@"%@/%@", self.collectionPath, self.id];
-}
-
 - (id)objectForKey:(NSString *)key {
 	return [_values objectForKey:key];
 }
@@ -59,6 +51,14 @@
 
 - (id)objectForKeyedSubscript:(NSString *)key {
 	return [self objectForKey:key];
+}
+
+- (BOOL)containsKey:(NSString *)key {
+	return [_values.allKeys containsObject:key];
+}
+
+- (BOOL)isNil:(NSString *)key {
+	return [self containsKey:key] && [self objectForKey:key] == nil;
 }
 
 - (NSInteger)integerForKey:(NSString *)key {
@@ -110,7 +110,7 @@
 }
 
 - (BOOL)update:(NSDictionary *)values error:(NSError **)error {
-    NSDictionary *newValues = [[[[[BDAPIClient alloc] init] putWithPath:self.objectPath] requestJson:values] doRequestWithError:error];
+    NSDictionary *newValues = [[[[[BDAPIClient alloc] init] putWithPath:self.apiPath] requestJson:values] doRequestWithError:error];
 	if (newValues == nil) return NO;
 	[_values setDictionary:newValues];
     return YES;
@@ -121,7 +121,7 @@
 }
 
 - (void)updateInBackground:(NSDictionary *)values block:(void (^)(id, NSError *))block {
-	[[[[[BDAPIClient alloc] init] putWithPath:self.objectPath] requestJson:values] doRequestInBackground:^(NSDictionary *result, NSError *error) {
+	[[[[[BDAPIClient alloc] init] putWithPath:self.apiPath] requestJson:values] doRequestInBackground:^(NSDictionary *result, NSError *error) {
 		if (result) {
 			[_values setDictionary:result];
 			block(self, error);
@@ -132,7 +132,7 @@
 }
 
 - (BOOL)deleteWithError:(NSError **)error {
-	if ([[[[BDAPIClient alloc] init] deleteWithPath:self.objectPath] doRequestWithError:error]) {
+	if ([[[[BDAPIClient alloc] init] deleteWithPath:self.apiPath] doRequestWithError:error]) {
 		return YES;
 	}
 	return NO;
@@ -143,7 +143,7 @@
 }
 
 - (void)deleteInBackground:(void (^)(id, NSError *))block {
-	[[[[BDAPIClient alloc] init] deleteWithPath:self.objectPath] doRequestInBackground:^(NSDictionary *result, NSError *error) {
+	[[[[BDAPIClient alloc] init] deleteWithPath:self.apiPath] doRequestInBackground:^(NSDictionary *result, NSError *error) {
 		block(self, error);
 	}];
 }

@@ -19,7 +19,7 @@ typedef void (^BDDictionaryResultBlock)(NSDictionary *result, NSError *error);
 - (BDAPIClient *)putWithPath:(NSString *)path;
 - (BDAPIClient *)deleteWithPath:(NSString *)path;
 
-- (BDAPIClient *)query:(NSDictionary *)query;
+- (BDAPIClient *)requestParameters:(NSDictionary *)requestParameters;
 - (BDAPIClient *)requestJson:(NSDictionary *)dic;
 
 - (NSDictionary *)doRequestWithError:(NSError **)error;
@@ -27,10 +27,10 @@ typedef void (^BDDictionaryResultBlock)(NSDictionary *result, NSError *error);
 
 + (NSDictionary *)fetchWithPath:(NSString *)path error:(NSError **)error;
 + (void)fetchInBackgroundWithPath:(NSString *)path block:(BDDictionaryResultBlock)block;
-+ (BDAPIClient *)connectionForCreateWithPath:(NSString *)path values:(NSDictionary *)values;
++ (BDAPIClient *)apiClientForCreateWithPath:(NSString *)path values:(NSDictionary *)values;
 + (NSDictionary *)createWithPath:(NSString *)path values:(NSDictionary *)values error:(NSError **)error;
 + (void)createInBackgroundWithPath:(NSString *)path values:(NSDictionary *)values block:(BDDictionaryResultBlock)block;
-+ (BDAPIClient *)connectionForFetchAllWithPath:(NSString *)path query:(BDQuery *)query;
++ (BDAPIClient *)apiClientForFetchAllWithPath:(NSString *)path query:(BDQuery *)query;
 + (BDListResult *)fetchAllWithPath:(NSString *)path query:(BDQuery *)query error:(NSError **)error;
 + (void)fetchAllInBackgroundWithPath:(NSString *)path query:(BDQuery *)query block:(void(^)(BDListResult *result, NSError *error))block;
 

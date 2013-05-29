@@ -14,13 +14,13 @@
 @property (readonly) NSString *id;
 @property (readonly) NSDate *createdAt;
 @property (readonly) NSDate *updatedAt;
-@property (readonly) NSString *collectionPath;
-@property (readonly) NSString *objectPath;
 
 - (id)initWithValues:(NSDictionary *)values;
 - (id)objectForKey:(NSString *)key;
 - (id)objectForKeyPath:(NSString *)keyPath;
 - (id)objectForKeyedSubscript:(NSString *)key;
+- (BOOL)containsKey:(NSString *)key;
+- (BOOL)isNil:(NSString *)key;
 - (NSInteger)integerForKey:(NSString *)key;
 - (NSInteger)integerForKeyPath:(NSString *)keyPath;
 - (double)doubleForKey:(NSString *)key;

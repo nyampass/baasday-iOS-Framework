@@ -7,7 +7,7 @@
 //
 
 #import "BDBaasday.h"
-#import "BDBaasday(Private).h"
+#import "BDBaasday_Private.h"
 
 #import "BDSettings.h"
 

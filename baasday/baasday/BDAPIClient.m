@@ -8,13 +8,15 @@
 
 #import "BDAPIClient.h"
 #import "BDSettings.h"
-#import "BDBaasday(Private).h"
+#import "BDBaasday_Private.h"
+#import "BDQuery_Private.h"
+#import "BDListResult_Private.h"
 #import "BDUser.h"
 #import "BDUtility.h"
 
 #import "JSONKit.h"
 
-@interface BDConnectionOperation : NSOperation {
+@interface BDAPIOperation : NSOperation {
 	NSURLRequest *_request;
 	NSMutableData *_responseData;
 	BDDictionaryResultBlock _block;
@@ -26,7 +28,7 @@
 
 @end
 
-@implementation BDConnectionOperation
+@implementation BDAPIOperation
 
 - (id)initWithRequest:(NSURLRequest *)request block:(BDDictionaryResultBlock)block {
 	if (self = [super init]) {
@@ -98,25 +100,52 @@
 
 @end
 
-typedef enum {
-    BDConnectionRequestTypeFormUrlencoded,
-    BDConnectionRequestTypeJSON,
-    BDConnectionRequestTypeMultipartFormData,
-} BDConnectionRequestType;
-
-@interface BDAPIClient ()
-
-@property (nonatomic, strong) NSString* method;
-@property (nonatomic, strong) NSString* path;
-@property (nonatomic, strong) NSDictionary* query;
-@property (nonatomic, strong) NSDictionary* requestJson;
-@property (nonatomic, strong) NSMutableURLRequest* request;
+@interface BDAPIClient () {
+	NSString *_requestMethod;
+	NSString *_path;
+	NSDictionary *_requestParameters;
+	NSDictionary *_requestJSON;
+}
 
 @end
 
 @implementation BDAPIClient
 
-+ (void)setHeadersWithRequest:(NSMutableURLRequest *)request
+- (BDAPIClient *)setRequestMethod:(NSString *)requestMethod path:(NSString *)path
+{
+    NSAssert(requestMethod &&
+             ([requestMethod isEqualToString:@"GET"] ||
+              [requestMethod isEqualToString:@"POST"] ||
+              [requestMethod isEqualToString:@"PUT"] ||
+              [requestMethod isEqualToString:@"DELETE"]), @"HTTP method is wrong");
+    NSAssert(path, @"undefined path");
+	_requestMethod = requestMethod;
+	_path = path;
+    return self;
+}
+
+- (BDAPIClient *)getWithPath:(NSString *)path {
+    return [self setRequestMethod:@"GET" path:path];
+}
+
+- (BDAPIClient *)postWithPath:(NSString *)path {
+    return [self setRequestMethod:@"POST" path:path];
+}
+
+- (BDAPIClient *)putWithPath:(NSString *)path {
+    return [self setRequestMethod:@"PUT" path:path];
+}
+
+- (BDAPIClient *)deleteWithPath:(NSString *)path {
+    return [self setRequestMethod:@"DELETE" path:path];
+}
+
+- (BDAPIClient *)requestParameters:(NSDictionary *)requestParameters {
+	_requestParameters = requestParameters;
+    return self;
+}
+
++ (void)setAuthenticationHeadersToRequest:(NSMutableURLRequest *)request
 {
     [request setValue:[BDBaasday applicationId] forHTTPHeaderField:@"X-Baasday-Application-Id"];
     [request setValue:[BDBaasday apiKey] forHTTPHeaderField:@"X-Baasday-Application-Api-Key"];
@@ -127,141 +156,55 @@ typedef enum {
     }
 }
 
-- (NSMutableURLRequest *)requestWithPath:(NSString *)path requestType:(BDConnectionRequestType)requestType
-{
-    NSAssert(path, @"path is undefined");
-    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", BDAPIURL, path]];
-    
-    NSLog(@"%@", url);
-    
-    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
-    [BDAPIClient setHeadersWithRequest:request];
-
-    // [request setValue:VALUE forHTTPHeaderField:@"Field You Want To Set"];
-    switch (requestType) {
-        case BDConnectionRequestTypeFormUrlencoded:
-            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-            break;
-        case BDConnectionRequestTypeJSON:
-            [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-            break;
-
-        case BDConnectionRequestTypeMultipartFormData:
-            [request setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
-            break;
-            
-        default:
-            break;
-    }
-
-    return request;
-}
-
-#pragma -
-#pragma Operation
-
-- (BDAPIClient *)setMethod:(NSString *)method path:(NSString *)path
-{
-    NSAssert(method &&
-             ([method isEqualToString:@"GET"] ||
-              [method isEqualToString:@"POST"] ||
-              [method isEqualToString:@"PUT"] ||
-              [method isEqualToString:@"DELETE"]), @"HTTP method is wrong");
-    
-    NSAssert(path, @"undefined path");
-
-    self.method = method;
-    self.path = path;
-    
-    return self;
-}
-
-- (BDAPIClient *)getWithPath:(NSString *)path
-{
-    return [self setMethod:@"GET" path:path];
-}
-
-- (BDAPIClient *)postWithPath:(NSString *)path
-{
-    return [self setMethod:@"POST" path:path];
-}
-
-- (BDAPIClient *)putWithPath:(NSString *)path
-{
-    return [self setMethod:@"PUT" path:path];
-}
-
-- (BDAPIClient *)deleteWithPath:(NSString *)path
-{
-    return [self setMethod:@"DELETE" path:path];
-}
-
-- (BDAPIClient *)query:(NSDictionary *)query
-{
-    self.query = query;
-    return self;
-}
-
-- (NSString *)encode:(id)object
-{
++ (NSString *)urlEncode:(id)object {
     NSString *string = [NSString stringWithFormat: @"%@", object];
 	return  (__bridge_transfer NSString *) CFURLCreateStringByAddingPercentEscapes(nil, (__bridge CFStringRef) string, nil, (CFStringRef) @"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
 }
 
-- (NSString*)urlEncodeFromDictionary:(NSDictionary *)dic
-{
-    NSMutableArray *q = [NSMutableArray array];
-
-    for (id key in dic) {
-        id value = [dic objectForKey: key];
-        NSString *part = [NSString stringWithFormat: @"%@=%@",
-                          [self encode:key],
-                          [self encode:value]];
-        [q addObject:part];
++ (NSString*)queryString:(NSDictionary *)dictionary {
+    NSMutableArray *pairs = [NSMutableArray array];
+    for (id key in dictionary) {
+        id value = [dictionary objectForKey: key];
+        [pairs addObject:[NSString stringWithFormat: @"%@=%@", [self urlEncode:key], [self urlEncode:value]]];
     }
-    return [q componentsJoinedByString: @"&"];
+    return [pairs componentsJoinedByString: @"&"];
 }
 
-- (BDAPIClient *)requestJson:(NSDictionary *)json
-{
-    self.requestJson = json;
+- (NSString *)queryString {
+	return [BDAPIClient queryString:_requestParameters];
+}
+
+- (BDAPIClient *)requestJson:(NSDictionary *)requestJSON {
+	_requestJSON = requestJSON;
     return self;
 }
 
-- (void)buildRequest
-{
+- (NSURLRequest *)request {
     NSString *path;
-    if (self.query) {
-        path = [NSString stringWithFormat:@"%@?%@", self.path, [self urlEncodeFromDictionary:self.query]];
+    if (_requestParameters) {
+        path = [NSString stringWithFormat:@"%@?%@", _path, [self queryString]];
     } else {
-        path = self.path;
+		path = _path;
     }
-    if (self.requestJson) {
-        self.request = [self requestWithPath:path requestType:BDConnectionRequestTypeJSON];
-        int jsonOptionQuoteKeys = (1 << 5);
-        NSData* jsonData = [[BDUtility fixObjectForJSON:self.requestJson] JSONDataWithOptions:jsonOptionQuoteKeys error:nil];
-        [self.request addValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"Content-Length"];
-        NSLog(@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
-        [self.request setHTTPBody:jsonData];
-    } else {
-        self.request = [self requestWithPath:path requestType:BDConnectionRequestTypeFormUrlencoded];
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BD_API_URL_ROOT, path]]];
+	[request setHTTPMethod:_requestMethod];
+	[BDAPIClient setAuthenticationHeadersToRequest:request];
+	if (_requestJSON) {
+		[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+		NSData *jsonData = [[BDUtility fixObjectForJSON:_requestJSON] JSONData];
+        [request addValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"Content-Length"];
+        [request setHTTPBody:jsonData];
     }
-    [self.request setHTTPMethod:self.method];
-    NSLog(@"HTTP method: %@", self.method);
+
+    NSLog(@"HTTP: %@ %@", _requestMethod, path);
+	return request;
 }
 
-#pragma -
-#pragma Handling response
-
-- (NSDictionary *)doRequestWithError:(NSError **)error
-{
-    [self buildRequest];
-    NSAssert(self.request, @"not set request");
+- (NSDictionary *)doRequestWithError:(NSError **)error {
+    NSURLRequest *request = [self request];
     NSURLResponse* returningResponse;
 	NSError *requestError = nil;
-    NSData* responseData = [NSURLConnection sendSynchronousRequest:self.request
-												 returningResponse:&returningResponse
-															 error:&requestError];
+    NSData* responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&returningResponse error:&requestError];
 	if (requestError) {
 		if (error) *error = requestError;
 		NSLog(@"request error: %@", requestError);
@@ -277,11 +220,9 @@ typedef enum {
     return result;
 }
 
-- (void)doRequestInBackground:(BDDictionaryResultBlock)block
-{
-    [self buildRequest];
-    NSAssert(self.request, @"not set request");
-	BDConnectionOperation *operation = [[BDConnectionOperation alloc] initWithRequest:self.request block:block];
+- (void)doRequestInBackground:(BDDictionaryResultBlock)block {
+	NSURLRequest *request = [self request];
+	BDAPIOperation *operation = [[BDAPIOperation alloc] initWithRequest:request block:block];
 	NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 	[queue addOperation:operation];
 }
@@ -294,31 +235,31 @@ typedef enum {
 	[[[[self alloc] init] getWithPath:path] doRequestInBackground:block];
 }
 
-+ (BDAPIClient *)connectionForCreateWithPath:(NSString *)path values:(NSDictionary *)values {
++ (BDAPIClient *)apiClientForCreateWithPath:(NSString *)path values:(NSDictionary *)values {
 	return [[[[self alloc] init] postWithPath:path] requestJson:values];
 }
 
 + (NSDictionary *)createWithPath:(NSString *)path values:(NSDictionary *)values error:(NSError **)error {
-	return [[self connectionForCreateWithPath:path values:values] doRequestWithError:error];
+	return [[self apiClientForCreateWithPath:path values:values] doRequestWithError:error];
 }
 
 + (void)createInBackgroundWithPath:(NSString *)path values:(NSDictionary *)values block:(BDDictionaryResultBlock)block {
-	[[self connectionForCreateWithPath:path values:values] doRequestInBackground:block];
+	[[self apiClientForCreateWithPath:path values:values] doRequestInBackground:block];
 }
 
-+ (BDAPIClient *)connectionForFetchAllWithPath:(NSString *)path query:(BDQuery *)query {
-	return [[[[self alloc] init] getWithPath:path] query:query ? query.apiRequestParameters : nil];
++ (BDAPIClient *)apiClientForFetchAllWithPath:(NSString *)path query:(BDQuery *)query {
+	return [[[[self alloc] init] getWithPath:path] requestParameters:query ? query.requestParameters : nil];
 }
 
 + (BDListResult *)fetchAllWithPath:(NSString *)path query:(BDQuery *)query error:(NSError **)error {
-	BDAPIClient *connection = [self connectionForFetchAllWithPath:path query:query];
+	BDAPIClient *connection = [self apiClientForFetchAllWithPath:path query:query];
 	NSDictionary *result = [connection doRequestWithError:error];
 	if (!result) return nil;
 	return [[BDListResult alloc] initWithAPIResult:result];
 }
 
 + (void)fetchAllInBackgroundWithPath:(NSString *)path query:(BDQuery *)query block:(void(^)(BDListResult *result, NSError *error))block {
-	BDAPIClient *connection = [self connectionForFetchAllWithPath:path query:query];
+	BDAPIClient *connection = [self apiClientForFetchAllWithPath:path query:query];
 	[connection doRequestInBackground:^(NSDictionary *result, NSError *error) {
 		block(result ? [[BDListResult alloc] initWithAPIResult:result] : nil, error);
 	}];

@@ -6,18 +6,14 @@
 //  Copyright (c) 2013年 Nyampass Corporation. All rights reserved.
 //
 
-#import "BDAuthenticatedUser.h"
+#import "BDAuthenticatedUser_Private.h"
 #import "BDAPIClient.h"
 #import "BDBaasday.h"
 
 @implementation BDAuthenticatedUser
 
-+ (NSString *)path {
-    return @"me";
-}
-
-- (NSString *)objectPath {
-	return [BDAuthenticatedUser path];
+- (NSString *)apiPath {
+	return @"me";
 }
 
 - (NSString *)authenticationKey {
@@ -53,8 +49,7 @@
 }
 
 + (BDAuthenticatedUser *)fetchWithError:(NSError **)error {
-	NSAssert([BDBaasday userAuthenticationKey], @"userAuthenticationKey is not set");
-	return [[self alloc] initWithValues:[BDAPIClient fetchWithPath:[self path] error:error]];
+	return [[self alloc] initWithValues:[BDAPIClient fetchWithPath:@"me" error:error]];
 }
 
 + (BDAuthenticatedUser *)fetch {
@@ -62,7 +57,7 @@
 }
 
 + (void)fetchInBackground:(BDAuthenticatedUserResultBlock)block {
-	[BDAPIClient fetchInBackgroundWithPath:[self path] block:^(NSDictionary *result, NSError *error) {
+	[BDAPIClient fetchInBackgroundWithPath:@"me" block:^(NSDictionary *result, NSError *error) {
 		block(result ? [[self alloc] initWithValues:result] : nil, error);
 	}];
 }

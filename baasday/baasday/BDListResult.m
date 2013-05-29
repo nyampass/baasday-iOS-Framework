@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Nyampass Corporation. All rights reserved.
 //
 
-#import "BDListResult.h"
+#import "BDListResult_Private.h"
 
 @implementation BDListResult
 
