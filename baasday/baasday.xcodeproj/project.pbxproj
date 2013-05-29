@@ -28,7 +28,7 @@
 		DB14FC991727A24A002C478A /* BDBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14FC981727A24A002C478A /* BDBasicObject.m */; };
 		DB55A9E6172821120035291A /* BDAuthenticatedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB55A9E5172821120035291A /* BDAuthenticatedUser.m */; };
 		DB55A9E91728273B0035291A /* BDLeaderboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = DB55A9E81728273B0035291A /* BDLeaderboardEntry.m */; };
-		DB5D75FD1706DDD200B2DE4D /* BDObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75FC1706DDD200B2DE4D /* BDObject.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		DB5D75FD1706DDD200B2DE4D /* BDItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75FC1706DDD200B2DE4D /* BDItem.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		DB5D76001706DFB700B2DE4D /* BDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75FF1706DFB700B2DE4D /* BDUser.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		DB5D76031706E03700B2DE4D /* BDAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D76021706E03600B2DE4D /* BDAPIClient.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		DB6B71801722C4F20001E842 /* baasday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6B717F1722C4F20001E842 /* baasday.framework */; };
@@ -119,8 +119,8 @@
 		DB55A9E71728273B0035291A /* BDLeaderboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDLeaderboardEntry.h; sourceTree = "<group>"; };
 		DB55A9E81728273B0035291A /* BDLeaderboardEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDLeaderboardEntry.m; sourceTree = "<group>"; };
 		DB5D75FA1706D2E500B2DE4D /* BDBaasday(Private).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BDBaasday(Private).h"; sourceTree = "<group>"; };
-		DB5D75FB1706DDD200B2DE4D /* BDObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDObject.h; sourceTree = "<group>"; };
-		DB5D75FC1706DDD200B2DE4D /* BDObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDObject.m; sourceTree = "<group>"; };
+		DB5D75FB1706DDD200B2DE4D /* BDItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDItem.h; sourceTree = "<group>"; };
+		DB5D75FC1706DDD200B2DE4D /* BDItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDItem.m; sourceTree = "<group>"; };
 		DB5D75FE1706DFB700B2DE4D /* BDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BDUser.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		DB5D75FF1706DFB700B2DE4D /* BDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDUser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DB5D76011706E03600B2DE4D /* BDAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDAPIClient.h; path = Headers/BDAPIClient.h; sourceTree = "<group>"; };
@@ -222,7 +222,7 @@
 				DB8F5D1A1705ED1F00A7E9AC /* BDBaasday.m */,
 				DB14FC981727A24A002C478A /* BDBasicObject.m */,
 				DB55A9E81728273B0035291A /* BDLeaderboardEntry.m */,
-				DB5D75FC1706DDD200B2DE4D /* BDObject.m */,
+				DB5D75FC1706DDD200B2DE4D /* BDItem.m */,
 				DB5D75FF1706DFB700B2DE4D /* BDUser.m */,
 				DB5D76011706E03600B2DE4D /* BDAPIClient.h */,
 				DB5D76021706E03600B2DE4D /* BDAPIClient.m */,
@@ -319,7 +319,7 @@
 				DB55A9E71728273B0035291A /* BDLeaderboardEntry.h */,
 				DB14FC971727A24A002C478A /* BDBasicObject.h */,
 				CA69105217299BC900BAE086 /* BDListResult.h */,
-				DB5D75FB1706DDD200B2DE4D /* BDObject.h */,
+				DB5D75FB1706DDD200B2DE4D /* BDItem.h */,
 				DB5D75FE1706DFB700B2DE4D /* BDUser.h */,
 				DB55A9E4172821120035291A /* BDAuthenticatedUser.h */,
 				DBFB0B3116F7F5AC0045338D /* baasday.h */,
@@ -579,7 +579,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB8F5D1B1705ED1F00A7E9AC /* BDBaasday.m in Sources */,
-				DB5D75FD1706DDD200B2DE4D /* BDObject.m in Sources */,
+				DB5D75FD1706DDD200B2DE4D /* BDItem.m in Sources */,
 				DB5D76001706DFB700B2DE4D /* BDUser.m in Sources */,
 				DB5D76031706E03700B2DE4D /* BDAPIClient.m in Sources */,
 				DBEAFC09172259F40041B388 /* JSONKit.m in Sources */,

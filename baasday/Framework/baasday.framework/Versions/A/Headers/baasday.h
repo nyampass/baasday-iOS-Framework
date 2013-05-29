@@ -15,7 +15,7 @@
 #import "BDBasicObject.h"
 #import "BDUser.h"
 #import "BDAuthenticatedUser.h"
-#import "BDObject.h"
+#import "BDItem.h"
 #import "BDLeaderboardEntry.h"
 
 #endif

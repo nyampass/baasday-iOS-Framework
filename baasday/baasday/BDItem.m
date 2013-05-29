@@ -1,15 +1,15 @@
 //
-//  BDBasic.m
+//  BDItem.m
 //  baasday
 //
 //  Created by Tokusei Noborio on 13/04/24.
 //  Copyright (c) 2013年 Nyampass Corporation. All rights reserved.
 //
 
-#import "BDObject.h"
+#import "BDItem.h"
 #import "BDAPIClient.h"
 
-@implementation BDObject
+@implementation BDItem
 
 - (id)initWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values {
 	if (self = [super initWithValues:values]) {
@@ -31,51 +31,51 @@
 }
 
 - (NSString *)collectionPath {
-	return [BDObject collectionPathWithCollectionName:self.collectionName];
+	return [BDItem collectionPathWithCollectionName:self.collectionName];
 }
 
 + (BDAPIClient *)connectionForCreateWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values {
 	return [BDAPIClient connectionForCreateWithPath:[self collectionPathWithCollectionName:collectionName] values:values];
 }
 
-+ (BDObject *)createWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values error:(NSError **)error {
++ (BDItem *)createWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values error:(NSError **)error {
 	NSDictionary *result = [[self connectionForCreateWithCollectionName:collectionName values:values] doRequestWithError:error];
 	if (!result) return nil;
 	return [[self alloc] initWithCollectionName:collectionName values:result];
 }
 
-+ (BDObject *)createWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values {
++ (BDItem *)createWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values {
 	return [self createWithCollectionName:collectionName values:values error:nil];
 }
 
-+ (BDObject *)createWithCollectionName:(NSString *)collectionName error:(NSError **)error {
++ (BDItem *)createWithCollectionName:(NSString *)collectionName error:(NSError **)error {
 	return [self createWithCollectionName:collectionName values:nil error:error];
 }
 
-+ (BDObject *)createWithCollectionName:(NSString *)collectionName {
++ (BDItem *)createWithCollectionName:(NSString *)collectionName {
 	return [self createWithCollectionName:collectionName error:nil];
 }
 
-+ (void)createInBackgroundWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values block:(BDObjectResultBlock)block {
++ (void)createInBackgroundWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values block:(BDItemResultBlock)block {
 	[[self connectionForCreateWithCollectionName:collectionName values:values] doRequestInBackground:^(NSDictionary *result, NSError *error) {
 		block(result ? [[self alloc] initWithCollectionName:collectionName values:values] : nil, error);
 	}];
 }
 
-+ (void)createInBackgroundWithCollectionName:(NSString *)collectionName block:(BDObjectResultBlock)block {
++ (void)createInBackgroundWithCollectionName:(NSString *)collectionName block:(BDItemResultBlock)block {
 	[self createInBackgroundWithCollectionName:collectionName values:nil block:block];
 }
 
-+ (BDObject *)fetchWithCollectionName:(NSString *)collectionName id:(NSString *)id erorr:(NSError **)error {
++ (BDItem *)fetchWithCollectionName:(NSString *)collectionName id:(NSString *)id erorr:(NSError **)error {
 	NSDictionary *result = [BDAPIClient fetchWithPath:[self objectPathWithCollectionName:collectionName id:id] error:error];
 	return result ? [[self alloc] initWithCollectionName:collectionName values:result] : nil;
 }
 
-+ (BDObject *)fetchWithCollectionName:(NSString *)collectionName id:(NSString *)id {
++ (BDItem *)fetchWithCollectionName:(NSString *)collectionName id:(NSString *)id {
 	return [self fetchWithCollectionName:collectionName id:id erorr:nil];
 }
 
-+ (void)fetchInBackgroundWithCollectionName:(NSString *)collectionName id:(NSString *)id block:(BDObjectResultBlock)block {
++ (void)fetchInBackgroundWithCollectionName:(NSString *)collectionName id:(NSString *)id block:(BDItemResultBlock)block {
 	[BDAPIClient fetchInBackgroundWithPath:[self objectPathWithCollectionName:collectionName id:id] block:^(NSDictionary *result, NSError *error) {
 		block(result ? [[self alloc] initWithCollectionName:collectionName values:result] : nil, error);
 	}];
