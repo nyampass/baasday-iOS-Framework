@@ -12,20 +12,20 @@
 
 @implementation BDFieldOrder
 
-- (id)initWithField:(NSString *)field reversed:(BOOL)reversed {
+- (id)initWithField:(NSString *)field descending:(BOOL)descending {
 	if (self = [super init]) {
 		_field = field;
-		_reversed = reversed;
+		_descending = descending;
 	}
 	return self;
 }
 
 - (id)initWithField:(NSString *)field {
-	return [self initWithField:field reversed:NO];
+	return [self initWithField:field descending:NO];
 }
 
 - (NSString *)parameterString {
-	return _reversed ? [NSString stringWithFormat:@"-%@", _field] : _field;
+	return _descending ? [NSString stringWithFormat:@"-%@", _field] : _field;
 }
 
 @end
@@ -57,10 +57,6 @@
 	return [_values.allKeys containsObject:@"filter"];
 }
 
-- (NSString *)fixedFilter {
-	return [[BDUtility fixObjectForJSON:self.filter] JSONString];
-}
-
 - (NSArray *)order {
 	return [_values objectForKey:@"order"];
 }
@@ -71,18 +67,6 @@
 
 - (BOOL)hasOrder {
 	return [_values.allKeys containsObject:@"order"];
-}
-
-- (NSString *)fixedOrder {
-	NSMutableString *result = [NSMutableString string];
-	for (id field in self.order) {
-		if ([field respondsToSelector:@selector(parameterString)]) {
-			[result appendString:[field parameterString]];
-		} else {
-			[result appendFormat:@"%@", field];
-		}
-	}
-	return result;
 }
 
 - (NSInteger)skip {
@@ -121,7 +105,29 @@
 	return [_values.allKeys containsObject:@"wait"];
 }
 
-- (NSDictionary *)apiRequestParameters {
+- (NSString *)fixedFilter {
+	return [[BDUtility fixObjectForJSON:self.filter] JSONString];
+}
+
+- (NSString *)fixedOrder {
+	NSMutableString *result = [NSMutableString string];
+	BOOL first = YES;
+	for (id field in self.order) {
+		if (first) {
+			first = NO;
+		} else {
+			[result appendString:@","];
+		}
+		if ([field respondsToSelector:@selector(parameterString)]) {
+			[result appendString:[field parameterString]];
+		} else {
+			[result appendFormat:@"%@", field];
+		}
+	}
+	return result;
+}
+
+- (NSDictionary *)requestParameters {
 	NSMutableDictionary *parameters = _values.mutableCopy;
 	if (self.hasFilter) [parameters setObject:[self fixedFilter] forKey:@"filter"];
 	if (self.hasOrder) [parameters setObject:[self fixedOrder] forKey:@"order"];

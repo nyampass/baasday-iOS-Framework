@@ -11,10 +11,10 @@
 @interface BDFieldOrder : NSObject
 
 @property (nonatomic, assign) NSString *field;
-@property (nonatomic, assign) BOOL reversed;
+@property (nonatomic, assign) BOOL descending;
 @property (readonly) NSString *parameterString;
 
-- (id)initWithField:(NSString *)field reversed:(BOOL)reversed;
+- (id)initWithField:(NSString *)field descending:(BOOL)descending;
 - (id)initWithField:(NSString *)field;
 
 @end

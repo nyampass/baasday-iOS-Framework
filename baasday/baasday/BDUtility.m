@@ -11,7 +11,9 @@
 @implementation BDUtility
 
 + (id)fixObjectForJSON:(id)object {
-	if ([object isKindOfClass:[NSDictionary class]]) {
+	if (object == nil) {
+		return nil;
+	} else if ([object isKindOfClass:[NSDictionary class]]) {
 		NSMutableDictionary *fixed = [NSMutableDictionary dictionary];
 		for (id field in object) [fixed setValue:[self fixObjectForJSON:[object valueForKey:field]] forKey:field];
 		return fixed;

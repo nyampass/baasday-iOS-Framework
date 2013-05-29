@@ -9,7 +9,7 @@
 #import "BDBasicObject.h"
 
 @interface BDBasicObject () {
-	NSMutableDictionary *_currentValues;
+	NSMutableDictionary *_values;
 }
 
 @end
@@ -19,13 +19,13 @@
 - (id)initWithValues:(NSDictionary *)values {
     self = [super init];
     if (self) {
-		_currentValues = [NSMutableDictionary dictionaryWithDictionary:values];
+		_values = [NSMutableDictionary dictionaryWithDictionary:values];
     }
     return self;
 }
 
 - (NSDictionary *)values {
-	return _currentValues.copy;
+	return _values.copy;
 }
 
 - (NSString *)id {
@@ -49,11 +49,11 @@
 }
 
 - (id)objectForKey:(NSString *)key {
-	return [_currentValues objectForKey:key];
+	return [_values objectForKey:key];
 }
 
 - (id)objectForKeyPath:(NSString *)keyPath {
-	return [_currentValues valueForKeyPath:keyPath];
+	return [_values valueForKeyPath:keyPath];
 }
 
 - (id)objectForKeyedSubscript:(NSString *)key {
@@ -66,6 +66,14 @@
 
 - (NSInteger)integerForKeyPath:(NSString *)keyPath {
 	return [[self objectForKeyPath:keyPath] integerValue];
+}
+
+- (double)doubleForKey:(NSString *)key {
+	return [[self objectForKey:key] doubleValue];
+}
+
+- (double)doubleForKeyPath:(NSString *)keyPath {
+	return [[self objectForKeyPath:keyPath] doubleValue];
 }
 
 - (BOOL)boolForKeyPath:(NSString *)keyPath {
@@ -103,7 +111,7 @@
 - (BOOL)update:(NSDictionary *)values error:(NSError **)error {
     NSDictionary *newValues = [[[[[BDConnection alloc] init] putWithPath:self.objectPath] requestJson:values] doRequestWithError:error];
 	if (newValues == nil) return NO;
-	[_currentValues setDictionary:newValues];
+	[_values setDictionary:newValues];
     return YES;
 }
 
@@ -114,7 +122,7 @@
 - (void)updateInBackground:(NSDictionary *)values block:(void (^)(id, NSError *))block {
 	[[[[[BDConnection alloc] init] putWithPath:self.objectPath] requestJson:values] doRequestInBackground:^(NSDictionary *result, NSError *error) {
 		if (result) {
-			[_currentValues setDictionary:result];
+			[_values setDictionary:result];
 			block(self, error);
 		} else {
 			block(self, error);

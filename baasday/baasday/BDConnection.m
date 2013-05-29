@@ -307,9 +307,7 @@ typedef enum {
 }
 
 + (BDConnection *)connectionForFetchAllWithPath:(NSString *)path query:(BDQuery *)query {
-	BDConnection *connection = [[[self alloc] init] getWithPath:path];
-	if (query) [connection query:query.apiRequestParameters];
-	return connection;
+	return [[[[self alloc] init] getWithPath:path] query:query ? query.apiRequestParameters : nil];
 }
 
 + (BDListResult *)fetchAllWithPath:(NSString *)path query:(BDQuery *)query error:(NSError **)error {

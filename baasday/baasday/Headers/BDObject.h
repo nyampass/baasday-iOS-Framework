@@ -16,7 +16,7 @@ typedef void (^BDObjectResultBlock)(BDObject *object, NSError *error);
 
 @interface BDObject : BDBasicObject
 
-@property (nonatomic, strong) NSString* collectionName;
+@property (readonly) NSString* collectionName;
 
 - initWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values;
 - initWithCollectionName:(NSString *)collectionName;

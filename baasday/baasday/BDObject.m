@@ -14,7 +14,7 @@
 
 - (id)initWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values {
 	if (self = [super initWithValues:values]) {
-		self.collectionName = collectionName;
+		_collectionName = collectionName;
 	}
 	return self;
 }

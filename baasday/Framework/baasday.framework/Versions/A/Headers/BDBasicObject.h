@@ -25,6 +25,8 @@
 - (id)objectForKeyedSubscript:(NSString *)key;
 - (NSInteger)integerForKey:(NSString *)key;
 - (NSInteger)integerForKeyPath:(NSString *)keyPath;
+- (double)doubleForKey:(NSString *)key;
+- (double)doubleForKeyPath:(NSString *)keyPath;
 - (BOOL)boolForKey:(NSString *)key;
 - (BOOL)boolForKeyPath:(NSString *)keyPath;
 - (NSDate *)dateForKey:(NSString *)key;
