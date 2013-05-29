@@ -1,5 +1,5 @@
 //
-//  BDBasicObject.h
+//  BDObject.h
 //  baasday
 //
 //  Created by Tokusei Noborio on 13/04/24.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BDBasicObject : NSObject
+@interface BDObject : NSObject
 
 @property (readonly) NSDictionary *values;
 @property (readonly) NSString *id;

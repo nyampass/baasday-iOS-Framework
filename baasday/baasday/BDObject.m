@@ -1,21 +1,21 @@
 //
-//  BDBasicObject.m
+//  BDObject.m
 //  baasday
 //
 //  Created by Tokusei Noborio on 13/03/30.
 //  Copyright (c) 2013年 Nyampass Corporation. All rights reserved.
 //
 
-#import "BDBasicObject.h"
+#import "BDObject.h"
 #import "BDAPIClient.h"
 
-@interface BDBasicObject () {
+@interface BDObject () {
 	NSMutableDictionary *_values;
 }
 
 @end
 
-@implementation BDBasicObject
+@implementation BDObject
 
 - (id)initWithValues:(NSDictionary *)values {
     self = [super init];

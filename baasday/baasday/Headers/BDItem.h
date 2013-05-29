@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "BDBasicObject.h"
+#import "BDObject.h"
 #import "BDListResult.h"
 #import "BDQuery.h"
 
@@ -16,7 +16,7 @@
 
 typedef void (^BDItemResultBlock)(BDItem *object, NSError *error);
 
-@interface BDItem : BDBasicObject
+@interface BDItem : BDObject
 
 @property (readonly) NSString* collectionName;
 

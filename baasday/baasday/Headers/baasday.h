@@ -12,7 +12,7 @@
 #import "BDBaasday.h"
 #import "BDQUery.h"
 #import "BDListResult.h"
-#import "BDBasicObject.h"
+#import "BDObject.h"
 #import "BDUser.h"
 #import "BDAuthenticatedUser.h"
 #import "BDItem.h"

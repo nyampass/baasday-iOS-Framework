@@ -25,7 +25,7 @@
 		CA69105417299BCA00BAE086 /* BDListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA69105317299BCA00BAE086 /* BDListResult.m */; };
 		CA7EE49E17545C0B0037971C /* BDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7EE49D17545C0B0037971C /* BDUtility.m */; };
 		CAF389BA1753457300D86822 /* BDQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF389B91753457200D86822 /* BDQuery.m */; };
-		DB14FC991727A24A002C478A /* BDBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14FC981727A24A002C478A /* BDBasicObject.m */; };
+		DB14FC991727A24A002C478A /* BDObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14FC981727A24A002C478A /* BDObject.m */; };
 		DB55A9E6172821120035291A /* BDAuthenticatedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB55A9E5172821120035291A /* BDAuthenticatedUser.m */; };
 		DB55A9E91728273B0035291A /* BDLeaderboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = DB55A9E81728273B0035291A /* BDLeaderboardEntry.m */; };
 		DB5D75FD1706DDD200B2DE4D /* BDItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75FC1706DDD200B2DE4D /* BDItem.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -112,8 +112,8 @@
 		CA7EE49D17545C0B0037971C /* BDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDUtility.m; sourceTree = "<group>"; };
 		CAF389B81753457200D86822 /* BDQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDQuery.h; sourceTree = "<group>"; };
 		CAF389B91753457200D86822 /* BDQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDQuery.m; sourceTree = "<group>"; };
-		DB14FC971727A24A002C478A /* BDBasicObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBasicObject.h; sourceTree = "<group>"; };
-		DB14FC981727A24A002C478A /* BDBasicObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBasicObject.m; sourceTree = "<group>"; };
+		DB14FC971727A24A002C478A /* BDObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDObject.h; sourceTree = "<group>"; };
+		DB14FC981727A24A002C478A /* BDObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDObject.m; sourceTree = "<group>"; };
 		DB55A9E4172821120035291A /* BDAuthenticatedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDAuthenticatedUser.h; sourceTree = "<group>"; };
 		DB55A9E5172821120035291A /* BDAuthenticatedUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDAuthenticatedUser.m; sourceTree = "<group>"; };
 		DB55A9E71728273B0035291A /* BDLeaderboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDLeaderboardEntry.h; sourceTree = "<group>"; };
@@ -220,7 +220,7 @@
 				DB5D76041706ED0200B2DE4D /* BDSettings.h */,
 				DB5D75FA1706D2E500B2DE4D /* BDBaasday(Private).h */,
 				DB8F5D1A1705ED1F00A7E9AC /* BDBaasday.m */,
-				DB14FC981727A24A002C478A /* BDBasicObject.m */,
+				DB14FC981727A24A002C478A /* BDObject.m */,
 				DB55A9E81728273B0035291A /* BDLeaderboardEntry.m */,
 				DB5D75FC1706DDD200B2DE4D /* BDItem.m */,
 				DB5D75FF1706DFB700B2DE4D /* BDUser.m */,
@@ -317,7 +317,7 @@
 				CAF389B81753457200D86822 /* BDQuery.h */,
 				DB8F5D191705ED1F00A7E9AC /* BDBaasday.h */,
 				DB55A9E71728273B0035291A /* BDLeaderboardEntry.h */,
-				DB14FC971727A24A002C478A /* BDBasicObject.h */,
+				DB14FC971727A24A002C478A /* BDObject.h */,
 				CA69105217299BC900BAE086 /* BDListResult.h */,
 				DB5D75FB1706DDD200B2DE4D /* BDItem.h */,
 				DB5D75FE1706DFB700B2DE4D /* BDUser.h */,
@@ -583,7 +583,7 @@
 				DB5D76001706DFB700B2DE4D /* BDUser.m in Sources */,
 				DB5D76031706E03700B2DE4D /* BDAPIClient.m in Sources */,
 				DBEAFC09172259F40041B388 /* JSONKit.m in Sources */,
-				DB14FC991727A24A002C478A /* BDBasicObject.m in Sources */,
+				DB14FC991727A24A002C478A /* BDObject.m in Sources */,
 				DB55A9E6172821120035291A /* BDAuthenticatedUser.m in Sources */,
 				DB55A9E91728273B0035291A /* BDLeaderboardEntry.m in Sources */,
 				CA69105417299BCA00BAE086 /* BDListResult.m in Sources */,
