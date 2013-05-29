@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "BDConnection.h"
-
 @interface BDBasicObject : NSObject
 
 @property (readonly) NSDictionary *values;

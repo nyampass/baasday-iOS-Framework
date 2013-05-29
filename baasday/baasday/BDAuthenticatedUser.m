@@ -7,6 +7,7 @@
 //
 
 #import "BDAuthenticatedUser.h"
+#import "BDAPIClient.h"
 #import "BDBaasday.h"
 
 @implementation BDAuthenticatedUser
@@ -53,7 +54,7 @@
 
 + (BDAuthenticatedUser *)fetchWithError:(NSError **)error {
 	NSAssert([BDBaasday userAuthenticationKey], @"userAuthenticationKey is not set");
-	return [[self alloc] initWithValues:[BDConnection fetchWithPath:[self path] error:error]];
+	return [[self alloc] initWithValues:[BDAPIClient fetchWithPath:[self path] error:error]];
 }
 
 + (BDAuthenticatedUser *)fetch {
@@ -61,7 +62,7 @@
 }
 
 + (void)fetchInBackground:(BDAuthenticatedUserResultBlock)block {
-	[BDConnection fetchInBackgroundWithPath:[self path] block:^(NSDictionary *result, NSError *error) {
+	[BDAPIClient fetchInBackgroundWithPath:[self path] block:^(NSDictionary *result, NSError *error) {
 		block(result ? [[self alloc] initWithValues:result] : nil, error);
 	}];
 }

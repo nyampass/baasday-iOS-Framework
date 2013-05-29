@@ -7,8 +7,7 @@
 //
 
 #import "BDObject.h"
-#import "BDConnection.h"
-#import "BDQuery.h"
+#import "BDAPIClient.h"
 
 @implementation BDObject
 
@@ -35,8 +34,8 @@
 	return [BDObject collectionPathWithCollectionName:self.collectionName];
 }
 
-+ (BDConnection *)connectionForCreateWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values {
-	return [BDConnection connectionForCreateWithPath:[self collectionPathWithCollectionName:collectionName] values:values];
++ (BDAPIClient *)connectionForCreateWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values {
+	return [BDAPIClient connectionForCreateWithPath:[self collectionPathWithCollectionName:collectionName] values:values];
 }
 
 + (BDObject *)createWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values error:(NSError **)error {
@@ -68,7 +67,7 @@
 }
 
 + (BDObject *)fetchWithCollectionName:(NSString *)collectionName id:(NSString *)id erorr:(NSError **)error {
-	NSDictionary *result = [BDConnection fetchWithPath:[self objectPathWithCollectionName:collectionName id:id] error:error];
+	NSDictionary *result = [BDAPIClient fetchWithPath:[self objectPathWithCollectionName:collectionName id:id] error:error];
 	return result ? [[self alloc] initWithCollectionName:collectionName values:result] : nil;
 }
 
@@ -77,7 +76,7 @@
 }
 
 + (void)fetchInBackgroundWithCollectionName:(NSString *)collectionName id:(NSString *)id block:(BDObjectResultBlock)block {
-	[BDConnection fetchInBackgroundWithPath:[self objectPathWithCollectionName:collectionName id:id] block:^(NSDictionary *result, NSError *error) {
+	[BDAPIClient fetchInBackgroundWithPath:[self objectPathWithCollectionName:collectionName id:id] block:^(NSDictionary *result, NSError *error) {
 		block(result ? [[self alloc] initWithCollectionName:collectionName values:result] : nil, error);
 	}];
 }
@@ -91,7 +90,7 @@
 }
 
 + (BDListResult *)fetchAllWithCollectionName:(NSString *)collectionName query:(BDQuery *)query error:(NSError **)error {
-	BDListResult *result = [BDConnection fetchAllWithPath:[self collectionPathWithCollectionName:collectionName] query:query error:error];
+	BDListResult *result = [BDAPIClient fetchAllWithPath:[self collectionPathWithCollectionName:collectionName] query:query error:error];
 	return result ? [self objectListResultWithDictionaryListResult:result collectionName:collectionName] : nil;
 }
 
@@ -108,7 +107,7 @@
 }
 
 + (void)fetchAllInBackgroundWithCollectionName:(NSString *)collectionName query:(BDQuery *)query block:(BDListResultBlock)block {
-	[BDConnection fetchAllInBackgroundWithPath:[self collectionPathWithCollectionName:collectionName] query:query block:^(BDListResult *result, NSError *error) {
+	[BDAPIClient fetchAllInBackgroundWithPath:[self collectionPathWithCollectionName:collectionName] query:query block:^(BDListResult *result, NSError *error) {
 		block(result ? [self objectListResultWithDictionaryListResult:result collectionName:collectionName] : nil, error);
 	}];
 }

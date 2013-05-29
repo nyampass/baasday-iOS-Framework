@@ -1,12 +1,12 @@
 //
-//  BDConnection.m
+//  BDAPIClient.m
 //  baasday
 //
 //  Created by Tokusei Noborio on 13/03/30.
 //  Copyright (c) 2013年 Nyampass Corporation. All rights reserved.
 //
 
-#import "BDConnection.h"
+#import "BDAPIClient.h"
 #import "BDSettings.h"
 #import "BDBaasday(Private).h"
 #import "BDUser.h"
@@ -17,18 +17,18 @@
 @interface BDConnectionOperation : NSOperation {
 	NSURLRequest *_request;
 	NSMutableData *_responseData;
-	BDConnectionResultBlock _block;
+	BDDictionaryResultBlock _block;
 	BOOL _isExecuting;
 	BOOL _isFinished;
 }
 
-- (id)initWithRequest:(NSURLRequest *)request block:(BDConnectionResultBlock)block;
+- (id)initWithRequest:(NSURLRequest *)request block:(BDDictionaryResultBlock)block;
 
 @end
 
 @implementation BDConnectionOperation
 
-- (id)initWithRequest:(NSURLRequest *)request block:(BDConnectionResultBlock)block {
+- (id)initWithRequest:(NSURLRequest *)request block:(BDDictionaryResultBlock)block {
 	if (self = [super init]) {
 		_request = request;
 		_block = block;
@@ -104,7 +104,7 @@ typedef enum {
     BDConnectionRequestTypeMultipartFormData,
 } BDConnectionRequestType;
 
-@interface BDConnection ()
+@interface BDAPIClient ()
 
 @property (nonatomic, strong) NSString* method;
 @property (nonatomic, strong) NSString* path;
@@ -114,7 +114,7 @@ typedef enum {
 
 @end
 
-@implementation BDConnection
+@implementation BDAPIClient
 
 + (void)setHeadersWithRequest:(NSMutableURLRequest *)request
 {
@@ -135,7 +135,7 @@ typedef enum {
     NSLog(@"%@", url);
     
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
-    [BDConnection setHeadersWithRequest:request];
+    [BDAPIClient setHeadersWithRequest:request];
 
     // [request setValue:VALUE forHTTPHeaderField:@"Field You Want To Set"];
     switch (requestType) {
@@ -160,7 +160,7 @@ typedef enum {
 #pragma -
 #pragma Operation
 
-- (BDConnection *)setMethod:(NSString *)method path:(NSString *)path
+- (BDAPIClient *)setMethod:(NSString *)method path:(NSString *)path
 {
     NSAssert(method &&
              ([method isEqualToString:@"GET"] ||
@@ -176,27 +176,27 @@ typedef enum {
     return self;
 }
 
-- (BDConnection *)getWithPath:(NSString *)path
+- (BDAPIClient *)getWithPath:(NSString *)path
 {
     return [self setMethod:@"GET" path:path];
 }
 
-- (BDConnection *)postWithPath:(NSString *)path
+- (BDAPIClient *)postWithPath:(NSString *)path
 {
     return [self setMethod:@"POST" path:path];
 }
 
-- (BDConnection *)putWithPath:(NSString *)path
+- (BDAPIClient *)putWithPath:(NSString *)path
 {
     return [self setMethod:@"PUT" path:path];
 }
 
-- (BDConnection *)deleteWithPath:(NSString *)path
+- (BDAPIClient *)deleteWithPath:(NSString *)path
 {
     return [self setMethod:@"DELETE" path:path];
 }
 
-- (BDConnection *)query:(NSDictionary *)query
+- (BDAPIClient *)query:(NSDictionary *)query
 {
     self.query = query;
     return self;
@@ -222,7 +222,7 @@ typedef enum {
     return [q componentsJoinedByString: @"&"];
 }
 
-- (BDConnection *)requestJson:(NSDictionary *)json
+- (BDAPIClient *)requestJson:(NSDictionary *)json
 {
     self.requestJson = json;
     return self;
@@ -277,7 +277,7 @@ typedef enum {
     return result;
 }
 
-- (void)doRequestInBackground:(BDConnectionResultBlock)block
+- (void)doRequestInBackground:(BDDictionaryResultBlock)block
 {
     [self buildRequest];
     NSAssert(self.request, @"not set request");
@@ -290,11 +290,11 @@ typedef enum {
     return [[[[self alloc] init] getWithPath:path] doRequestWithError:error];
 }
 
-+ (void)fetchInBackgroundWithPath:(NSString *)path block:(BDConnectionResultBlock)block {
++ (void)fetchInBackgroundWithPath:(NSString *)path block:(BDDictionaryResultBlock)block {
 	[[[[self alloc] init] getWithPath:path] doRequestInBackground:block];
 }
 
-+ (BDConnection *)connectionForCreateWithPath:(NSString *)path values:(NSDictionary *)values {
++ (BDAPIClient *)connectionForCreateWithPath:(NSString *)path values:(NSDictionary *)values {
 	return [[[[self alloc] init] postWithPath:path] requestJson:values];
 }
 
@@ -302,23 +302,23 @@ typedef enum {
 	return [[self connectionForCreateWithPath:path values:values] doRequestWithError:error];
 }
 
-+ (void)createInBackgroundWithPath:(NSString *)path values:(NSDictionary *)values block:(BDConnectionResultBlock)block {
++ (void)createInBackgroundWithPath:(NSString *)path values:(NSDictionary *)values block:(BDDictionaryResultBlock)block {
 	[[self connectionForCreateWithPath:path values:values] doRequestInBackground:block];
 }
 
-+ (BDConnection *)connectionForFetchAllWithPath:(NSString *)path query:(BDQuery *)query {
++ (BDAPIClient *)connectionForFetchAllWithPath:(NSString *)path query:(BDQuery *)query {
 	return [[[[self alloc] init] getWithPath:path] query:query ? query.apiRequestParameters : nil];
 }
 
 + (BDListResult *)fetchAllWithPath:(NSString *)path query:(BDQuery *)query error:(NSError **)error {
-	BDConnection *connection = [self connectionForFetchAllWithPath:path query:query];
+	BDAPIClient *connection = [self connectionForFetchAllWithPath:path query:query];
 	NSDictionary *result = [connection doRequestWithError:error];
 	if (!result) return nil;
 	return [[BDListResult alloc] initWithAPIResult:result];
 }
 
 + (void)fetchAllInBackgroundWithPath:(NSString *)path query:(BDQuery *)query block:(void(^)(BDListResult *result, NSError *error))block {
-	BDConnection *connection = [self connectionForFetchAllWithPath:path query:query];
+	BDAPIClient *connection = [self connectionForFetchAllWithPath:path query:query];
 	[connection doRequestInBackground:^(NSDictionary *result, NSError *error) {
 		block(result ? [[BDListResult alloc] initWithAPIResult:result] : nil, error);
 	}];

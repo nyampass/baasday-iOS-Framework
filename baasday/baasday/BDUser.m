@@ -7,7 +7,7 @@
 //
 
 #import "BDUser.h"
-#import "BDConnection.h"
+#import "BDAPIClient.h"
 
 @implementation BDUser
 
@@ -24,7 +24,7 @@
 }
 
 + (BDUser *)createWithValues:(NSDictionary *)values error:(NSError **)error {
-	NSDictionary *result = [BDConnection createWithPath:[self path] values:values error:error];
+	NSDictionary *result = [BDAPIClient createWithPath:[self path] values:values error:error];
 	if (!result) return nil;
 	return [[self alloc] initWithValues:result];
 }
@@ -42,7 +42,7 @@
 }
 
 + (void)createInBackgroundWithValues:(NSDictionary *)values block:(BDUserResultBlock)block {
-	[BDConnection createInBackgroundWithPath:[self path] values:values block:^(NSDictionary *result, NSError *error) {
+	[BDAPIClient createInBackgroundWithPath:[self path] values:values block:^(NSDictionary *result, NSError *error) {
 		block(result ? [[self alloc] initWithValues:result] : nil, error);
 	}];
 }
@@ -52,7 +52,7 @@
 }
 
 + (BDUser *)fetchWithId:(NSString *)id error:(NSError **)error {
-	NSDictionary *result = [BDConnection fetchWithPath:[self userPathWithId:id] error:error];
+	NSDictionary *result = [BDAPIClient fetchWithPath:[self userPathWithId:id] error:error];
 	return result ? [[self alloc] initWithValues:result] : nil;
 }
 
@@ -61,7 +61,7 @@
 }
 
 + (void)fetchInBackgroundWithId:(NSString *)id block:(BDUserResultBlock)block {
-	[BDConnection fetchInBackgroundWithPath:[self userPathWithId:id] block:^(NSDictionary *result, NSError *error) {
+	[BDAPIClient fetchInBackgroundWithPath:[self userPathWithId:id] block:^(NSDictionary *result, NSError *error) {
 		block(result ? [[self alloc] initWithValues:result] : nil, error);
 	}];
 }
@@ -75,7 +75,7 @@
 }
 
 + (BDListResult *)fetchAllWithQuery:(BDQuery *)query error:(NSError **)error {
-	BDListResult *result = [BDConnection fetchAllWithPath:[self path] query:query error:error];
+	BDListResult *result = [BDAPIClient fetchAllWithPath:[self path] query:query error:error];
 	return result ? [self userListResultWithDictionaryListResult:result] : nil;
 }
 
@@ -92,7 +92,7 @@
 }
 
 + (void)fetchAllInBackgroundWithQuery:(BDQuery *)query block:(BDListResultBlock)block {
-	[BDConnection fetchAllInBackgroundWithPath:[self path] query:query block:^(BDListResult *result, NSError *error) {
+	[BDAPIClient fetchAllInBackgroundWithPath:[self path] query:query block:^(BDListResult *result, NSError *error) {
 		block(result ? [self userListResultWithDictionaryListResult:result] : nil, error);
 	}];
 }

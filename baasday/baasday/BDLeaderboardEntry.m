@@ -7,7 +7,7 @@
 //
 
 #import "BDLeaderboardEntry.h"
-#import "BDConnection.h"
+#import "BDAPIClient.h"
 #import "BDQuery.h"
 
 @implementation BDLeaderboardEntry
@@ -54,7 +54,7 @@
 }
 
 + (BDLeaderboardEntry *)createWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values error:(NSError **)error {
-	NSDictionary *result = [BDConnection createWithPath:[self collectionPathWithLeaderboardName:leaderboardName] values:values error:error];
+	NSDictionary *result = [BDAPIClient createWithPath:[self collectionPathWithLeaderboardName:leaderboardName] values:values error:error];
 	return result ? [[self alloc] initWithLeaderboardName:leaderboardName values:result] : nil;
 }
 
@@ -79,7 +79,7 @@
 }
 
 + (void)createInBackgroundWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values block:(BDLeaderboardEntryResultBlock)block {
-	[BDConnection createInBackgroundWithPath:[self collectionPathWithLeaderboardName:leaderboardName] values:values block:^(NSDictionary *result, NSError *error) {
+	[BDAPIClient createInBackgroundWithPath:[self collectionPathWithLeaderboardName:leaderboardName] values:values block:^(NSDictionary *result, NSError *error) {
 		block(result ? [[self alloc] initWithLeaderboardName:leaderboardName values:result] : nil, error);
 	}];
 }
@@ -93,7 +93,7 @@
 }
 
 + (BDLeaderboardEntry *)fetchWithLeaderboardName:(NSString *)leaderboardName id:(NSString *)id error:(NSError **)error {
-	NSDictionary *result = [BDConnection fetchWithPath:[self entryPathWithLeaderboardName:leaderboardName id:id] error:error];
+	NSDictionary *result = [BDAPIClient fetchWithPath:[self entryPathWithLeaderboardName:leaderboardName id:id] error:error];
 	return result ? [[self alloc] initWithLeaderboardName:leaderboardName values:result] : nil;
 }
 
@@ -102,7 +102,7 @@
 }
 
 + (void)fetchInBackgroundWithLeaderboardName:(NSString *)leaderboardName id:(NSString *)id block:(BDLeaderboardEntryResultBlock)block {
-	[BDConnection fetchInBackgroundWithPath:[self entryPathWithLeaderboardName:leaderboardName id:id] block:^(NSDictionary *result, NSError *error) {
+	[BDAPIClient fetchInBackgroundWithPath:[self entryPathWithLeaderboardName:leaderboardName id:id] block:^(NSDictionary *result, NSError *error) {
 		block(result ? [[self alloc] initWithLeaderboardName:leaderboardName values:result] : nil, error);
 	}];
 }
@@ -116,7 +116,7 @@
 }
 
 + (BDListResult *)fetchAllWithLeaderboardName:(NSString *)leaderboardName query:(BDQuery *)query error:(NSError **)error {
-	BDListResult *result = [BDConnection fetchAllWithPath:[self collectionPathWithLeaderboardName:leaderboardName] query:query error:error];
+	BDListResult *result = [BDAPIClient fetchAllWithPath:[self collectionPathWithLeaderboardName:leaderboardName] query:query error:error];
 	return result ? [self entryListResultWithDictionaryListResult:result leaderboardName:leaderboardName] : nil;
 }
 
@@ -133,7 +133,7 @@
 }
 
 + (void)fetchAllInBackgroundWithLeaderboardName:(NSString *)leaderboardName query:(BDQuery *)query block:(BDListResultBlock)block {
-	[BDConnection fetchAllInBackgroundWithPath:[self collectionPathWithLeaderboardName:leaderboardName] query:query block:^(BDListResult *result, NSError *error) {
+	[BDAPIClient fetchAllInBackgroundWithPath:[self collectionPathWithLeaderboardName:leaderboardName] query:query block:^(BDListResult *result, NSError *error) {
 		block(result ? [self entryListResultWithDictionaryListResult:result leaderboardName:leaderboardName] : nil, error);
 	}];
 }

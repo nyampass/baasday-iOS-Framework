@@ -7,6 +7,8 @@
 //
 
 #import "BDBasicObject.h"
+#import "BDListResult.h"
+#import "BDQuery.h"
 
 @class BDUser;
 
