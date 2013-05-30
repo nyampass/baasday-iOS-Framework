@@ -17,12 +17,6 @@ typedef void (^BDUserResultBlock)(BDUser *user, NSError *error);
 
 @interface BDUser : BDObject
 
-+ (BDUser *)createWithValues:(NSDictionary *)values error:(NSError **)error;
-+ (BDUser *)createWithValues:(NSDictionary *)values;
-+ (BDUser *)createWithError:(NSError **)error;
-+ (BDUser *)create;
-+ (void)createInBackgroundWithValues:(NSDictionary *)values block:(BDUserResultBlock)block;
-+ (void)createInBackground:(BDUserResultBlock)block;
 + (BDUser *)fetchWithId:(NSString *)id error:(NSError **)error;
 + (BDUser *)fetchWithId:(NSString *)id;
 + (void)fetchInBackgroundWithId:(NSString *)id block:(BDUserResultBlock)block;

@@ -7,6 +7,7 @@
 //
 
 #import "BDAuthenticatedUser_Private.h"
+#import "BDUser_Private.h"
 #import "BDAPIClient.h"
 #import "BDBaasday.h"
 
