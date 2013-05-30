@@ -23,7 +23,7 @@
 }
 
 + (NSString *)collectionAPIPathWithCollectionName:(NSString *)collectionName {
-	return [NSString stringWithFormat:@"objects/%@", collectionName];
+	return [NSString stringWithFormat:@"items/%@", collectionName];
 }
 
 + (NSString *)apiPathWithCollectionName:(NSString *)collectionName id:(NSString *)id {
