@@ -34,12 +34,12 @@
 	return [BDItem apiPathWithCollectionName:_collectionName id:self.id];
 }
 
-+ (BDAPIClient *)connectionForCreateWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values {
++ (BDAPIClient *)apiClientForCreateWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values {
 	return [BDAPIClient apiClientForCreateWithPath:[self collectionAPIPathWithCollectionName:collectionName] values:values];
 }
 
 + (BDItem *)createWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values error:(NSError **)error {
-	NSDictionary *result = [[self connectionForCreateWithCollectionName:collectionName values:values] doRequestWithError:error];
+	NSDictionary *result = [[self apiClientForCreateWithCollectionName:collectionName values:values] doRequestWithError:error];
 	if (!result) return nil;
 	return [[self alloc] initWithCollectionName:collectionName values:result];
 }
@@ -57,7 +57,7 @@
 }
 
 + (void)createInBackgroundWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values block:(BDItemResultBlock)block {
-	[[self connectionForCreateWithCollectionName:collectionName values:values] doRequestInBackground:^(NSDictionary *result, NSError *error) {
+	[[self apiClientForCreateWithCollectionName:collectionName values:values] doRequestInBackground:^(NSDictionary *result, NSError *error) {
 		block(result ? [[self alloc] initWithCollectionName:collectionName values:values] : nil, error);
 	}];
 }

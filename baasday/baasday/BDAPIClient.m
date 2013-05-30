@@ -259,8 +259,8 @@
 }
 
 + (BDListResult *)fetchAllWithPath:(NSString *)path query:(BDQuery *)query error:(NSError **)error {
-	BDAPIClient *connection = [self apiClientForFetchAllWithPath:path query:query];
-	NSDictionary *result = [connection doRequestWithError:error];
+	BDAPIClient *apiClient = [self apiClientForFetchAllWithPath:path query:query];
+	NSDictionary *result = [apiClient doRequestWithError:error];
 	if (!result) return nil;
 	return [[BDListResult alloc] initWithAPIResult:result];
 }
@@ -270,8 +270,8 @@
 }
 
 + (void)fetchAllInBackgroundWithPath:(NSString *)path query:(BDQuery *)query block:(void(^)(BDListResult *result, NSError *error))block {
-	BDAPIClient *connection = [self apiClientForFetchAllWithPath:path query:query];
-	[connection doRequestInBackground:^(NSDictionary *result, NSError *error) {
+	BDAPIClient *apiClient = [self apiClientForFetchAllWithPath:path query:query];
+	[apiClient doRequestInBackground:^(NSDictionary *result, NSError *error) {
 		block(result ? [[BDListResult alloc] initWithAPIResult:result] : nil, error);
 	}];
 }
