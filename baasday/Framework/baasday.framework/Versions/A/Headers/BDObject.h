@@ -27,8 +27,6 @@
 - (double)doubleForKeyPath:(NSString *)keyPath;
 - (BOOL)boolForKey:(NSString *)key;
 - (BOOL)boolForKeyPath:(NSString *)keyPath;
-- (NSDate *)dateForKey:(NSString *)key;
-- (NSDate *)dateForKeyPath:(NSString *)keyPath;
 - (BOOL)update:(NSDictionary *)values error:(NSError **)error;
 - (BOOL)update:(NSDictionary *)values;
 - (void)updateInBackground:(NSDictionary *)values block:(void(^)(id object, NSError *error))block;

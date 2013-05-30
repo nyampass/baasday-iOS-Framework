@@ -14,8 +14,6 @@
 #import "BDUser.h"
 #import "BDUtility.h"
 
-#import "JSONKit.h"
-
 @interface BDAPIOperation : NSOperation {
 	NSURLRequest *_request;
 	NSMutableData *_responseData;
@@ -88,7 +86,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSError* error = nil;
-	NSDictionary *result = [[JSONDecoder decoder] objectWithData:_responseData error:&error];
+	NSDictionary *result = [BDUtility dictionaryFromJSONData:_responseData errr:&error];
 	if (error) {
 		_block(nil, error);
 	} else {
@@ -191,7 +189,7 @@
 	[BDAPIClient setAuthenticationHeadersToRequest:request];
 	if (_requestJSON) {
 		[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-		NSData *jsonData = [[BDUtility fixObjectForJSON:_requestJSON] JSONData];
+		NSData *jsonData = [BDUtility jsonDataFromDictionary:_requestJSON];
         [request addValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"Content-Length"];
         [request setHTTPBody:jsonData];
     }
@@ -211,7 +209,7 @@
 		return nil;
 	}
 	NSError *jsonError;
-	NSDictionary *result = [[JSONDecoder decoder] objectWithData:responseData error:&jsonError];
+	NSDictionary *result = [BDUtility dictionaryFromJSONData:responseData errr:&jsonError];
 	if (jsonError) {
 		if (error) *error = jsonError;
 		NSLog(@"JSON error: %@", jsonError);

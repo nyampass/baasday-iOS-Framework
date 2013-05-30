@@ -11,5 +11,8 @@
 @interface BDUtility : NSObject
 
 + (id)fixObjectForJSON:(id)object;
++ (NSData *)jsonDataFromDictionary:(NSDictionary *)dictionary;
++ (id)fixObjectInJSON:(id)object;
++ (NSDictionary *)dictionaryFromJSONData:(NSData *)jsonData errr:(NSError **)error;
 
 @end

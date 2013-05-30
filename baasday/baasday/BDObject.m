@@ -34,11 +34,11 @@
 }
 
 - (NSDate *)createdAt {
-	return [self dateForKey:@"_createdAt"];
+	return [self objectForKey:@"_createdAt"];
 }
 
 - (NSDate *)updatedAt {
-	return [self dateForKey:@"_updatedAt"];
+	return [self objectForKey:@"_updatedAt"];
 }
 
 - (id)objectForKey:(NSString *)key {
@@ -83,30 +83,6 @@
 
 - (BOOL)boolForKey:(NSString *)key {
 	return [[self objectForKey:key] boolValue];
-}
-
-- (NSDate *)dateFromDictionaryValue:(NSDictionary *)dictionary {
-	if (!dictionary) return nil;
-	NSArray *keys = dictionary.allKeys;
-	if ([keys containsObject:@"$type"] && [[dictionary valueForKey:@"$type"] isEqualToString:@"datetime"] && [keys containsObject:@"$value"]) {
-		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-		dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZ";
-		NSDate *date = nil;
-		NSError *error = nil;
-		[dateFormatter getObjectValue:&date forString:[dictionary valueForKey:@"$value"] range:nil error:&error];
-		if (error) return nil;
-		return date;
-	} else {
-		return nil;
-	}
-}
-
-- (NSDate *)dateForKeyPath:(NSString *)keyPath {
-	return [self dateFromDictionaryValue:[self objectForKeyPath:keyPath]];
-}
-
-- (NSDate *)dateForKey:(NSString *)key {
-	return [self dateFromDictionaryValue:[self objectForKey:key]];
 }
 
 - (BOOL)update:(NSDictionary *)values error:(NSError **)error {
