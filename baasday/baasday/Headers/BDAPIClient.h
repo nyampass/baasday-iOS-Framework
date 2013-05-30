@@ -11,6 +11,7 @@
 #import "BDQuery.h"
 
 typedef void (^BDDictionaryResultBlock)(NSDictionary *result, NSError *error);
+typedef id (^BDContentConverter)(NSDictionary *values);
 
 @interface BDAPIClient : NSObject
 
@@ -32,6 +33,8 @@ typedef void (^BDDictionaryResultBlock)(NSDictionary *result, NSError *error);
 + (void)createInBackgroundWithPath:(NSString *)path values:(NSDictionary *)values block:(BDDictionaryResultBlock)block;
 + (BDAPIClient *)apiClientForFetchAllWithPath:(NSString *)path query:(BDQuery *)query;
 + (BDListResult *)fetchAllWithPath:(NSString *)path query:(BDQuery *)query error:(NSError **)error;
-+ (void)fetchAllInBackgroundWithPath:(NSString *)path query:(BDQuery *)query block:(void(^)(BDListResult *result, NSError *error))block;
++ (BDListResult *)fetchAllWithPath:(NSString *)path query:(BDQuery *)query contentConverter:(BDContentConverter)contentConverter error:(NSError **)error;
++ (void)fetchAllInBackgroundWithPath:(NSString *)path query:(BDQuery *)query block:(BDListResultBlock)block;
++ (void)fetchAllInBackgroundWithPath:(NSString *)path query:(BDQuery *)query contentConverter:(BDContentConverter)contentConverter block:(BDListResultBlock)block;
 
 @end

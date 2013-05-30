@@ -66,17 +66,10 @@
 	}];
 }
 
-+ (BDListResult *)userListResultWithDictionaryListResult:(BDListResult *)result {
-	NSMutableArray *users = [NSMutableArray array];
-	for (NSDictionary *values in result.contents) {
-		[users addObject:[[self alloc] initWithValues:values]];
-	}
-	return [[BDListResult alloc] initWithObjects:users count:result.count];
-}
-
 + (BDListResult *)fetchAllWithQuery:(BDQuery *)query error:(NSError **)error {
-	BDListResult *result = [BDAPIClient fetchAllWithPath:[self usersAPIPath] query:query error:error];
-	return result ? [self userListResultWithDictionaryListResult:result] : nil;
+	return [BDAPIClient fetchAllWithPath:[self usersAPIPath] query:query contentConverter:^id(NSDictionary *values) {
+		return [[self alloc] initWithValues:values];
+	} error:error];
 }
 
 + (BDListResult *)fetchAllWithQuery:(BDQuery *)query {
@@ -92,9 +85,9 @@
 }
 
 + (void)fetchAllInBackgroundWithQuery:(BDQuery *)query block:(BDListResultBlock)block {
-	[BDAPIClient fetchAllInBackgroundWithPath:[self usersAPIPath] query:query block:^(BDListResult *result, NSError *error) {
-		block(result ? [self userListResultWithDictionaryListResult:result] : nil, error);
-	}];
+	[BDAPIClient fetchAllInBackgroundWithPath:[self usersAPIPath] query:query contentConverter:^id(NSDictionary *values) {
+		return [[self alloc] initWithValues:values];
+	} block:block];
 }
 
 + (void)fetchAllInBackground:(BDListResultBlock)block {

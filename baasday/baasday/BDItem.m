@@ -81,17 +81,10 @@
 	}];
 }
 
-+ (BDListResult *)objectListResultWithDictionaryListResult:(BDListResult *)result collectionName:(NSString *)collectionName {
-	NSMutableArray *objects = [NSMutableArray array];
-	for (NSDictionary *values in result.contents) {
-		[objects addObject:[[self alloc] initWithCollectionName:collectionName values:values]];
-	}
-	return [[BDListResult alloc] initWithObjects:objects count:result.count];
-}
-
 + (BDListResult *)fetchAllWithCollectionName:(NSString *)collectionName query:(BDQuery *)query error:(NSError **)error {
-	BDListResult *result = [BDAPIClient fetchAllWithPath:[self collectionAPIPathWithCollectionName:collectionName] query:query error:error];
-	return result ? [self objectListResultWithDictionaryListResult:result collectionName:collectionName] : nil;
+	return [BDAPIClient fetchAllWithPath:[self collectionAPIPathWithCollectionName:collectionName] query:query contentConverter:^id(NSDictionary *values) {
+		return [[self alloc] initWithCollectionName:collectionName values:values];
+	} error:error];
 }
 
 + (BDListResult *)fetchAllWithCollectionName:(NSString *)collectionName query:(BDQuery *)query {
@@ -107,9 +100,9 @@
 }
 
 + (void)fetchAllInBackgroundWithCollectionName:(NSString *)collectionName query:(BDQuery *)query block:(BDListResultBlock)block {
-	[BDAPIClient fetchAllInBackgroundWithPath:[self collectionAPIPathWithCollectionName:collectionName] query:query block:^(BDListResult *result, NSError *error) {
-		block(result ? [self objectListResultWithDictionaryListResult:result collectionName:collectionName] : nil, error);
-	}];
+	[BDAPIClient fetchAllInBackgroundWithPath:[self collectionAPIPathWithCollectionName:collectionName] query:query contentConverter:^id(NSDictionary *values) {
+		return [[self alloc] initWithCollectionName:collectionName values:values];
+	} block:block];
 }
 
 + (void)fetchAllInBackgroundWithCollectionName:(NSString *)collectionName block:(BDListResultBlock)block {

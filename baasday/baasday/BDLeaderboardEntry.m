@@ -106,17 +106,10 @@
 	}];
 }
 
-+ (BDListResult *)entryListResultWithDictionaryListResult:(BDListResult *)result leaderboardName:(NSString *)leaderboardName {
-	NSMutableArray *entries = [NSMutableArray array];
-	for (NSDictionary *values in result.contents) {
-		[entries addObject:[[self alloc] initWithLeaderboardName:leaderboardName values:values]];
-	}
-	return [[BDListResult alloc] initWithObjects:entries count:result.count];
-}
-
 + (BDListResult *)fetchAllWithLeaderboardName:(NSString *)leaderboardName query:(BDQuery *)query error:(NSError **)error {
-	BDListResult *result = [BDAPIClient fetchAllWithPath:[self leaderboardAPIPathWithLeaderboardName:leaderboardName] query:query error:error];
-	return result ? [self entryListResultWithDictionaryListResult:result leaderboardName:leaderboardName] : nil;
+	return [BDAPIClient fetchAllWithPath:[self leaderboardAPIPathWithLeaderboardName:leaderboardName] query:query contentConverter:^id(NSDictionary *values) {
+		return [[self alloc] initWithLeaderboardName:leaderboardName values:values];
+	} error:error];
 }
 
 + (BDListResult *)fetchAllWithLeaderboardName:(NSString *)leaderboardName query:(BDQuery *)query {
@@ -132,9 +125,9 @@
 }
 
 + (void)fetchAllInBackgroundWithLeaderboardName:(NSString *)leaderboardName query:(BDQuery *)query block:(BDListResultBlock)block {
-	[BDAPIClient fetchAllInBackgroundWithPath:[self leaderboardAPIPathWithLeaderboardName:leaderboardName] query:query block:^(BDListResult *result, NSError *error) {
-		block(result ? [self entryListResultWithDictionaryListResult:result leaderboardName:leaderboardName] : nil, error);
-	}];
+	[BDAPIClient fetchAllInBackgroundWithPath:[self leaderboardAPIPathWithLeaderboardName:leaderboardName] query:query contentConverter:^id(NSDictionary *values) {
+		return [[self alloc] initWithLeaderboardName:leaderboardName values:values];
+	} block:block];
 }
 
 + (void)fetchAllInBackgroundWithLeaderboardName:(NSString *)leaderboardName block:(BDListResultBlock)block {

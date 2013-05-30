@@ -249,6 +249,15 @@
 	return [[[[self alloc] init] getWithPath:path] requestParameters:query ? query.requestParameters : nil];
 }
 
++ (BDListResult *)convertListResultContents:(BDListResult *)result contentConverter:(BDContentConverter)contentConverter {
+	if (!result) return nil;
+	NSMutableArray *convertedContents = [NSMutableArray array];
+	for (NSDictionary *values in result.contents) {
+		[convertedContents addObject:contentConverter(values)];
+	}
+	return [[BDListResult alloc] initWithObjects:convertedContents count:result.count];
+}
+
 + (BDListResult *)fetchAllWithPath:(NSString *)path query:(BDQuery *)query error:(NSError **)error {
 	BDAPIClient *connection = [self apiClientForFetchAllWithPath:path query:query];
 	NSDictionary *result = [connection doRequestWithError:error];
@@ -256,10 +265,20 @@
 	return [[BDListResult alloc] initWithAPIResult:result];
 }
 
++ (BDListResult *)fetchAllWithPath:(NSString *)path query:(BDQuery *)query contentConverter:(BDContentConverter)contentConverter error:(NSError **)error {
+	return [self convertListResultContents:[self fetchAllWithPath:path query:query error:error] contentConverter:contentConverter];
+}
+
 + (void)fetchAllInBackgroundWithPath:(NSString *)path query:(BDQuery *)query block:(void(^)(BDListResult *result, NSError *error))block {
 	BDAPIClient *connection = [self apiClientForFetchAllWithPath:path query:query];
 	[connection doRequestInBackground:^(NSDictionary *result, NSError *error) {
 		block(result ? [[BDListResult alloc] initWithAPIResult:result] : nil, error);
+	}];
+}
+
++ (void)fetchAllInBackgroundWithPath:(NSString *)path query:(BDQuery *)query contentConverter:(BDContentConverter)contentConverter block:(BDListResultBlock)block {
+	[self fetchAllInBackgroundWithPath:path query:query block:^(BDListResult *result, NSError *error) {
+		block([self convertListResultContents:result contentConverter:contentConverter], error);
 	}];
 }
 
