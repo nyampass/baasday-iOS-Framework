@@ -43,12 +43,16 @@
 		NSArray *fields = dictionary.allKeys;
 		if ([fields containsObject:@"$type"] && [[dictionary valueForKey:@"$type"] isEqualToString:@"datetime"] && [fields containsObject:@"$value"]) {
 			NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-			dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 			NSDate *date = nil;
 			NSError *error = nil;
+			dateFormatter.dateFormat = @"yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSSZ";
 			[dateFormatter getObjectValue:&date forString:[dictionary valueForKey:@"$value"] range:nil error:&error];
-			if (error) return nil;
-			return date;
+			if (!error) return date;
+			dateFormatter.dateFormat = @"yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'";
+			dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+			[dateFormatter getObjectValue:&date forString:[dictionary valueForKey:@"$value"] range:nil error:&error];
+			if (!error) return date;
+			return nil;
 		} else {
 			NSMutableDictionary *fixed = [NSMutableDictionary dictionary];
 			for (id field in dictionary) [fixed setValue:[self fixObjectInJSON:[dictionary valueForKey:field]] forKey:field];
