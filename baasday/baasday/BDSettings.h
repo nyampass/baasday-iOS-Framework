@@ -9,7 +9,7 @@
 #ifndef baasday_BDSettings_h
 #define baasday_BDSettings_h
 
-#define BD_API_URL_ROOT @"http://baasday.com/api/"
+#define BD_API_URL_ROOT @"https://baasday.com/api/"
 #define BDClientVersion @"0.5"
 
 #define BDUserDefaultsKeyPrefix @"BAASDAY_FRMWORK_"

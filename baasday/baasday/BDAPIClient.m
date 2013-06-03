@@ -225,6 +225,16 @@
 	[queue addOperation:operation];
 }
 
+static NSString *apiURLRoot = BD_API_URL_ROOT;
+
++ (NSString *)apiURLRoot {
+	return apiURLRoot;
+}
+
++ (void)setAPIURLRoot:(NSString *)apiURLRoot {
+	apiURLRoot = apiURLRoot;
+}
+
 + (NSDictionary *)fetchWithPath:(NSString *)path error:(NSError **)error {
     return [[[[self alloc] init] getWithPath:path] doRequestWithError:error];
 }
