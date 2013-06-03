@@ -16,5 +16,7 @@
 + (NSString *)version;
 + (void)setUserAuthenticationKey:(NSString *)key;
 + (NSString *)userAuthenticationKey;
++ (NSString *)apiURLRoot;
++ (void)setAPIURLRoot:(NSString *)apiURLRoot;
 
 @end

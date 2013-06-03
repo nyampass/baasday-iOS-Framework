@@ -43,4 +43,14 @@ static NSString* userAuthenticationKey = nil;
     return userAuthenticationKey;
 }
 
+static NSString *apiURLRoot = BD_API_URL_ROOT;
+
++ (NSString *)apiURLRoot {
+	return apiURLRoot;
+}
+
++ (void)setAPIURLRoot:(NSString *)apiURLRoot {
+	apiURLRoot = apiURLRoot;
+}
+
 @end

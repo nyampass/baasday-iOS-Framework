@@ -184,7 +184,7 @@
     } else {
 		path = _path;
     }
-	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BD_API_URL_ROOT, path]]];
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [BDBaasday apiURLRoot], path]]];
 	[request setHTTPMethod:_requestMethod];
 	[BDAPIClient setAuthenticationHeadersToRequest:request];
 	if (_requestJSON) {
@@ -223,16 +223,6 @@
 	BDAPIOperation *operation = [[BDAPIOperation alloc] initWithRequest:request block:block];
 	NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 	[queue addOperation:operation];
-}
-
-static NSString *apiURLRoot = BD_API_URL_ROOT;
-
-+ (NSString *)apiURLRoot {
-	return apiURLRoot;
-}
-
-+ (void)setAPIURLRoot:(NSString *)apiURLRoot {
-	apiURLRoot = apiURLRoot;
 }
 
 + (NSDictionary *)fetchWithPath:(NSString *)path error:(NSError **)error {

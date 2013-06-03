@@ -26,8 +26,6 @@ typedef id (^BDContentConverter)(NSDictionary *values);
 - (NSDictionary *)doRequestWithError:(NSError **)error;
 - (void)doRequestInBackground:(BDDictionaryResultBlock)block;
 
-+ (NSString *)apiURLRoot;
-+ (void)setAPIURLRoot:(NSString *)apiURLRoot;
 + (NSDictionary *)fetchWithPath:(NSString *)path error:(NSError **)error;
 + (void)fetchInBackgroundWithPath:(NSString *)path block:(BDDictionaryResultBlock)block;
 + (BDAPIClient *)apiClientForCreateWithPath:(NSString *)path values:(NSDictionary *)values;
