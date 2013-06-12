@@ -41,7 +41,7 @@ POST、PUTでは`application/json`を使用します。ファイル送信時の�
 
 ###### 例
 
-    curl -X POST -H 'Content-Type: application/json' -d '{"name":"foo"}' -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/objects/items'
+    curl -X POST -H 'Content-Type: application/json' -d '{"name":"foo"}' -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/items/items'
 
 #### 固有データ
 
@@ -160,13 +160,13 @@ $first: trueを指定した場合、配列に置き換えずに、条件に一�
 
 `filter`に渡されたオブジェクトの各フィールドの値と同じ値を持つオブジェクトが返されます。
 
-    curl -X GET --data-urlencode 'filter={"price":200}' -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/objects/items'
+    curl -X GET --data-urlencode 'filter={"price":200}' -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/items/items'
 
 上記の場合、`price`が`200`のものが返されます。
 
 フィールドが配列の場合、指定した値を配列に含むものが返されます。
 
-    curl -X GET --data-urlencode 'filter={"members":"foo"}' -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/objects/items'
+    curl -X GET --data-urlencode 'filter={"members":"foo"}' -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/items/items'
 
 `members`が配列の場合、`members`が`"foo"`を含むものが返されます。`members`が配列でない場合は`members`が`"foo"`であればそれが返されます。
 
@@ -174,7 +174,7 @@ $first: trueを指定した場合、配列に置き換えずに、条件に一�
 
 値の代わりに`{"$ne":value}`を指定をすると、値が一致しないものを取得できます。
 
-    curl -X GET --data-urlencode 'filter={"price":{"$ne":200}}' -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/objects/items'
+    curl -X GET --data-urlencode 'filter={"price":{"$ne":200}}' -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/items/items'
 
 上記の場合、`price`が`200`でないものが返されます。
 
@@ -184,7 +184,7 @@ $first: trueを指定した場合、配列に置き換えずに、条件に一�
 
 `{"$lt":value}`という条件を指定をすると、値が`value`より小さいものを取得できます。
 
-    curl -X GET --data-urlencode 'filter={"price":{"$lt":200}}' -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/objects/items'
+    curl -X GET --data-urlencode 'filter={"price":{"$lt":200}}' -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/items/items'
 
 上記の場合、`price`が`200`未満のものが返されます。
 
@@ -194,7 +194,7 @@ $first: trueを指定した場合、配列に置き換えずに、条件に一�
 
 `{"$in":[value1,value2,...]}`という条件を指定すると、複数の値のどれかと一致するものを取得できます。
 
-     curl -X GET --data-urlencode 'filter={"type":{"$in":["A","B","C"]}}' -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/objects/items'
+     curl -X GET --data-urlencode 'filter={"type":{"$in":["A","B","C"]}}' -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/items/items'
 
 配列の代わりに`$type`が"query"のオブジェクトを指定すると、他のコレクションのオブジェクトを条件に使用することができます。
 
@@ -212,19 +212,19 @@ $first: trueを指定した場合、配列に置き換えずに、条件に一�
 
 `name`の昇順で並び替えます。
 
-    curl -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/objects/items?order=name'
+    curl -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/items/items?order=name'
 
 `age`の昇順で並び替えます。`age`が同じ場合は`name`の昇順になります。
 
-    curl -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/objects/items?order=age,name'
+    curl -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/items/items?order=age,name'
 
 `age`の降順で並び替えます。`age`が同じ場合は`name`の降順になります。
 
-    curl -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/objects/items?order=-age,-name'
+    curl -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/items/items?order=-age,-name'
 
 作成日時の新しい順に並び替えます。
 
-    curl -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/objects/items?order=-_createdAt'
+    curl -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/items/items?order=-_createdAt'
 
 ##### skip: 取得開始位置
 
@@ -234,7 +234,7 @@ $first: trueを指定した場合、配列に置き換えずに、条件に一�
 
 `name`の昇順で並び替えたものの11件目以降を取得します。
 
-    curl -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/objects/items?order=name&skip=10'
+    curl -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/items/items?order=name&skip=10'
 
 ##### limit: 最大データ数
 
@@ -244,11 +244,11 @@ $first: trueを指定した場合、配列に置き換えずに、条件に一�
 
 `name`の昇順で並び替えたものの上位20件を取得します。
 
-    curl -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/objects/items?order=name&limit=20'
+    curl -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/items/items?order=name&limit=20'
 
 `name`の昇順で並び替えたものの11件目から30件目までを取得します。
 
-    curl -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/objects/items?order=name&skip=10&limit=20'
+    curl -H 'X-Baasday-Application-Id: aaaaa' -H 'X-Baasday-Application-Api-Key: bbbbb' 'http://baasday.com/api/items/items?order=name&skip=10&limit=20'
 
 #### 認証
 
@@ -435,7 +435,7 @@ limit: 取得する最大ユーザ数
 
 #### オブジェクトの作成
 
-POST /api/objects/<コレクション名>
+POST /api/items/<コレクション名>
 
 ##### 認証
 
@@ -451,7 +451,7 @@ POST /api/objects/<コレクション名>
 
 #### オブジェクトの更新
 
-PUT /api/objects/<コレクション名>/<オブジェクトID>
+PUT /api/items/<コレクション名>/<オブジェクトID>
 
 ##### 認証
 
@@ -469,7 +469,7 @@ PUT /api/objects/<コレクション名>/<オブジェクトID>
 
 #### オブジェクトの削除
 
-DELETE /api/objects/<コレクション名>/<オブジェクトID>
+DELETE /api/items/<コレクション名>/<オブジェクトID>
 
 ##### 認証
 
@@ -485,7 +485,7 @@ DELETE /api/objects/<コレクション名>/<オブジェクトID>
 
 #### オブジェクトの取得(単一)
 
-GET /api/objects/<コレクション名>/<オブジェクトID>
+GET /api/items/<コレクション名>/<オブジェクトID>
 
 ##### 認証
 
@@ -501,7 +501,7 @@ GET /api/objects/<コレクション名>/<オブジェクトID>
 
 #### 複数オブジェクトの取得
 
-GET /api/objects/<コレクション名>
+GET /api/items/<コレクション名>
 
 #### 認証
 
