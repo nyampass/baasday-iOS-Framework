@@ -10,6 +10,7 @@
 
 @interface BDObject (Private)
 
+- (id)initWithValues:(NSDictionary *)values;
 - (NSString *)apiPath;
 
 @end

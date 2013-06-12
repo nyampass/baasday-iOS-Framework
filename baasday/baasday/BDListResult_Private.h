@@ -10,6 +10,7 @@
 
 @interface BDListResult (Private)
 
+- (id)initWithObjects:(NSArray *)objects count:(NSInteger)count;
 - (id)initWithAPIResult:(NSDictionary *)apiResult;
 
 @end

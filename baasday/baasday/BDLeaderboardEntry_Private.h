@@ -11,4 +11,7 @@
 
 @interface BDLeaderboardEntry (Private)
 
+- (id)initWithLeaderboardName:(NSString *)leaderboardName values:(NSDictionary *)values;
+- (id)initWithLeaderboardName:(NSString *)leaderboardName;
+
 @end

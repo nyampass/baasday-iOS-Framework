@@ -1,0 +1,405 @@
+\hypertarget{interface_b_d_item}{\section{B\-D\-Item Class Reference}
+\label{interface_b_d_item}\index{B\-D\-Item@{B\-D\-Item}}
+}
+
+
+baasdayサーバ上に保存される汎用的なオブジェクトです。  
+
+
+
+
+{\ttfamily \#import $<$B\-D\-Item.\-h$>$}
+
+
+
+Inherits \hyperlink{interface_b_d_object}{B\-D\-Object}.
+
+\subsection*{Class Methods}
+\begin{DoxyCompactItemize}
+\item 
+(\hyperlink{interface_b_d_item}{B\-D\-Item} $\ast$) + \hyperlink{interface_b_d_item_a93fba1f3937a4d073f55e2d3b8e270c1}{create\-With\-Collection\-Name\-:values\-:error\-:}
+\begin{DoxyCompactList}\small\item\em 指定されたコレクションにアイテムを追加します。baasdayサーバへの追加は即時に行われます。 \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_item}{B\-D\-Item} $\ast$) + \hyperlink{interface_b_d_item_a442423dcd231eb4283fe5ba734417956}{create\-With\-Collection\-Name\-:values\-:}
+\begin{DoxyCompactList}\small\item\em 指定されたコレクションにアイテムを追加します。baasdayサーバへの追加は即時に行われます。 \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_item}{B\-D\-Item} $\ast$) + \hyperlink{interface_b_d_item_a7792723e5da18907ff09a4cb58500983}{create\-With\-Collection\-Name\-:error\-:}
+\begin{DoxyCompactList}\small\item\em 指定されたコレクションにアイテムを追加します。baasdayサーバへの追加は即時に行われます。 \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_item}{B\-D\-Item} $\ast$) + \hyperlink{interface_b_d_item_ae5bfedc28fe415ff3204eb4ebd79d659}{create\-With\-Collection\-Name\-:}
+\begin{DoxyCompactList}\small\item\em 指定されたコレクションにアイテムを追加します。baasdayサーバへの追加は即時に行われます。 \end{DoxyCompactList}\item 
+(void) + \hyperlink{interface_b_d_item_a41a9770731ef057b35c4728275145629}{create\-In\-Background\-With\-Collection\-Name\-:values\-:block\-:}
+\begin{DoxyCompactList}\small\item\em 指定されたコレクションにアイテムを追加します。baasdayサーバへの追加は即時に行われます。 \end{DoxyCompactList}\item 
+(void) + \hyperlink{interface_b_d_item_a37bf7a8e97571dcfcdd042360b983ab5}{create\-In\-Background\-With\-Collection\-Name\-:block\-:}
+\begin{DoxyCompactList}\small\item\em 指定されたコレクションにアイテムを追加します。baasdayサーバへの追加は即時に行われます。 \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_item}{B\-D\-Item} $\ast$) + \hyperlink{interface_b_d_item_a958919b152115ef67aa318aef7bb53cb}{fetch\-With\-Collection\-Name\-:id\-:erorr\-:}
+\begin{DoxyCompactList}\small\item\em 指定されたコレクション内の指定された\-I\-Dを持つアイテムを取得します。 \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_item}{B\-D\-Item} $\ast$) + \hyperlink{interface_b_d_item_ad5e8d0f4de6c4b6eb89ddcf079445ec6}{fetch\-With\-Collection\-Name\-:id\-:}
+\begin{DoxyCompactList}\small\item\em 指定されたコレクション内の指定された\-I\-Dを持つアイテムを取得します。 \end{DoxyCompactList}\item 
+(void) + \hyperlink{interface_b_d_item_a9eefd58d4fee746fa9e3c8de5c212e90}{fetch\-In\-Background\-With\-Collection\-Name\-:id\-:block\-:}
+\begin{DoxyCompactList}\small\item\em 指定されたコレクション内の指定された\-I\-Dを持つアイテムを取得します。 \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_list_result}{B\-D\-List\-Result} $\ast$) + \hyperlink{interface_b_d_item_a07190d60ff7e26fdaa86d873e6d21304}{fetch\-All\-With\-Collection\-Name\-:query\-:error\-:}
+\begin{DoxyCompactList}\small\item\em 指定されたコレクション内のアイテムを取得します。 \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_list_result}{B\-D\-List\-Result} $\ast$) + \hyperlink{interface_b_d_item_a00666b4a26a8bb9c7af9d13f34ca2a67}{fetch\-All\-With\-Collection\-Name\-:query\-:}
+\begin{DoxyCompactList}\small\item\em 指定されたコレクション内のアイテムを取得します。 \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_list_result}{B\-D\-List\-Result} $\ast$) + \hyperlink{interface_b_d_item_aa9365db8105ba17db77eb9b96d77a2f4}{fetch\-All\-With\-Collection\-Name\-:error\-:}
+\begin{DoxyCompactList}\small\item\em 指定されたコレクション内のアイテムを取得します。 \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_list_result}{B\-D\-List\-Result} $\ast$) + \hyperlink{interface_b_d_item_aafe068a317f7ac5af3e04ed842c3558e}{fetch\-All\-W\-Ith\-Collection\-Name\-:}
+\begin{DoxyCompactList}\small\item\em 指定されたコレクション内のアイテムを取得します。 \end{DoxyCompactList}\item 
+(void) + \hyperlink{interface_b_d_item_a474f0fcf5db1e2d7a94512a0955aa83b}{fetch\-All\-In\-Background\-With\-Collection\-Name\-:query\-:block\-:}
+\begin{DoxyCompactList}\small\item\em 指定されたコレクション内のアイテムを取得します。 \end{DoxyCompactList}\item 
+(void) + \hyperlink{interface_b_d_item_a8bc04dc179e76e77ba295ed4ea3e3466}{fetch\-All\-In\-Background\-With\-Collection\-Name\-:block\-:}
+\begin{DoxyCompactList}\small\item\em 指定されたコレクション内のアイテムを取得します。 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{interface_b_d_item_a2ecb76196ee2b904b36e9d4fe3448d7d}{N\-S\-String $\ast$ \hyperlink{interface_b_d_item_a2ecb76196ee2b904b36e9d4fe3448d7d}{collection\-Name}}\label{interface_b_d_item_a2ecb76196ee2b904b36e9d4fe3448d7d}
+
+\begin{DoxyCompactList}\small\item\em コレクション名 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+baasdayサーバ上に保存される汎用的なオブジェクトです。 
+
+任意のフィールドを持ち、複数のコレクションに分けてアイテムを保存できます。 
+
+\subsection{Method Documentation}
+\hypertarget{interface_b_d_item_a37bf7a8e97571dcfcdd042360b983ab5}{\index{B\-D\-Item@{B\-D\-Item}!create\-In\-Background\-With\-Collection\-Name\-:block\-:@{create\-In\-Background\-With\-Collection\-Name\-:block\-:}}
+\index{create\-In\-Background\-With\-Collection\-Name\-:block\-:@{create\-In\-Background\-With\-Collection\-Name\-:block\-:}!BDItem@{B\-D\-Item}}
+\subsubsection[{create\-In\-Background\-With\-Collection\-Name\-:block\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ (void) create\-In\-Background\-With\-Collection\-Name\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{collection\-Name}
+\item[{block:(B\-D\-Item\-Result\-Block)}]{block}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_item_a37bf7a8e97571dcfcdd042360b983ab5}
+
+
+指定されたコレクションにアイテムを追加します。baasdayサーバへの追加は即時に行われます。 
+
+コレクションが存在しない場合は自動的に作成されます。 
+\begin{DoxyParams}{Parameters}
+{\em collection\-Name} & コレクション名 \\
+\hline
+{\em block} & 追加が完了したか、失敗したときに呼び出されます \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+追加したアイテム 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_item_a41a9770731ef057b35c4728275145629}{\index{B\-D\-Item@{B\-D\-Item}!create\-In\-Background\-With\-Collection\-Name\-:values\-:block\-:@{create\-In\-Background\-With\-Collection\-Name\-:values\-:block\-:}}
+\index{create\-In\-Background\-With\-Collection\-Name\-:values\-:block\-:@{create\-In\-Background\-With\-Collection\-Name\-:values\-:block\-:}!BDItem@{B\-D\-Item}}
+\subsubsection[{create\-In\-Background\-With\-Collection\-Name\-:values\-:block\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ (void) create\-In\-Background\-With\-Collection\-Name\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{collection\-Name}
+\item[{values:(N\-S\-Dictionary $\ast$)}]{values}
+\item[{block:(B\-D\-Item\-Result\-Block)}]{block}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_item_a41a9770731ef057b35c4728275145629}
+
+
+指定されたコレクションにアイテムを追加します。baasdayサーバへの追加は即時に行われます。 
+
+コレクションが存在しない場合は自動的に作成されます。 
+\begin{DoxyParams}{Parameters}
+{\em collection\-Name} & コレクション名 \\
+\hline
+{\em values} & アイテムが持つ値 \\
+\hline
+{\em block} & 追加が完了したか、失敗したときに呼び出されます \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+追加したアイテム 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_item_ae5bfedc28fe415ff3204eb4ebd79d659}{\index{B\-D\-Item@{B\-D\-Item}!create\-With\-Collection\-Name\-:@{create\-With\-Collection\-Name\-:}}
+\index{create\-With\-Collection\-Name\-:@{create\-With\-Collection\-Name\-:}!BDItem@{B\-D\-Item}}
+\subsubsection[{create\-With\-Collection\-Name\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-Item} $\ast$) create\-With\-Collection\-Name\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{collection\-Name}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_item_ae5bfedc28fe415ff3204eb4ebd79d659}
+
+
+指定されたコレクションにアイテムを追加します。baasdayサーバへの追加は即時に行われます。 
+
+コレクションが存在しない場合は自動的に作成されます。 
+\begin{DoxyParams}{Parameters}
+{\em collection\-Name} & コレクション名 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+追加したアイテム 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_item_a7792723e5da18907ff09a4cb58500983}{\index{B\-D\-Item@{B\-D\-Item}!create\-With\-Collection\-Name\-:error\-:@{create\-With\-Collection\-Name\-:error\-:}}
+\index{create\-With\-Collection\-Name\-:error\-:@{create\-With\-Collection\-Name\-:error\-:}!BDItem@{B\-D\-Item}}
+\subsubsection[{create\-With\-Collection\-Name\-:error\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-Item} $\ast$) {\bf create\-With\-Collection\-Name\-:} 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{collection\-Name}
+\item[{error:(N\-S\-Error $\ast$$\ast$)}]{error}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_item_a7792723e5da18907ff09a4cb58500983}
+
+
+指定されたコレクションにアイテムを追加します。baasdayサーバへの追加は即時に行われます。 
+
+コレクションが存在しない場合は自動的に作成されます。 
+\begin{DoxyParams}{Parameters}
+{\em collection\-Name} & コレクション名 \\
+\hline
+{\em error} & エラーが発生した場合この引数が指す場所に格納されます \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+追加したアイテム 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_item_a442423dcd231eb4283fe5ba734417956}{\index{B\-D\-Item@{B\-D\-Item}!create\-With\-Collection\-Name\-:values\-:@{create\-With\-Collection\-Name\-:values\-:}}
+\index{create\-With\-Collection\-Name\-:values\-:@{create\-With\-Collection\-Name\-:values\-:}!BDItem@{B\-D\-Item}}
+\subsubsection[{create\-With\-Collection\-Name\-:values\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-Item} $\ast$) {\bf create\-With\-Collection\-Name\-:} 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{collection\-Name}
+\item[{values:(N\-S\-Dictionary $\ast$)}]{values}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_item_a442423dcd231eb4283fe5ba734417956}
+
+
+指定されたコレクションにアイテムを追加します。baasdayサーバへの追加は即時に行われます。 
+
+コレクションが存在しない場合は自動的に作成されます。 
+\begin{DoxyParams}{Parameters}
+{\em collection\-Name} & コレクション名 \\
+\hline
+{\em values} & アイテムが持つ値 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+追加したアイテム 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_item_a93fba1f3937a4d073f55e2d3b8e270c1}{\index{B\-D\-Item@{B\-D\-Item}!create\-With\-Collection\-Name\-:values\-:error\-:@{create\-With\-Collection\-Name\-:values\-:error\-:}}
+\index{create\-With\-Collection\-Name\-:values\-:error\-:@{create\-With\-Collection\-Name\-:values\-:error\-:}!BDItem@{B\-D\-Item}}
+\subsubsection[{create\-With\-Collection\-Name\-:values\-:error\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-Item} $\ast$) {\bf create\-With\-Collection\-Name\-:} 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{collection\-Name}
+\item[{values:(N\-S\-Dictionary $\ast$)}]{values}
+\item[{error:(N\-S\-Error $\ast$$\ast$)}]{error}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_item_a93fba1f3937a4d073f55e2d3b8e270c1}
+
+
+指定されたコレクションにアイテムを追加します。baasdayサーバへの追加は即時に行われます。 
+
+コレクションが存在しない場合は自動的に作成されます。 
+\begin{DoxyParams}{Parameters}
+{\em collection\-Name} & コレクション名 \\
+\hline
+{\em values} & アイテムが持つ値 \\
+\hline
+{\em error} & エラーが発生した場合この引数が指す場所に格納されます \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+追加したアイテム 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_item_a8bc04dc179e76e77ba295ed4ea3e3466}{\index{B\-D\-Item@{B\-D\-Item}!fetch\-All\-In\-Background\-With\-Collection\-Name\-:block\-:@{fetch\-All\-In\-Background\-With\-Collection\-Name\-:block\-:}}
+\index{fetch\-All\-In\-Background\-With\-Collection\-Name\-:block\-:@{fetch\-All\-In\-Background\-With\-Collection\-Name\-:block\-:}!BDItem@{B\-D\-Item}}
+\subsubsection[{fetch\-All\-In\-Background\-With\-Collection\-Name\-:block\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ (void) fetch\-All\-In\-Background\-With\-Collection\-Name\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{collection\-Name}
+\item[{block:(B\-D\-List\-Result\-Block)}]{block}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_item_a8bc04dc179e76e77ba295ed4ea3e3466}
+
+
+指定されたコレクション内のアイテムを取得します。 
+
+アイテムは最大で100件返します。 
+\begin{DoxyParams}{Parameters}
+{\em collection\-Name} & コレクション名 \\
+\hline
+{\em block} & 取得が完了したか、失敗したときに呼び出されます \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_item_a474f0fcf5db1e2d7a94512a0955aa83b}{\index{B\-D\-Item@{B\-D\-Item}!fetch\-All\-In\-Background\-With\-Collection\-Name\-:query\-:block\-:@{fetch\-All\-In\-Background\-With\-Collection\-Name\-:query\-:block\-:}}
+\index{fetch\-All\-In\-Background\-With\-Collection\-Name\-:query\-:block\-:@{fetch\-All\-In\-Background\-With\-Collection\-Name\-:query\-:block\-:}!BDItem@{B\-D\-Item}}
+\subsubsection[{fetch\-All\-In\-Background\-With\-Collection\-Name\-:query\-:block\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ (void) fetch\-All\-In\-Background\-With\-Collection\-Name\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{collection\-Name}
+\item[{query:({\bf B\-D\-Query} $\ast$)}]{query}
+\item[{block:(B\-D\-List\-Result\-Block)}]{block}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_item_a474f0fcf5db1e2d7a94512a0955aa83b}
+
+
+指定されたコレクション内のアイテムを取得します。 
+
+最大取得件数を指定しない場合や101以上を指定した場合は、最大で100件返します。 
+\begin{DoxyParams}{Parameters}
+{\em collection\-Name} & コレクション名 \\
+\hline
+{\em query} & 抽出条件 \\
+\hline
+{\em block} & 取得が完了したか、失敗したときに呼び出されます \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_item_aafe068a317f7ac5af3e04ed842c3558e}{\index{B\-D\-Item@{B\-D\-Item}!fetch\-All\-W\-Ith\-Collection\-Name\-:@{fetch\-All\-W\-Ith\-Collection\-Name\-:}}
+\index{fetch\-All\-W\-Ith\-Collection\-Name\-:@{fetch\-All\-W\-Ith\-Collection\-Name\-:}!BDItem@{B\-D\-Item}}
+\subsubsection[{fetch\-All\-W\-Ith\-Collection\-Name\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-List\-Result} $\ast$) fetch\-All\-W\-Ith\-Collection\-Name\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{collection\-Name}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_item_aafe068a317f7ac5af3e04ed842c3558e}
+
+
+指定されたコレクション内のアイテムを取得します。 
+
+アイテムは最大で100件返します。 
+\begin{DoxyParams}{Parameters}
+{\em collection\-Name} & コレクション名 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+取得結果 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_item_aa9365db8105ba17db77eb9b96d77a2f4}{\index{B\-D\-Item@{B\-D\-Item}!fetch\-All\-With\-Collection\-Name\-:error\-:@{fetch\-All\-With\-Collection\-Name\-:error\-:}}
+\index{fetch\-All\-With\-Collection\-Name\-:error\-:@{fetch\-All\-With\-Collection\-Name\-:error\-:}!BDItem@{B\-D\-Item}}
+\subsubsection[{fetch\-All\-With\-Collection\-Name\-:error\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-List\-Result} $\ast$) fetch\-All\-With\-Collection\-Name\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{collection\-Name}
+\item[{error:(N\-S\-Error $\ast$$\ast$)}]{error}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_item_aa9365db8105ba17db77eb9b96d77a2f4}
+
+
+指定されたコレクション内のアイテムを取得します。 
+
+アイテムは最大で100件返します。 
+\begin{DoxyParams}{Parameters}
+{\em collection\-Name} & コレクション名 \\
+\hline
+{\em error} & エラーが発生した場合この引数が指す場所に格納されます \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+取得結果 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_item_a00666b4a26a8bb9c7af9d13f34ca2a67}{\index{B\-D\-Item@{B\-D\-Item}!fetch\-All\-With\-Collection\-Name\-:query\-:@{fetch\-All\-With\-Collection\-Name\-:query\-:}}
+\index{fetch\-All\-With\-Collection\-Name\-:query\-:@{fetch\-All\-With\-Collection\-Name\-:query\-:}!BDItem@{B\-D\-Item}}
+\subsubsection[{fetch\-All\-With\-Collection\-Name\-:query\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-List\-Result} $\ast$) fetch\-All\-With\-Collection\-Name\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{collection\-Name}
+\item[{query:({\bf B\-D\-Query} $\ast$)}]{query}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_item_a00666b4a26a8bb9c7af9d13f34ca2a67}
+
+
+指定されたコレクション内のアイテムを取得します。 
+
+最大取得件数を指定しない場合や101以上を指定した場合は、最大で100件返します。 
+\begin{DoxyParams}{Parameters}
+{\em collection\-Name} & コレクション名 \\
+\hline
+{\em query} & 抽出条件 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+取得結果 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_item_a07190d60ff7e26fdaa86d873e6d21304}{\index{B\-D\-Item@{B\-D\-Item}!fetch\-All\-With\-Collection\-Name\-:query\-:error\-:@{fetch\-All\-With\-Collection\-Name\-:query\-:error\-:}}
+\index{fetch\-All\-With\-Collection\-Name\-:query\-:error\-:@{fetch\-All\-With\-Collection\-Name\-:query\-:error\-:}!BDItem@{B\-D\-Item}}
+\subsubsection[{fetch\-All\-With\-Collection\-Name\-:query\-:error\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-List\-Result} $\ast$) fetch\-All\-With\-Collection\-Name\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{collection\-Name}
+\item[{query:({\bf B\-D\-Query} $\ast$)}]{query}
+\item[{error:(N\-S\-Error $\ast$$\ast$)}]{error}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_item_a07190d60ff7e26fdaa86d873e6d21304}
+
+
+指定されたコレクション内のアイテムを取得します。 
+
+最大取得件数を指定しない場合や101以上を指定した場合は、最大で100件返します。 
+\begin{DoxyParams}{Parameters}
+{\em collection\-Name} & コレクション名 \\
+\hline
+{\em query} & 抽出条件 \\
+\hline
+{\em error} & エラーが発生した場合この引数が指す場所に格納されます \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+取得結果 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_item_a9eefd58d4fee746fa9e3c8de5c212e90}{\index{B\-D\-Item@{B\-D\-Item}!fetch\-In\-Background\-With\-Collection\-Name\-:id\-:block\-:@{fetch\-In\-Background\-With\-Collection\-Name\-:id\-:block\-:}}
+\index{fetch\-In\-Background\-With\-Collection\-Name\-:id\-:block\-:@{fetch\-In\-Background\-With\-Collection\-Name\-:id\-:block\-:}!BDItem@{B\-D\-Item}}
+\subsubsection[{fetch\-In\-Background\-With\-Collection\-Name\-:id\-:block\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ (void) fetch\-In\-Background\-With\-Collection\-Name\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{collection\-Name}
+\item[{id:(N\-S\-String $\ast$)}]{id}
+\item[{block:(B\-D\-Item\-Result\-Block)}]{block}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_item_a9eefd58d4fee746fa9e3c8de5c212e90}
+
+
+指定されたコレクション内の指定された\-I\-Dを持つアイテムを取得します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em collection\-Name} & コレクション名 \\
+\hline
+{\em id} & I\-D \\
+\hline
+{\em block} & 取得が完了したか、失敗したときに呼び出されます \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+アイテム 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_item_ad5e8d0f4de6c4b6eb89ddcf079445ec6}{\index{B\-D\-Item@{B\-D\-Item}!fetch\-With\-Collection\-Name\-:id\-:@{fetch\-With\-Collection\-Name\-:id\-:}}
+\index{fetch\-With\-Collection\-Name\-:id\-:@{fetch\-With\-Collection\-Name\-:id\-:}!BDItem@{B\-D\-Item}}
+\subsubsection[{fetch\-With\-Collection\-Name\-:id\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-Item} $\ast$) fetch\-With\-Collection\-Name\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{collection\-Name}
+\item[{id:(N\-S\-String $\ast$)}]{id}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_item_ad5e8d0f4de6c4b6eb89ddcf079445ec6}
+
+
+指定されたコレクション内の指定された\-I\-Dを持つアイテムを取得します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em collection\-Name} & コレクション名 \\
+\hline
+{\em id} & I\-D \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+アイテム 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_item_a958919b152115ef67aa318aef7bb53cb}{\index{B\-D\-Item@{B\-D\-Item}!fetch\-With\-Collection\-Name\-:id\-:erorr\-:@{fetch\-With\-Collection\-Name\-:id\-:erorr\-:}}
+\index{fetch\-With\-Collection\-Name\-:id\-:erorr\-:@{fetch\-With\-Collection\-Name\-:id\-:erorr\-:}!BDItem@{B\-D\-Item}}
+\subsubsection[{fetch\-With\-Collection\-Name\-:id\-:erorr\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-Item} $\ast$) fetch\-With\-Collection\-Name\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{collection\-Name}
+\item[{id:(N\-S\-String $\ast$)}]{id}
+\item[{erorr:(N\-S\-Error $\ast$$\ast$)}]{error}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_item_a958919b152115ef67aa318aef7bb53cb}
+
+
+指定されたコレクション内の指定された\-I\-Dを持つアイテムを取得します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em collection\-Name} & コレクション名 \\
+\hline
+{\em id} & I\-D \\
+\hline
+{\em error} & エラーが発生した場合この引数が指す場所に格納されます \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+アイテム 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+B\-D\-Item.\-h\end{DoxyCompactItemize}

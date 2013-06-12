@@ -2,18 +2,25 @@
 //  BDListResult.h
 //  baasday
 //
-//  Created by Yuu Shimizu on 4/26/13.
-//  Copyright (c) 2013 Nyampass Corporation. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 
+/**
+ * @brief baasdayサーバから複数のオブジェクトを取得したときの結果を表すクラスです
+ */
 @interface BDListResult : NSObject
 
+/**
+ * @brief 取得したオブジェクトのリスト
+ */
 @property (readonly) NSArray *contents;
-@property (readonly) NSInteger count;
 
-- (id)initWithObjects:(NSArray *)objects count:(NSInteger)count;
+/**
+ * @brief 抽出した結果の件数
+ *
+ * BDQueryに指定したフィルタを適用した件数で、取得開始位置と最大取得件数の影響は受けません。
+ */
+@property (readonly) NSInteger count;
 
 @end
 

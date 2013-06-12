@@ -11,4 +11,7 @@
 
 @interface BDItem (Private)
 
+- initWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values;
+- initWithCollectionName:(NSString *)collectionName;
+
 @end

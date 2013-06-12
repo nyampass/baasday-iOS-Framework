@@ -130,7 +130,7 @@
 		DB5D75FC1706DDD200B2DE4D /* BDItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDItem.m; sourceTree = "<group>"; };
 		DB5D75FE1706DFB700B2DE4D /* BDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BDUser.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		DB5D75FF1706DFB700B2DE4D /* BDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDUser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		DB5D76011706E03600B2DE4D /* BDAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDAPIClient.h; path = Headers/BDAPIClient.h; sourceTree = "<group>"; };
+		DB5D76011706E03600B2DE4D /* BDAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDAPIClient.h; sourceTree = "<group>"; };
 		DB5D76021706E03600B2DE4D /* BDAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDAPIClient.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DB5D76041706ED0200B2DE4D /* BDSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDSettings.h; sourceTree = "<group>"; };
 		DB6B717F1722C4F20001E842 /* baasday.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = baasday.framework; path = Framework/baasday.framework; sourceTree = "<group>"; };
