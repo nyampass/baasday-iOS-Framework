@@ -58,7 +58,7 @@
 
 /**
  * @brief baasday Web APIのURLを設定します。通常は変更する必要はありません。
- * @param baasday Web APIのURL
+ * @param apiURLRoot baasday Web APIのURL
  */
 + (void)setAPIURLRoot:(NSString *)apiURLRoot;
 

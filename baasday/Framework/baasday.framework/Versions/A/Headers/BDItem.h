@@ -19,6 +19,9 @@ typedef void (^BDItemResultBlock)(BDItem *object, NSError *error);
  */
 @interface BDItem : BDObject
 
+/**
+ * @brief コレクション名
+ */
 @property (readonly) NSString* collectionName;
 
 /**
