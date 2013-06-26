@@ -24,6 +24,8 @@
 /* Begin PBXBuildFile section */
 		CA69105417299BCA00BAE086 /* BDListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA69105317299BCA00BAE086 /* BDListResult.m */; };
 		CA7EE49E17545C0B0037971C /* BDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7EE49D17545C0B0037971C /* BDUtility.m */; };
+		CAD4D1F61777EB06001CC840 /* BDDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD4D1F51777EB06001CC840 /* BDDevice.m */; };
+		CAD4D20417794549001CC840 /* BDBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD4D20317794549001CC840 /* BDBasicObject.m */; };
 		CAF389BA1753457300D86822 /* BDQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF389B91753457200D86822 /* BDQuery.m */; };
 		DB14FC991727A24A002C478A /* BDObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14FC981727A24A002C478A /* BDObject.m */; };
 		DB55A9E6172821120035291A /* BDAuthenticatedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB55A9E5172821120035291A /* BDAuthenticatedUser.m */; };
@@ -117,6 +119,11 @@
 		CA7EE49C17545C0B0037971C /* BDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDUtility.h; sourceTree = "<group>"; };
 		CA7EE49D17545C0B0037971C /* BDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDUtility.m; sourceTree = "<group>"; };
 		CA7EE4A317562B6D0037971C /* BDQuery_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDQuery_Private.h; sourceTree = "<group>"; };
+		CAD4D1F41777EB06001CC840 /* BDDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDevice.h; sourceTree = "<group>"; };
+		CAD4D1F51777EB06001CC840 /* BDDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDDevice.m; sourceTree = "<group>"; };
+		CAD4D20217794549001CC840 /* BDBasicObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBasicObject.h; sourceTree = "<group>"; };
+		CAD4D20317794549001CC840 /* BDBasicObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBasicObject.m; sourceTree = "<group>"; };
+		CAD4D20517794566001CC840 /* BDBasicObject_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDBasicObject_Private.h; sourceTree = "<group>"; };
 		CAF389B81753457200D86822 /* BDQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDQuery.h; sourceTree = "<group>"; };
 		CAF389B91753457200D86822 /* BDQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDQuery.m; sourceTree = "<group>"; };
 		DB14FC971727A24A002C478A /* BDObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDObject.h; sourceTree = "<group>"; };
@@ -245,6 +252,9 @@
 				CA7EE49D17545C0B0037971C /* BDUtility.m */,
 				CA1AC3E01756325B00EFC440 /* BDUser_Private.h */,
 				CA1AC3E11756328400EFC440 /* BDListResult_Private.h */,
+				CAD4D1F51777EB06001CC840 /* BDDevice.m */,
+				CAD4D20317794549001CC840 /* BDBasicObject.m */,
+				CAD4D20517794566001CC840 /* BDBasicObject_Private.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -328,6 +338,8 @@
 		DBC96BA416F7D5F4001B8498 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				CAD4D20217794549001CC840 /* BDBasicObject.h */,
+				CAD4D1F41777EB06001CC840 /* BDDevice.h */,
 				CAF389B81753457200D86822 /* BDQuery.h */,
 				DB8F5D191705ED1F00A7E9AC /* BDBaasday.h */,
 				DB55A9E71728273B0035291A /* BDLeaderboardEntry.h */,
@@ -571,7 +583,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# ==========\n# 変数設定\n# ==========\n\nINFOPLIST='Info.plist'\nFRAMEWORK_NAME=$(/usr/libexec/PlistBuddy -c \"Print CFBundleName\" ${INFOPLIST})\nBUILD_TARGET_NAME=$FRAMEWORK_NAME\nFRAMEWORK_BUILD_CONFIGURATION=\"Release\"\nFRAMEWORK_VERSION_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" ${INFOPLIST})\nFRAMEWORK_VERSION=A\nFRAMEWORK_BUILD_PATH=\"Framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nPACKAGENAME=\"${FRAMEWORK_NAME}.framework.${FRAMEWORK_VERSION_NUMBER}.zip\"\n\necho $BUILD_TARGET_NAME\necho $SDK_NAME\necho $IPHONEOS_DEPLOYMENT_TARGET\n\n# ==========\n# ビルド\n# ==========\nxcodebuild -configuration ${FRAMEWORK_BUILD_CONFIGURATION} -target ${BUILD_TARGET_NAME} clean\n\nxcodebuild -configuration ${FRAMEWORK_BUILD_CONFIGURATION} -target ${BUILD_TARGET_NAME} -sdk iphonesimulator4.3\n[ $? != 0 ] && exit 1\n\nxcodebuild -configuration ${FRAMEWORK_BUILD_CONFIGURATION} -target ${BUILD_TARGET_NAME} -sdk iphoneos6.1\n[ $? != 0 ] && exit 1\n\n# ==========\n# frameworkディレクトリ作成\n# ==========\n\n[ -d \"${FRAMEWORK_BUILD_PATH}\" ] && rm -rf \"${FRAMEWORK_BUILD_PATH}\"\nmkdir -p ${FRAMEWORK_DIR}\nmkdir -p ${FRAMEWORK_DIR}/Versions\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\nln -s ${FRAMEWORK_VERSION} ${FRAMEWORK_DIR}/Versions/Current\nln -s Versions/Current/Headers ${FRAMEWORK_DIR}/Headers\nln -s Versions/Current/Resources ${FRAMEWORK_DIR}/Resources\nln -s Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_DIR}/${FRAMEWORK_NAME}\n\n# ==========\n# framework作成\n# ==========\nlipo -create \\\n build/${FRAMEWORK_BUILD_CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a \\\n build/${FRAMEWORK_BUILD_CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a \\\n -o \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\necho cp ${BUILD_TARGET_NAME}/Headers/*.h ${FRAMEWORK_DIR}/Headers/\n\ncp ${BUILD_TARGET_NAME}/Headers/*.h ${FRAMEWORK_DIR}/Headers/\ncp ${BUILD_TARGET_NAME}/Resources/* ${FRAMEWORK_DIR}/Resources/\ncp ${INFOPLIST} ${FRAMEWORK_DIR}/Resources/\ncd ${FRAMEWORK_BUILD_PATH}\nchmod -fR 777 \"${FRAMEWORK_NAME}.framework\"\nzip -ry ${PACKAGENAME} $(basename $FRAMEWORK_DIR)\n";
+			shellScript = "# ==========\n# 変数設定\n# ==========\n\nINFOPLIST='Info.plist'\nFRAMEWORK_NAME=$(/usr/libexec/PlistBuddy -c \"Print CFBundleName\" ${INFOPLIST})\nBUILD_TARGET_NAME=$FRAMEWORK_NAME\nFRAMEWORK_BUILD_CONFIGURATION=\"Release\"\nFRAMEWORK_VERSION_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" ${INFOPLIST})\nFRAMEWORK_VERSION=A\nFRAMEWORK_BUILD_PATH=\"Framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nPACKAGENAME=\"${FRAMEWORK_NAME}.framework.${FRAMEWORK_VERSION_NUMBER}.zip\"\n\necho $BUILD_TARGET_NAME\necho $SDK_NAME\necho $IPHONEOS_DEPLOYMENT_TARGET\n\n# ==========\n# ビルド\n# ==========\nxcodebuild -configuration ${FRAMEWORK_BUILD_CONFIGURATION} -target ${BUILD_TARGET_NAME} clean\n\n#xcodebuild -configuration ${FRAMEWORK_BUILD_CONFIGURATION} -target ${BUILD_TARGET_NAME} -sdk iphonesimulator4.3\n#[ $? != 0 ] && exit 1\n\nxcodebuild -configuration ${FRAMEWORK_BUILD_CONFIGURATION} -target ${BUILD_TARGET_NAME} -sdk iphonesimulator5.0\n[ $? != 0 ] && exit 1\n\nxcodebuild -configuration ${FRAMEWORK_BUILD_CONFIGURATION} -target ${BUILD_TARGET_NAME} -sdk iphoneos6.1\n[ $? != 0 ] && exit 1\n\n# ==========\n# frameworkディレクトリ作成\n# ==========\n\n[ -d \"${FRAMEWORK_BUILD_PATH}\" ] && rm -rf \"${FRAMEWORK_BUILD_PATH}\"\nmkdir -p ${FRAMEWORK_DIR}\nmkdir -p ${FRAMEWORK_DIR}/Versions\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\nln -s ${FRAMEWORK_VERSION} ${FRAMEWORK_DIR}/Versions/Current\nln -s Versions/Current/Headers ${FRAMEWORK_DIR}/Headers\nln -s Versions/Current/Resources ${FRAMEWORK_DIR}/Resources\nln -s Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_DIR}/${FRAMEWORK_NAME}\n\n# ==========\n# framework作成\n# ==========\nlipo -create \\\n build/${FRAMEWORK_BUILD_CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a \\\n build/${FRAMEWORK_BUILD_CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a \\\n -o \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\necho cp ${BUILD_TARGET_NAME}/Headers/*.h ${FRAMEWORK_DIR}/Headers/\n\ncp ${BUILD_TARGET_NAME}/Headers/*.h ${FRAMEWORK_DIR}/Headers/\ncp ${BUILD_TARGET_NAME}/Resources/* ${FRAMEWORK_DIR}/Resources/\ncp ${INFOPLIST} ${FRAMEWORK_DIR}/Resources/\ncd ${FRAMEWORK_BUILD_PATH}\nchmod -fR 777 \"${FRAMEWORK_NAME}.framework\"\nzip -ry ${PACKAGENAME} $(basename $FRAMEWORK_DIR)\n";
 		};
 		DBCCA959171E418A00F090D2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -604,6 +616,8 @@
 				CA69105417299BCA00BAE086 /* BDListResult.m in Sources */,
 				CAF389BA1753457300D86822 /* BDQuery.m in Sources */,
 				CA7EE49E17545C0B0037971C /* BDUtility.m in Sources */,
+				CAD4D1F61777EB06001CC840 /* BDDevice.m in Sources */,
+				CAD4D20417794549001CC840 /* BDBasicObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

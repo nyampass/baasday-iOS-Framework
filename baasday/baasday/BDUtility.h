@@ -14,5 +14,6 @@
 + (NSData *)jsonDataFromDictionary:(NSDictionary *)dictionary;
 + (id)fixObjectInJSON:(id)object;
 + (NSDictionary *)dictionaryFromJSONData:(NSData *)jsonData errr:(NSError **)error;
++ (NSString *)base64Encode:(NSData *)data;
 
 @end

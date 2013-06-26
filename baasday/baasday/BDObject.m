@@ -9,25 +9,11 @@
 #import "BDObject_Private.h"
 #import "BDAPIClient.h"
 
-@interface BDObject () {
-	NSMutableDictionary *_values;
-}
+@interface BDObject ()
 
 @end
 
 @implementation BDObject
-
-- (id)initWithValues:(NSDictionary *)values {
-    self = [super init];
-    if (self) {
-		_values = [NSMutableDictionary dictionaryWithDictionary:values];
-    }
-    return self;
-}
-
-- (NSDictionary *)values {
-	return _values.copy;
-}
 
 - (NSString *)id {
 	return [self objectForKey:@"_id"];
@@ -41,54 +27,10 @@
 	return [self objectForKey:@"_updatedAt"];
 }
 
-- (id)objectForKey:(NSString *)key {
-	return [_values objectForKey:key];
-}
-
-- (id)objectForKeyPath:(NSString *)keyPath {
-	return [_values valueForKeyPath:keyPath];
-}
-
-- (id)objectForKeyedSubscript:(NSString *)key {
-	return [self objectForKey:key];
-}
-
-- (BOOL)containsKey:(NSString *)key {
-	return [_values.allKeys containsObject:key];
-}
-
-- (BOOL)isNil:(NSString *)key {
-	return [self containsKey:key] && [self objectForKey:key] == nil;
-}
-
-- (NSInteger)integerForKey:(NSString *)key {
-	return [[self objectForKey:key] integerValue];
-}
-
-- (NSInteger)integerForKeyPath:(NSString *)keyPath {
-	return [[self objectForKeyPath:keyPath] integerValue];
-}
-
-- (double)doubleForKey:(NSString *)key {
-	return [[self objectForKey:key] doubleValue];
-}
-
-- (double)doubleForKeyPath:(NSString *)keyPath {
-	return [[self objectForKeyPath:keyPath] doubleValue];
-}
-
-- (BOOL)boolForKeyPath:(NSString *)keyPath {
-	return [[self objectForKeyPath:keyPath] boolValue];
-}
-
-- (BOOL)boolForKey:(NSString *)key {
-	return [[self objectForKey:key] boolValue];
-}
-
 - (BOOL)update:(NSDictionary *)values error:(NSError **)error {
     NSDictionary *newValues = [[[[[BDAPIClient alloc] init] putWithPath:self.apiPath] requestJson:values] doRequestWithError:error];
 	if (newValues == nil) return NO;
-	[_values setDictionary:newValues];
+    [self setValues:newValues];
     return YES;
 }
 
@@ -99,7 +41,7 @@
 - (void)updateInBackground:(NSDictionary *)values block:(void (^)(id, NSError *))block {
 	[[[[[BDAPIClient alloc] init] putWithPath:self.apiPath] requestJson:values] doRequestInBackground:^(NSDictionary *result, NSError *error) {
 		if (result) {
-			[_values setDictionary:result];
+            [self setValues:result];
 			block(self, error);
 		} else {
 			block(self, error);

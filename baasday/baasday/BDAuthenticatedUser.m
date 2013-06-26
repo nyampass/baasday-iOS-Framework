@@ -21,6 +21,18 @@
 	return [self objectForKey:@"_authenticationKey"];
 }
 
+- (BDDevice *)currentDevice {
+    NSString *currentDeviceId = [BDBaasday deviceId];
+    NSArray *devices = [self objectForKey:@"_devices"];
+    if (devices) {
+        for (NSDictionary *deviceValues in devices) {
+            NSString *deviceId = [deviceValues objectForKey:@"_id"];
+            if (deviceId && [deviceId isEqual:currentDeviceId]) return [[BDDevice alloc] initWithValues:deviceValues];
+        }
+    }
+    return [[BDDevice alloc] initWithValues:@{@"_id": currentDeviceId}];
+}
+
 + (BDAuthenticatedUser *)createWithValues:(NSDictionary *)values error:(NSError **)error {
 	BDUser *user = [BDUser createWithValues:values error:error];
 	if (!user) return nil;
@@ -61,6 +73,22 @@
 	[BDAPIClient fetchInBackgroundWithPath:@"me" block:^(NSDictionary *result, NSError *error) {
 		block(result ? [[self alloc] initWithValues:result] : nil, error);
 	}];
+}
+
+- (NSDictionary *)dictionaryForUpdatingDevice:(BDDevice *)device {
+    return @{@"_devices": @[device]};
+}
+
+- (BOOL)updateDevice:(BDDevice *)device error:(NSError **)error {
+    return [self update:[self dictionaryForUpdatingDevice:device] error:error];
+}
+
+- (BOOL)updateDevice:(BDDevice *)device {
+    return [self update:[self dictionaryForUpdatingDevice:device]];
+}
+
+- (void)updateDeviceInBackground:(BDDevice *)device block:(void(^)(id object, NSError *error))block {
+    [self updateInBackground:[self dictionaryForUpdatingDevice:device] block:block];
 }
 
 @end

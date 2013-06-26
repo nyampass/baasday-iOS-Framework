@@ -7,6 +7,7 @@
 //
 
 #import "BDUtility.h"
+#import "BDBasicObject.h"
 #import "JSONKit.h"
 
 @implementation BDUtility
@@ -26,6 +27,8 @@
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 		dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 		return @{@"$type": @"datetime", @"$value": [dateFormatter stringFromDate:object]};
+    } else if ([object isKindOfClass:[BDBasicObject class]]) {
+        return [self fixObjectForJSON:((BDBasicObject *) object).values];
 	} else {
 		return object;
 	}
@@ -69,6 +72,42 @@
 
 + (NSDictionary *)dictionaryFromJSONData:(NSData *)jsonData errr:(NSError **)error {
 	return [self fixObjectInJSON:[[JSONDecoder decoder] objectWithData:jsonData error:error]];
+}
+
++ (NSString *)base64Encode:(NSData *)data {
+	static const char *const base64Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+	int dataLength = [data length];
+	int encodedLength = ceil(dataLength * 4.0 / 3.0);
+	int padLength = 3 - dataLength % 3;
+	if (padLength == 3) padLength = 0;
+	char *encoded = (char *) malloc(sizeof(char) * (encodedLength + padLength + 1));
+	const unsigned char *token = [data bytes];
+	const unsigned char *tokenPointer = token;
+	char *encodedPointer = encoded;
+	int i;
+	unsigned char rest = 0;
+	for (i = 0; i < dataLength; ++i) {
+		int shiftLength = (i % 3) * 2 + 2;
+		*encodedPointer = base64Characters[(rest << (8 - shiftLength)) | (*tokenPointer >> shiftLength)];
+		++encodedPointer;
+		rest = *tokenPointer & (0xff >> (8 - shiftLength));
+		if (i % 3 == 2) {
+			*encodedPointer = base64Characters[rest];
+			++encodedPointer;
+			rest = 0;
+		}
+		++tokenPointer;
+	}
+	if (rest != 0) {
+		*encodedPointer = base64Characters[rest << (padLength % 3 * 2)];
+		++encodedPointer;
+	}
+	for (i = 0; i < padLength; ++i) {
+		*encodedPointer = '=';
+		++encodedPointer;
+	}
+	*encodedPointer = '\0';
+    return [NSString stringWithCString:encoded encoding:NSASCIIStringEncoding];
 }
 
 @end

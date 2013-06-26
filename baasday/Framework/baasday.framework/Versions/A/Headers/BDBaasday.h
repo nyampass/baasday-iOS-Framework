@@ -51,6 +51,20 @@
 + (NSString *)userAuthenticationKey;
 
 /**
+ * @brief 端末IDを設定します。
+ *
+ * 端末IDはBDDeviceクラスのgenerateDeviceIdで生成します
+ * @param deviceId 端末ID
+ */
++ (void)setDeviceId:(NSString *)deviceId;
+
+/**
+ * @brief 設定されている端末IDを返します。
+ * @return 端末ID
+ */
++ (NSString *)deviceId;
+
+/**
  * @brief baasday Web APIのURLを返します。
  * @return baasday Web APIのURL
  */

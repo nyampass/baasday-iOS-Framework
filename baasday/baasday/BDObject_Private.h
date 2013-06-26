@@ -7,10 +7,10 @@
 //
 
 #import "BDObject.h"
+#import "BDBasicObject_Private.h"
 
 @interface BDObject (Private)
 
-- (id)initWithValues:(NSDictionary *)values;
 - (NSString *)apiPath;
 
 @end

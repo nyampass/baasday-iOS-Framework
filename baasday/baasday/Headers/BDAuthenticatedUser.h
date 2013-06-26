@@ -5,13 +5,14 @@
 
 #import <Foundation/Foundation.h>
 #import "BDUser.h"
+#import "BDDevice.h"
 
 @class BDAuthenticatedUser;
 
 typedef void (^BDAuthenticatedUserResultBlock)(BDAuthenticatedUser *user, NSError *error);
 
 /**
- * @brief 認証済みのユーザを表すクラスです。ユーザの作成はこのクラスを用いて行います。
+ * @brief 認証済みのユーザを表すクラスです。ユーザの作成と更新はこのクラスを用いて行います。
  *
  * createメソッドでユーザを作成し、authenticationKeyプロパティに設定されている認証キーをアプリケーションで保存してください。
  * 保存した認証キーを引数にしてBDBaasdayのsetUserAuthenticationKey:メソッドを呼び出せば、作成したユーザをfetchメソッドで取得できるようになります。
@@ -24,6 +25,13 @@ typedef void (^BDAuthenticatedUserResultBlock)(BDAuthenticatedUser *user, NSErro
  * これは[user objectForKey:@"_authenticationKey"]と同じです。
  */
 @property (readonly) NSString *authenticationKey;
+
+/**
+ * @brief BDBaasdayクラスに設定されている端末IDに対応した端末情報
+ *
+ * 端末情報がまだ保存されていない場合は空の端末情報を返します。
+ */
+@property (readonly) BDDevice *currentDevice;
 
 /**
  * @brief ユーザを作成します。baasdayサーバへの登録は即時に行われます。
@@ -84,5 +92,25 @@ typedef void (^BDAuthenticatedUserResultBlock)(BDAuthenticatedUser *user, NSErro
  * @param block 取得が完了したか、失敗したときに呼び出されます
  */
 + (void)fetchInBackground:(BDAuthenticatedUserResultBlock)block;
+
+/**
+ * @brief 端末情報を更新します。
+ * @param device 端末情報
+ * @param error エラーが発生した場合この引数が指す場所に格納されます
+ */
+- (BOOL)updateDevice:(BDDevice *)device error:(NSError **)error;
+
+/**
+ * @brief 端末情報を更新します。
+ * @param device 端末情報
+ */
+- (BOOL)updateDevice:(BDDevice *)device;
+
+/**
+ * @brief 端末情報を更新します。
+ * @param device 端末情報
+ * @param block 取得が完了したか、失敗したときに呼び出されます
+ */
+- (void)updateDeviceInBackground:(BDDevice *)device block:(void(^)(id object, NSError *error))block;
 
 @end

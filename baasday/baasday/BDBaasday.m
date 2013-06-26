@@ -33,24 +33,34 @@ static NSString* _apiKey = nil;
     return BDClientVersion;
 }
 
-static NSString* userAuthenticationKey = nil;
+static NSString *_userAuthenticationKey = nil;
 
 + (void)setUserAuthenticationKey:(NSString *)key {
-    userAuthenticationKey = key;
+    _userAuthenticationKey = key;
 }
 
 + (NSString *)userAuthenticationKey {
-    return userAuthenticationKey;
+    return _userAuthenticationKey;
 }
 
-static NSString *apiURLRoot_ = BD_API_URL_ROOT;
+static NSString *_deviceId = nil;
+
++ (void)setDeviceId:(NSString *)deviceId {
+    _deviceId = deviceId;
+}
+
++ (NSString *)deviceId {
+    return _deviceId;
+}
+
+static NSString *_apiURLRoot = BD_API_URL_ROOT;
 
 + (NSString *)apiURLRoot {
-	return apiURLRoot_;
+	return _apiURLRoot;
 }
 
 + (void)setAPIURLRoot:(NSString *)apiURLRoot {
-	apiURLRoot_ = apiURLRoot;
+	_apiURLRoot = apiURLRoot;
 }
 
 @end
