@@ -23,6 +23,7 @@
 
 - (BDDevice *)currentDevice {
     NSString *currentDeviceId = [BDBaasday deviceId];
+    if (!currentDeviceId) [NSException raise:@"no device ID is set on BDBaasday" format:nil];
     NSArray *devices = [self objectForKey:@"_devices"];
     if (devices) {
         for (NSDictionary *deviceValues in devices) {

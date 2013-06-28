@@ -12,7 +12,7 @@ baasdayサーバ上に保存されるオブジェクトの共通の基底クラ�
 
 
 
-Inherits N\-S\-Object.
+Inherits \hyperlink{interface_b_d_basic_object}{B\-D\-Basic\-Object}.
 
 
 
@@ -21,28 +21,6 @@ Inherited by \hyperlink{interface_b_d_item}{B\-D\-Item}, \hyperlink{interface_b_
 \subsection*{Instance Methods}
 \begin{DoxyCompactItemize}
 \item 
-(\hyperlink{interface_b_d_object_aa753599ab0726dcd36d8a3abd37281e2}{id}) -\/ \hyperlink{interface_b_d_object_a8704a73eaae09583a9759b0ced5e5b2e}{object\-For\-Key\-:}
-\begin{DoxyCompactList}\small\item\em 指定されたフィールドの値を返します \end{DoxyCompactList}\item 
-(\hyperlink{interface_b_d_object_aa753599ab0726dcd36d8a3abd37281e2}{id}) -\/ \hyperlink{interface_b_d_object_a5b4783305f8f4d7fe3aebd1f895873ff}{object\-For\-Key\-Path\-:}
-\begin{DoxyCompactList}\small\item\em 指定されたフィールドの値を返します \end{DoxyCompactList}\item 
-(\hyperlink{interface_b_d_object_aa753599ab0726dcd36d8a3abd37281e2}{id}) -\/ \hyperlink{interface_b_d_object_a9f5efc9082f7c8b81e6acac472351668}{object\-For\-Keyed\-Subscript\-:}
-\begin{DoxyCompactList}\small\item\em 指定されたフィールドの値を返します \end{DoxyCompactList}\item 
-(B\-O\-O\-L) -\/ \hyperlink{interface_b_d_object_a044aa33059d62c53333fa53d205de5c0}{contains\-Key\-:}
-\begin{DoxyCompactList}\small\item\em 指定されたフィールドが存在するかどうかを返します \end{DoxyCompactList}\item 
-(B\-O\-O\-L) -\/ \hyperlink{interface_b_d_object_aae51c35890852ab7c55859d1f5fd2bf1}{is\-Nil\-:}
-\begin{DoxyCompactList}\small\item\em 指定されたフィールドが値としてnilを持つかどうかを返します \end{DoxyCompactList}\item 
-(N\-S\-Integer) -\/ \hyperlink{interface_b_d_object_a158d8a6721f99c4830c29c36e4f21ae4}{integer\-For\-Key\-:}
-\begin{DoxyCompactList}\small\item\em 指定されたフィールドの値を整数として返します \end{DoxyCompactList}\item 
-(N\-S\-Integer) -\/ \hyperlink{interface_b_d_object_ab92fb4babf0f5133e5c8ad5af64aa383}{integer\-For\-Key\-Path\-:}
-\begin{DoxyCompactList}\small\item\em 指定されたフィールドの値を整数として返します \end{DoxyCompactList}\item 
-(double) -\/ \hyperlink{interface_b_d_object_ac42575e8402e8961cb06a2f53fd5e152}{double\-For\-Key\-:}
-\begin{DoxyCompactList}\small\item\em 指定されたフィールドの値を数値として返します \end{DoxyCompactList}\item 
-(double) -\/ \hyperlink{interface_b_d_object_a9ac69f0af2f96da9cd40a65cc3dc71e0}{double\-For\-Key\-Path\-:}
-\begin{DoxyCompactList}\small\item\em 指定されたフィールドの値を数値として返します \end{DoxyCompactList}\item 
-(B\-O\-O\-L) -\/ \hyperlink{interface_b_d_object_a6a5057f2d5915ee166f2e7c69f04bb8b}{bool\-For\-Key\-:}
-\begin{DoxyCompactList}\small\item\em 指定されたフィールドの値をブール値として返します \end{DoxyCompactList}\item 
-(B\-O\-O\-L) -\/ \hyperlink{interface_b_d_object_aaf550b50af258479c98f73b6db2c7e3a}{bool\-For\-Key\-Path\-:}
-\begin{DoxyCompactList}\small\item\em 指定されたフィールドの値をブール値として返します \end{DoxyCompactList}\item 
 (B\-O\-O\-L) -\/ \hyperlink{interface_b_d_object_ab80f1486814b7c8298963a2206b75730}{update\-:error\-:}
 \begin{DoxyCompactList}\small\item\em このオブジェクトを更新します。baasdsayサーバへの反映は即時に行われます。 \end{DoxyCompactList}\item 
 (B\-O\-O\-L) -\/ \hyperlink{interface_b_d_object_acb8238e46c15d731d1a21985d865ac44}{update\-:}
@@ -58,9 +36,6 @@ Inherited by \hyperlink{interface_b_d_item}{B\-D\-Item}, \hyperlink{interface_b_
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{interface_b_d_object_a69ec5b945c23ee6ecbb3b319c360924a}{N\-S\-Dictionary $\ast$ \hyperlink{interface_b_d_object_a69ec5b945c23ee6ecbb3b319c360924a}{values}}\label{interface_b_d_object_a69ec5b945c23ee6ecbb3b319c360924a}
-
-\begin{DoxyCompactList}\small\item\em 全てのフィールドの値 \end{DoxyCompactList}\item 
 N\-S\-String $\ast$ \hyperlink{interface_b_d_object_aa753599ab0726dcd36d8a3abd37281e2}{id}
 \begin{DoxyCompactList}\small\item\em I\-D. \end{DoxyCompactList}\item 
 N\-S\-Date $\ast$ \hyperlink{interface_b_d_object_a1e9c62e127b93ad0f7cc2d4788642ee8}{created\-At}
@@ -75,63 +50,6 @@ baasdayサーバ上に保存されるオブジェクトの共通の基底クラ�
 フィールドの値は\-N\-S\-Number(数値/ブール)、\-N\-S\-String(文字列)、\-N\-S\-Date(日付)、\-N\-S\-Array、\-N\-S\-Dictionary、nilで表されます。 
 
 \subsection{Method Documentation}
-\hypertarget{interface_b_d_object_a6a5057f2d5915ee166f2e7c69f04bb8b}{\index{B\-D\-Object@{B\-D\-Object}!bool\-For\-Key\-:@{bool\-For\-Key\-:}}
-\index{bool\-For\-Key\-:@{bool\-For\-Key\-:}!BDObject@{B\-D\-Object}}
-\subsubsection[{bool\-For\-Key\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) bool\-For\-Key\-: 
-\begin{DoxyParamCaption}
-\item[{(N\-S\-String $\ast$)}]{key}
-\end{DoxyParamCaption}
-}}\label{interface_b_d_object_a6a5057f2d5915ee166f2e7c69f04bb8b}
-
-
-指定されたフィールドの値をブール値として返します 
-
-
-\begin{DoxyParams}{Parameters}
-{\em key} & フィールド名 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-フィールドの値。フィールドが存在しない場合は\-N\-O 
-\end{DoxyReturn}
-\hypertarget{interface_b_d_object_aaf550b50af258479c98f73b6db2c7e3a}{\index{B\-D\-Object@{B\-D\-Object}!bool\-For\-Key\-Path\-:@{bool\-For\-Key\-Path\-:}}
-\index{bool\-For\-Key\-Path\-:@{bool\-For\-Key\-Path\-:}!BDObject@{B\-D\-Object}}
-\subsubsection[{bool\-For\-Key\-Path\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) bool\-For\-Key\-Path\-: 
-\begin{DoxyParamCaption}
-\item[{(N\-S\-String $\ast$)}]{key\-Path}
-\end{DoxyParamCaption}
-}}\label{interface_b_d_object_aaf550b50af258479c98f73b6db2c7e3a}
-
-
-指定されたフィールドの値をブール値として返します 
-
-
-\begin{DoxyParams}{Parameters}
-{\em key\-Path} & フィールド名。入れ子になったフィールドの値をドットで繋げて指定できます \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-フィールドの値。フィールドが存在しない場合は\-N\-O 
-\end{DoxyReturn}
-\hypertarget{interface_b_d_object_a044aa33059d62c53333fa53d205de5c0}{\index{B\-D\-Object@{B\-D\-Object}!contains\-Key\-:@{contains\-Key\-:}}
-\index{contains\-Key\-:@{contains\-Key\-:}!BDObject@{B\-D\-Object}}
-\subsubsection[{contains\-Key\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) contains\-Key\-: 
-\begin{DoxyParamCaption}
-\item[{(N\-S\-String $\ast$)}]{key}
-\end{DoxyParamCaption}
-}}\label{interface_b_d_object_a044aa33059d62c53333fa53d205de5c0}
-
-
-指定されたフィールドが存在するかどうかを返します 
-
-
-\begin{DoxyParams}{Parameters}
-{\em key} & フィールド名 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-フィールドが存在する場合は\-Y\-E\-S、存在しない場合は\-N\-O 
-\end{DoxyReturn}
 \hypertarget{interface_b_d_object_a98f8e5aad3fb13e207dc4c678e0ef26e}{\index{B\-D\-Object@{B\-D\-Object}!delete@{delete}}
 \index{delete@{delete}!BDObject@{B\-D\-Object}}
 \subsubsection[{delete}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) delete 
@@ -181,158 +99,6 @@ baasdayサーバ上に保存されるオブジェクトの共通の基底クラ�
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 削除が成功した場合は\-Y\-E\-S、それ以外は\-N\-O 
-\end{DoxyReturn}
-\hypertarget{interface_b_d_object_ac42575e8402e8961cb06a2f53fd5e152}{\index{B\-D\-Object@{B\-D\-Object}!double\-For\-Key\-:@{double\-For\-Key\-:}}
-\index{double\-For\-Key\-:@{double\-For\-Key\-:}!BDObject@{B\-D\-Object}}
-\subsubsection[{double\-For\-Key\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (double) double\-For\-Key\-: 
-\begin{DoxyParamCaption}
-\item[{(N\-S\-String $\ast$)}]{key}
-\end{DoxyParamCaption}
-}}\label{interface_b_d_object_ac42575e8402e8961cb06a2f53fd5e152}
-
-
-指定されたフィールドの値を数値として返します 
-
-
-\begin{DoxyParams}{Parameters}
-{\em key} & フィールド名 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-フィールドの値。フィールドが存在しない場合は0 
-\end{DoxyReturn}
-\hypertarget{interface_b_d_object_a9ac69f0af2f96da9cd40a65cc3dc71e0}{\index{B\-D\-Object@{B\-D\-Object}!double\-For\-Key\-Path\-:@{double\-For\-Key\-Path\-:}}
-\index{double\-For\-Key\-Path\-:@{double\-For\-Key\-Path\-:}!BDObject@{B\-D\-Object}}
-\subsubsection[{double\-For\-Key\-Path\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (double) double\-For\-Key\-Path\-: 
-\begin{DoxyParamCaption}
-\item[{(N\-S\-String $\ast$)}]{key\-Path}
-\end{DoxyParamCaption}
-}}\label{interface_b_d_object_a9ac69f0af2f96da9cd40a65cc3dc71e0}
-
-
-指定されたフィールドの値を数値として返します 
-
-
-\begin{DoxyParams}{Parameters}
-{\em key\-Path} & フィールド名。入れ子になったフィールドの値をドットで繋げて指定できます \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-フィールドの値。フィールドが存在しない場合は0 
-\end{DoxyReturn}
-\hypertarget{interface_b_d_object_a158d8a6721f99c4830c29c36e4f21ae4}{\index{B\-D\-Object@{B\-D\-Object}!integer\-For\-Key\-:@{integer\-For\-Key\-:}}
-\index{integer\-For\-Key\-:@{integer\-For\-Key\-:}!BDObject@{B\-D\-Object}}
-\subsubsection[{integer\-For\-Key\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\-S\-Integer) integer\-For\-Key\-: 
-\begin{DoxyParamCaption}
-\item[{(N\-S\-String $\ast$)}]{key}
-\end{DoxyParamCaption}
-}}\label{interface_b_d_object_a158d8a6721f99c4830c29c36e4f21ae4}
-
-
-指定されたフィールドの値を整数として返します 
-
-
-\begin{DoxyParams}{Parameters}
-{\em key} & フィールド名 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-フィールドの値。フィールドが存在しない場合は0 
-\end{DoxyReturn}
-\hypertarget{interface_b_d_object_ab92fb4babf0f5133e5c8ad5af64aa383}{\index{B\-D\-Object@{B\-D\-Object}!integer\-For\-Key\-Path\-:@{integer\-For\-Key\-Path\-:}}
-\index{integer\-For\-Key\-Path\-:@{integer\-For\-Key\-Path\-:}!BDObject@{B\-D\-Object}}
-\subsubsection[{integer\-For\-Key\-Path\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\-S\-Integer) integer\-For\-Key\-Path\-: 
-\begin{DoxyParamCaption}
-\item[{(N\-S\-String $\ast$)}]{key\-Path}
-\end{DoxyParamCaption}
-}}\label{interface_b_d_object_ab92fb4babf0f5133e5c8ad5af64aa383}
-
-
-指定されたフィールドの値を整数として返します 
-
-
-\begin{DoxyParams}{Parameters}
-{\em key\-Path} & フィールド名。入れ子になったフィールドの値をドットで繋げて指定できます \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-フィールドの値。フィールドが存在しない場合は0 
-\end{DoxyReturn}
-\hypertarget{interface_b_d_object_aae51c35890852ab7c55859d1f5fd2bf1}{\index{B\-D\-Object@{B\-D\-Object}!is\-Nil\-:@{is\-Nil\-:}}
-\index{is\-Nil\-:@{is\-Nil\-:}!BDObject@{B\-D\-Object}}
-\subsubsection[{is\-Nil\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) is\-Nil\-: 
-\begin{DoxyParamCaption}
-\item[{(N\-S\-String $\ast$)}]{key}
-\end{DoxyParamCaption}
-}}\label{interface_b_d_object_aae51c35890852ab7c55859d1f5fd2bf1}
-
-
-指定されたフィールドが値としてnilを持つかどうかを返します 
-
-
-\begin{DoxyParams}{Parameters}
-{\em key} & フィールド名 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-フィールドが存在し、値がnilの場合はture、それ以外はfalse 
-\end{DoxyReturn}
-\hypertarget{interface_b_d_object_a8704a73eaae09583a9759b0ced5e5b2e}{\index{B\-D\-Object@{B\-D\-Object}!object\-For\-Key\-:@{object\-For\-Key\-:}}
-\index{object\-For\-Key\-:@{object\-For\-Key\-:}!BDObject@{B\-D\-Object}}
-\subsubsection[{object\-For\-Key\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf id}) object\-For\-Key\-: 
-\begin{DoxyParamCaption}
-\item[{(N\-S\-String $\ast$)}]{key}
-\end{DoxyParamCaption}
-}}\label{interface_b_d_object_a8704a73eaae09583a9759b0ced5e5b2e}
-
-
-指定されたフィールドの値を返します 
-
-
-\begin{DoxyParams}{Parameters}
-{\em key} & フィールド名 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-フィールドの値。フィールドが存在しない場合はnil 
-\end{DoxyReturn}
-\hypertarget{interface_b_d_object_a9f5efc9082f7c8b81e6acac472351668}{\index{B\-D\-Object@{B\-D\-Object}!object\-For\-Keyed\-Subscript\-:@{object\-For\-Keyed\-Subscript\-:}}
-\index{object\-For\-Keyed\-Subscript\-:@{object\-For\-Keyed\-Subscript\-:}!BDObject@{B\-D\-Object}}
-\subsubsection[{object\-For\-Keyed\-Subscript\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf id}) object\-For\-Keyed\-Subscript\-: 
-\begin{DoxyParamCaption}
-\item[{(N\-S\-String $\ast$)}]{key}
-\end{DoxyParamCaption}
-}}\label{interface_b_d_object_a9f5efc9082f7c8b81e6acac472351668}
-
-
-指定されたフィールドの値を返します 
-
-
-\begin{DoxyParams}{Parameters}
-{\em key} & フィールド名 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-フィールドの値。フィールドが存在しない場合はnil 
-\end{DoxyReturn}
-\hypertarget{interface_b_d_object_a5b4783305f8f4d7fe3aebd1f895873ff}{\index{B\-D\-Object@{B\-D\-Object}!object\-For\-Key\-Path\-:@{object\-For\-Key\-Path\-:}}
-\index{object\-For\-Key\-Path\-:@{object\-For\-Key\-Path\-:}!BDObject@{B\-D\-Object}}
-\subsubsection[{object\-For\-Key\-Path\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf id}) object\-For\-Key\-Path\-: 
-\begin{DoxyParamCaption}
-\item[{(N\-S\-String $\ast$)}]{key\-Path}
-\end{DoxyParamCaption}
-}}\label{interface_b_d_object_a5b4783305f8f4d7fe3aebd1f895873ff}
-
-
-指定されたフィールドの値を返します 
-
-
-\begin{DoxyParams}{Parameters}
-{\em key\-Path} & フィールド名。入れ子になったフィールドの値をドットで繋げて指定できます \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-フィールドの値。フィールドが存在しない場合はnil 
 \end{DoxyReturn}
 \hypertarget{interface_b_d_object_acb8238e46c15d731d1a21985d865ac44}{\index{B\-D\-Object@{B\-D\-Object}!update\-:@{update\-:}}
 \index{update\-:@{update\-:}!BDObject@{B\-D\-Object}}

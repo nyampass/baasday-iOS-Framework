@@ -3,6 +3,8 @@ var files =
     [ "baasday.h", "baasday_8h_source.html", null ],
     [ "BDAuthenticatedUser.h", "_b_d_authenticated_user_8h_source.html", null ],
     [ "BDBaasday.h", "_b_d_baasday_8h_source.html", null ],
+    [ "BDBasicObject.h", "_b_d_basic_object_8h_source.html", null ],
+    [ "BDDevice.h", "_b_d_device_8h_source.html", null ],
     [ "BDItem.h", "_b_d_item_8h_source.html", null ],
     [ "BDLeaderboardEntry.h", "_b_d_leaderboard_entry_8h_source.html", null ],
     [ "BDListResult.h", "_b_d_list_result_8h_source.html", null ],

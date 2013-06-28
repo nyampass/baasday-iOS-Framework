@@ -3,7 +3,7 @@
 }
 
 
-認証済みのユーザを表すクラスです。ユーザの作成はこのクラスを用いて行います。  
+認証済みのユーザを表すクラスです。ユーザの作成と更新はこのクラスを用いて行います。  
 
 
 
@@ -14,6 +14,15 @@
 
 Inherits \hyperlink{interface_b_d_user}{B\-D\-User}.
 
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(B\-O\-O\-L) -\/ \hyperlink{interface_b_d_authenticated_user_a62dd555b26faa4cdf2a619a3be2f08e9}{update\-Device\-:error\-:}
+\begin{DoxyCompactList}\small\item\em 端末情報を更新します。 \end{DoxyCompactList}\item 
+(B\-O\-O\-L) -\/ \hyperlink{interface_b_d_authenticated_user_a1e0ec3e8cf7bb54970fbe698c79ff404}{update\-Device\-:}
+\begin{DoxyCompactList}\small\item\em 端末情報を更新します。 \end{DoxyCompactList}\item 
+(void) -\/ \hyperlink{interface_b_d_authenticated_user_ad79404b21ac78fe5345c33460d490e0e}{update\-Device\-In\-Background\-:block\-:}
+\begin{DoxyCompactList}\small\item\em 端末情報を更新します。 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Class Methods}
 \begin{DoxyCompactItemize}
 \item 
@@ -39,14 +48,15 @@ Inherits \hyperlink{interface_b_d_user}{B\-D\-User}.
 \begin{DoxyCompactItemize}
 \item 
 N\-S\-String $\ast$ \hyperlink{interface_b_d_authenticated_user_adbd855742b73eb440cb118ff190e8851}{authentication\-Key}
-\begin{DoxyCompactList}\small\item\em 認証キー \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Additional Inherited Members}
+\begin{DoxyCompactList}\small\item\em 認証キー \end{DoxyCompactList}\item 
+\hyperlink{interface_b_d_device}{B\-D\-Device} $\ast$ \hyperlink{interface_b_d_authenticated_user_a7accdee844c94453ec3d8fd61c7bdc41}{current\-Device}
+\begin{DoxyCompactList}\small\item\em B\-D\-Baasdayクラスに設定されている端末\-I\-Dに対応した端末情報 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-認証済みのユーザを表すクラスです。ユーザの作成はこのクラスを用いて行います。 
+認証済みのユーザを表すクラスです。ユーザの作成と更新はこのクラスを用いて行います。 
 
-createメソッドでユーザを作成し、authentication\-Keyプロパティに設定されている認証キーをアプリケーションで保存してください。 保存した認証キーを引数にして\-B\-D\-Baasdayのset\-User\-Authentication\-Key\-:メソッドを呼び出せば、作成したユーザをfetchメソッドで取得できるようになります。 
+ユーザ情報を保存する場合は最初にcreateメソッドでユーザを作成し、authentication\-Keyプロパティに設定されている認証キーをアプリケーション内に保存してください。保存した認証キーを\-B\-D\-Baasdayクラスのset\-User\-Authentication\-Key\-:メソッドで設定すれば、作成したユーザをfetchメソッドで取得できるようになります。 
 
 \subsection{Method Documentation}
 \hypertarget{interface_b_d_authenticated_user_a180aaa05728e33efacf4ca28484302f0}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!create@{create}}
@@ -207,6 +217,61 @@ B\-D\-Baasdayクラスに設定されている認証キーをもとにユーザ�
 \begin{DoxyReturn}{Returns}
 取得したユーザ 
 \end{DoxyReturn}
+\hypertarget{interface_b_d_authenticated_user_a1e0ec3e8cf7bb54970fbe698c79ff404}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!update\-Device\-:@{update\-Device\-:}}
+\index{update\-Device\-:@{update\-Device\-:}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{update\-Device\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) update\-Device\-: 
+\begin{DoxyParamCaption}
+\item[{({\bf B\-D\-Device} $\ast$)}]{device}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_authenticated_user_a1e0ec3e8cf7bb54970fbe698c79ff404}
+
+
+端末情報を更新します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & 端末情報 \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_authenticated_user_a62dd555b26faa4cdf2a619a3be2f08e9}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!update\-Device\-:error\-:@{update\-Device\-:error\-:}}
+\index{update\-Device\-:error\-:@{update\-Device\-:error\-:}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{update\-Device\-:error\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) {\bf update\-Device\-:} 
+\begin{DoxyParamCaption}
+\item[{({\bf B\-D\-Device} $\ast$)}]{device}
+\item[{error:(N\-S\-Error $\ast$$\ast$)}]{error}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_authenticated_user_a62dd555b26faa4cdf2a619a3be2f08e9}
+
+
+端末情報を更新します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & 端末情報 \\
+\hline
+{\em error} & エラーが発生した場合この引数が指す場所に格納されます \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_authenticated_user_ad79404b21ac78fe5345c33460d490e0e}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!update\-Device\-In\-Background\-:block\-:@{update\-Device\-In\-Background\-:block\-:}}
+\index{update\-Device\-In\-Background\-:block\-:@{update\-Device\-In\-Background\-:block\-:}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{update\-Device\-In\-Background\-:block\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) update\-Device\-In\-Background\-: 
+\begin{DoxyParamCaption}
+\item[{({\bf B\-D\-Device} $\ast$)}]{device}
+\item[{block:({\bf id})}]{object}
+\item[{(N\-S\-Error $\ast$error)}]{block}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_authenticated_user_ad79404b21ac78fe5345c33460d490e0e}
+
+
+端末情報を更新します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & 端末情報 \\
+\hline
+{\em block} & 取得が完了したか、失敗したときに呼び出されます \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Property Documentation}
@@ -217,7 +282,16 @@ B\-D\-Baasdayクラスに設定されている認証キーをもとにユーザ�
 
 認証キー 
 
-これは\mbox{[}user object\-For\-Key\-:"\-\_\-authentication\-Key"\mbox{]}と同じです。 
+これは\mbox{[}user object\-For\-Key\-:"\-\_\-authentication\-Key"\mbox{]}と同じです。 \hypertarget{interface_b_d_authenticated_user_a7accdee844c94453ec3d8fd61c7bdc41}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!current\-Device@{current\-Device}}
+\index{current\-Device@{current\-Device}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{current\-Device}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf B\-D\-Device}$\ast$) current\-Device\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [atomic]}, {\ttfamily [assign]}}}\label{interface_b_d_authenticated_user_a7accdee844c94453ec3d8fd61c7bdc41}
+
+
+B\-D\-Baasdayクラスに設定されている端末\-I\-Dに対応した端末情報 
+
+端末情報を取得する前に\-B\-D\-Baadayクラスのset\-Device\-Id\-:メソッドを端末\-I\-Dを設定する必要があります。詳細は\-B\-D\-Deviceクラスを参照してください。
+
+端末情報がまだ保存されていない場合は空の端末情報を返します。 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 

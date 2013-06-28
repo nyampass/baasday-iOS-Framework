@@ -1,7 +1,7 @@
 var searchData=
 [
   ['collectionname',['collectionName',['../interface_b_d_item.html#a2ecb76196ee2b904b36e9d4fe3448d7d',1,'BDItem']]],
-  ['containskey_3a',['containsKey:',['../interface_b_d_object.html#a044aa33059d62c53333fa53d205de5c0',1,'BDObject']]],
+  ['containskey_3a',['containsKey:',['../interface_b_d_basic_object.html#a0ab2219a2884e29b550ee989912278da',1,'BDBasicObject']]],
   ['contents',['contents',['../interface_b_d_list_result.html#ac3d0683be0af2bbd52a4830e7bd8e49c',1,'BDListResult']]],
   ['count',['count',['../interface_b_d_list_result.html#aeb2cb3cece5df1286687d1e541b66be1',1,'BDListResult']]],
   ['create',['create',['../interface_b_d_authenticated_user.html#a180aaa05728e33efacf4ca28484302f0',1,'BDAuthenticatedUser']]],
@@ -25,5 +25,6 @@ var searchData=
   ['createwithleaderboardname_3avalues_3a',['createWithLeaderboardName:values:',['../interface_b_d_leaderboard_entry.html#add5af3941f1078d9590c564fd521b7c8',1,'BDLeaderboardEntry']]],
   ['createwithleaderboardname_3avalues_3aerror_3a',['createWithLeaderboardName:values:error:',['../interface_b_d_leaderboard_entry.html#a372d15b5056d9bcc6c1f09a81aa21888',1,'BDLeaderboardEntry']]],
   ['createwithvalues_3a',['createWithValues:',['../interface_b_d_authenticated_user.html#a8fbfc9e494874aa7b49ccf81f82addfc',1,'BDAuthenticatedUser']]],
-  ['createwithvalues_3aerror_3a',['createWithValues:error:',['../interface_b_d_authenticated_user.html#a60810e84160eeb3c547db67de582db60',1,'BDAuthenticatedUser']]]
+  ['createwithvalues_3aerror_3a',['createWithValues:error:',['../interface_b_d_authenticated_user.html#a60810e84160eeb3c547db67de582db60',1,'BDAuthenticatedUser']]],
+  ['currentdevice',['currentDevice',['../interface_b_d_authenticated_user.html#a7accdee844c94453ec3d8fd61c7bdc41',1,'BDAuthenticatedUser']]]
 ];

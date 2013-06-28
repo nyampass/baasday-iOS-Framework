@@ -14,8 +14,7 @@ typedef void (^BDAuthenticatedUserResultBlock)(BDAuthenticatedUser *user, NSErro
 /**
  * @brief 認証済みのユーザを表すクラスです。ユーザの作成と更新はこのクラスを用いて行います。
  *
- * createメソッドでユーザを作成し、authenticationKeyプロパティに設定されている認証キーをアプリケーションで保存してください。
- * 保存した認証キーを引数にしてBDBaasdayのsetUserAuthenticationKey:メソッドを呼び出せば、作成したユーザをfetchメソッドで取得できるようになります。
+ * ユーザ情報を保存する場合は最初にcreateメソッドでユーザを作成し、authenticationKeyプロパティに設定されている認証キーをアプリケーション内に保存してください。保存した認証キーをBDBaasdayクラスのsetUserAuthenticationKey:メソッドで設定すれば、作成したユーザをfetchメソッドで取得できるようになります。
  */
 @interface BDAuthenticatedUser : BDUser
 

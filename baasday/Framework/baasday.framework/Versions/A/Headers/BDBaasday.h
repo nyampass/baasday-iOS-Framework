@@ -9,7 +9,12 @@
  * @brief アプリケーション内でのbaasdayの設定を保持するクラスです
  *
  * 最初にsetApplicationId:apiKey:でアプリケーションIDとAPIキーを設定する必要があります。
- * 以前に作成したユーザを取得したり、ユーザを更新する場合はsetUserAuthenticationKey:でユーザの認証キーを設定します。認証キーはユーザの作成時に取得できるので、アプリケーションないで別途保存しておく必要があります。
+ *
+ * 以前に作成したユーザを取得したり、ユーザを更新する場合はsetUserAuthenticationKey:でユーザの認証キーを設定します。認証キーはユーザの作成時に取得できるので、アプリケーション内に保存しておく必要があります。
+ *
+ * Apple Push Notification Serviceを利用する場合はsetDeviceId:メソッドで端末IDを設定し、BDDeviceクラスを利用可能にする必要があります。
+ *
+ * 端末IDは詳細はBDDeviceクラスを参照してください。
  */
 @interface BDBaasday : NSObject
 

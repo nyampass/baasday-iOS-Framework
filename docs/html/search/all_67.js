@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getwithpath_3a',['getWithPath:',['../interface_b_d_a_p_i_client.html#ab39f971362a50d6061d40206dae5e13f',1,'BDAPIClient']]]
+  ['generatedeviceid',['generateDeviceId',['../interface_b_d_device.html#a036ade0e1ff50bd43fee952121a5289a',1,'BDDevice']]]
 ];
