@@ -1,0 +1,192 @@
+\hypertarget{interface_b_d_object}{\section{B\-D\-Object Class Reference}
+\label{interface_b_d_object}\index{B\-D\-Object@{B\-D\-Object}}
+}
+
+
+baasdayサーバ上に保存されるオブジェクトの共通の基底クラスです。フィールドの値の取得、baasday上のデータの更新、削除の機能を提供します。  
+
+
+
+
+{\ttfamily \#import $<$B\-D\-Object.\-h$>$}
+
+
+
+Inherits \hyperlink{interface_b_d_basic_object}{B\-D\-Basic\-Object}.
+
+
+
+Inherited by \hyperlink{interface_b_d_item}{B\-D\-Item}, \hyperlink{interface_b_d_leaderboard_entry}{B\-D\-Leaderboard\-Entry}, and \hyperlink{interface_b_d_user}{B\-D\-User}.
+
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(B\-O\-O\-L) -\/ \hyperlink{interface_b_d_object_ab80f1486814b7c8298963a2206b75730}{update\-:error\-:}
+\begin{DoxyCompactList}\small\item\em このオブジェクトを更新します。baasdsayサーバへの反映は即時に行われます。 \end{DoxyCompactList}\item 
+(B\-O\-O\-L) -\/ \hyperlink{interface_b_d_object_acb8238e46c15d731d1a21985d865ac44}{update\-:}
+\begin{DoxyCompactList}\small\item\em このオブジェクトを更新します。baasdayサーバへの反映は即時に行われます。 \end{DoxyCompactList}\item 
+(void) -\/ \hyperlink{interface_b_d_object_ae8d683ea58540f92f8aa544d297f608b}{update\-In\-Background\-:block\-:}
+\begin{DoxyCompactList}\small\item\em このオブジェクトを更新します。baasdayサーバへの反映は即時に行われます。 \end{DoxyCompactList}\item 
+(B\-O\-O\-L) -\/ \hyperlink{interface_b_d_object_a4956ebcf18ad88e8aa333543054093fe}{delete\-With\-Error\-:}
+\begin{DoxyCompactList}\small\item\em このオブジェクトをbaasdayサーバ上から削除します。 \end{DoxyCompactList}\item 
+(B\-O\-O\-L) -\/ \hyperlink{interface_b_d_object_a98f8e5aad3fb13e207dc4c678e0ef26e}{delete}
+\begin{DoxyCompactList}\small\item\em このオブジェクトをbaasdayサーバ上から削除します。 \end{DoxyCompactList}\item 
+(void) -\/ \hyperlink{interface_b_d_object_a3315930e8c242cbf0c36dcd539d45a99}{delete\-In\-Background\-:}
+\begin{DoxyCompactList}\small\item\em このオブジェクトをbaasdayサーバ上から削除します。 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+N\-S\-String $\ast$ \hyperlink{interface_b_d_object_aa753599ab0726dcd36d8a3abd37281e2}{id}
+\begin{DoxyCompactList}\small\item\em I\-D. \end{DoxyCompactList}\item 
+N\-S\-Date $\ast$ \hyperlink{interface_b_d_object_a1e9c62e127b93ad0f7cc2d4788642ee8}{created\-At}
+\begin{DoxyCompactList}\small\item\em 作成日時 \end{DoxyCompactList}\item 
+N\-S\-Date $\ast$ \hyperlink{interface_b_d_object_a3b6c8264a059fb29f59829903c02a81f}{updated\-At}
+\begin{DoxyCompactList}\small\item\em 更新日時 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+baasdayサーバ上に保存されるオブジェクトの共通の基底クラスです。フィールドの値の取得、baasday上のデータの更新、削除の機能を提供します。 
+
+フィールドの値は\-N\-S\-Number(数値/ブール)、\-N\-S\-String(文字列)、\-N\-S\-Date(日付)、\-N\-S\-Array、\-N\-S\-Dictionary、nilで表されます。 
+
+\subsection{Method Documentation}
+\hypertarget{interface_b_d_object_a98f8e5aad3fb13e207dc4c678e0ef26e}{\index{B\-D\-Object@{B\-D\-Object}!delete@{delete}}
+\index{delete@{delete}!BDObject@{B\-D\-Object}}
+\subsubsection[{delete}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) delete 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_object_a98f8e5aad3fb13e207dc4c678e0ef26e}
+
+
+このオブジェクトをbaasdayサーバ上から削除します。 
+
+\begin{DoxyReturn}{Returns}
+削除が成功した場合は\-Y\-E\-S 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_object_a3315930e8c242cbf0c36dcd539d45a99}{\index{B\-D\-Object@{B\-D\-Object}!delete\-In\-Background\-:@{delete\-In\-Background\-:}}
+\index{delete\-In\-Background\-:@{delete\-In\-Background\-:}!BDObject@{B\-D\-Object}}
+\subsubsection[{delete\-In\-Background\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) delete\-In\-Background\-: 
+\begin{DoxyParamCaption}
+\item[{({\bf id})}]{object}
+\item[{(N\-S\-Error $\ast$error)}]{block}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_object_a3315930e8c242cbf0c36dcd539d45a99}
+
+
+このオブジェクトをbaasdayサーバ上から削除します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & 削除が完了したか、失敗したときに呼び出されます \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_object_a4956ebcf18ad88e8aa333543054093fe}{\index{B\-D\-Object@{B\-D\-Object}!delete\-With\-Error\-:@{delete\-With\-Error\-:}}
+\index{delete\-With\-Error\-:@{delete\-With\-Error\-:}!BDObject@{B\-D\-Object}}
+\subsubsection[{delete\-With\-Error\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) delete\-With\-Error\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-Error $\ast$$\ast$)}]{error}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_object_a4956ebcf18ad88e8aa333543054093fe}
+
+
+このオブジェクトをbaasdayサーバ上から削除します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & エラーが発生した場合この引数が指す場所に格納されます \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+削除が成功した場合は\-Y\-E\-S、それ以外は\-N\-O 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_object_acb8238e46c15d731d1a21985d865ac44}{\index{B\-D\-Object@{B\-D\-Object}!update\-:@{update\-:}}
+\index{update\-:@{update\-:}!BDObject@{B\-D\-Object}}
+\subsubsection[{update\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) update\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-Dictionary $\ast$)}]{values}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_object_acb8238e46c15d731d1a21985d865ac44}
+
+
+このオブジェクトを更新します。baasdayサーバへの反映は即時に行われます。 
+
+valuesに含まれるフィールドを対応する値で更新します。 特別なキーを持つディクショナリをフィールドの値として指定すると、そのフィールドに対して特別な更新を行えます(\$incなら数値の増加など)。 
+\begin{DoxyParams}{Parameters}
+{\em values} & 更新するフィールドと値 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+更新が成功した場合は\-Y\-E\-S、それ以外は\-N\-O 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_object_ab80f1486814b7c8298963a2206b75730}{\index{B\-D\-Object@{B\-D\-Object}!update\-:error\-:@{update\-:error\-:}}
+\index{update\-:error\-:@{update\-:error\-:}!BDObject@{B\-D\-Object}}
+\subsubsection[{update\-:error\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) {\bf update\-:} 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-Dictionary $\ast$)}]{values}
+\item[{error:(N\-S\-Error $\ast$$\ast$)}]{error}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_object_ab80f1486814b7c8298963a2206b75730}
+
+
+このオブジェクトを更新します。baasdsayサーバへの反映は即時に行われます。 
+
+valuesに含まれるフィールドを対応する値で更新します。 特別なキーを持つディクショナリをフィールドの値として指定すると、そのフィールドに対して特別な更新を行えます(\$incなら数値の増加など)。 
+\begin{DoxyParams}{Parameters}
+{\em values} & 更新するフィールドと値 \\
+\hline
+{\em error} & エラーが発生した場合この引数が指す場所に格納されます \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+更新が成功した場合は\-Y\-E\-S、それ以外は\-N\-O 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_object_ae8d683ea58540f92f8aa544d297f608b}{\index{B\-D\-Object@{B\-D\-Object}!update\-In\-Background\-:block\-:@{update\-In\-Background\-:block\-:}}
+\index{update\-In\-Background\-:block\-:@{update\-In\-Background\-:block\-:}!BDObject@{B\-D\-Object}}
+\subsubsection[{update\-In\-Background\-:block\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) update\-In\-Background\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-Dictionary $\ast$)}]{values}
+\item[{block:({\bf id})}]{object}
+\item[{(N\-S\-Error $\ast$error)}]{block}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_object_ae8d683ea58540f92f8aa544d297f608b}
+
+
+このオブジェクトを更新します。baasdayサーバへの反映は即時に行われます。 
+
+valuesに含まれるフィールドを対応する値で更新します。 特別なキーを持つディクショナリをフィールドの値として指定すると、そのフィールドに対して特別な更新を行えます(\$incなら数値の増加など)。 
+\begin{DoxyParams}{Parameters}
+{\em values} & 更新するフィールドと値 \\
+\hline
+{\em block} & 更新が完了したか、失敗したときに呼び出されます \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Property Documentation}
+\hypertarget{interface_b_d_object_a1e9c62e127b93ad0f7cc2d4788642ee8}{\index{B\-D\-Object@{B\-D\-Object}!created\-At@{created\-At}}
+\index{created\-At@{created\-At}!BDObject@{B\-D\-Object}}
+\subsubsection[{created\-At}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\-S\-Date$\ast$) created\-At\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [atomic]}, {\ttfamily [assign]}}}\label{interface_b_d_object_a1e9c62e127b93ad0f7cc2d4788642ee8}
+
+
+作成日時 
+
+これは(\-N\-S\-Date $\ast$) \mbox{[}object object\-For\-Key\-:"\-\_\-created\-At"\mbox{]}と同じです。 \hypertarget{interface_b_d_object_aa753599ab0726dcd36d8a3abd37281e2}{\index{B\-D\-Object@{B\-D\-Object}!id@{id}}
+\index{id@{id}!BDObject@{B\-D\-Object}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\-S\-String$\ast$) id\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [atomic]}, {\ttfamily [assign]}}}\label{interface_b_d_object_aa753599ab0726dcd36d8a3abd37281e2}
+
+
+I\-D. 
+
+これは\mbox{[}object integer\-For\-Key\-:"\-\_\-id"\mbox{]}と同じです。 \hypertarget{interface_b_d_object_a3b6c8264a059fb29f59829903c02a81f}{\index{B\-D\-Object@{B\-D\-Object}!updated\-At@{updated\-At}}
+\index{updated\-At@{updated\-At}!BDObject@{B\-D\-Object}}
+\subsubsection[{updated\-At}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\-S\-Date$\ast$) updated\-At\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [atomic]}, {\ttfamily [assign]}}}\label{interface_b_d_object_a3b6c8264a059fb29f59829903c02a81f}
+
+
+更新日時 
+
+これは(\-N\-S\-Date $\ast$) \mbox{[}object object\-For\-Key\-:"\-\_\-updated\-At"\mbox{]}と同じです。 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+B\-D\-Object.\-h\end{DoxyCompactItemize}

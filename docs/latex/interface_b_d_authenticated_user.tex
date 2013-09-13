@@ -1,0 +1,298 @@
+\hypertarget{interface_b_d_authenticated_user}{\section{B\-D\-Authenticated\-User Class Reference}
+\label{interface_b_d_authenticated_user}\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}}
+}
+
+
+認証済みのユーザを表すクラスです。ユーザの作成と更新はこのクラスを用いて行います。  
+
+
+
+
+{\ttfamily \#import $<$B\-D\-Authenticated\-User.\-h$>$}
+
+
+
+Inherits \hyperlink{interface_b_d_user}{B\-D\-User}.
+
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(B\-O\-O\-L) -\/ \hyperlink{interface_b_d_authenticated_user_a62dd555b26faa4cdf2a619a3be2f08e9}{update\-Device\-:error\-:}
+\begin{DoxyCompactList}\small\item\em 端末情報を更新します。 \end{DoxyCompactList}\item 
+(B\-O\-O\-L) -\/ \hyperlink{interface_b_d_authenticated_user_a1e0ec3e8cf7bb54970fbe698c79ff404}{update\-Device\-:}
+\begin{DoxyCompactList}\small\item\em 端末情報を更新します。 \end{DoxyCompactList}\item 
+(void) -\/ \hyperlink{interface_b_d_authenticated_user_ad79404b21ac78fe5345c33460d490e0e}{update\-Device\-In\-Background\-:block\-:}
+\begin{DoxyCompactList}\small\item\em 端末情報を更新します。 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Class Methods}
+\begin{DoxyCompactItemize}
+\item 
+(\hyperlink{interface_b_d_authenticated_user}{B\-D\-Authenticated\-User} $\ast$) + \hyperlink{interface_b_d_authenticated_user_a60810e84160eeb3c547db67de582db60}{create\-With\-Values\-:error\-:}
+\begin{DoxyCompactList}\small\item\em ユーザを作成します。baasdayサーバへの登録は即時に行われます。 \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_authenticated_user}{B\-D\-Authenticated\-User} $\ast$) + \hyperlink{interface_b_d_authenticated_user_a8fbfc9e494874aa7b49ccf81f82addfc}{create\-With\-Values\-:}
+\begin{DoxyCompactList}\small\item\em ユーザを作成します。baasdayサーバへの登録は即時に行われます。 \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_authenticated_user}{B\-D\-Authenticated\-User} $\ast$) + \hyperlink{interface_b_d_authenticated_user_a632dce13be1bb28c0e200d515411aa39}{create\-With\-Error\-:}
+\begin{DoxyCompactList}\small\item\em ユーザを作成します。baasdayサーバへの登録は即時に行われます。 \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_authenticated_user}{B\-D\-Authenticated\-User} $\ast$) + \hyperlink{interface_b_d_authenticated_user_a180aaa05728e33efacf4ca28484302f0}{create}
+\begin{DoxyCompactList}\small\item\em ユーザを作成します。baasdayサーバへの登録は即時に行われます。 \end{DoxyCompactList}\item 
+(void) + \hyperlink{interface_b_d_authenticated_user_a1ef5387cf8e1ae296bc9604c786e79f6}{create\-In\-Background\-With\-Values\-:block\-:}
+\begin{DoxyCompactList}\small\item\em ユーザを作成します。baasdayサーバへの登録は即時に行われます。 \end{DoxyCompactList}\item 
+(void) + \hyperlink{interface_b_d_authenticated_user_a00f0e6a4344a98ca5502b30a9b4aeffc}{create\-In\-Background\-:}
+\begin{DoxyCompactList}\small\item\em ユーザを作成します。baasdayサーバへの登録は即時に行われます。 \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_authenticated_user}{B\-D\-Authenticated\-User} $\ast$) + \hyperlink{interface_b_d_authenticated_user_a269a9fbd9bb90595d3b96330bc2afc1a}{fetch\-With\-Error\-:}
+\begin{DoxyCompactList}\small\item\em B\-D\-Baasdayクラスに設定されている認証キーをもとにユーザを取得します。 \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_authenticated_user}{B\-D\-Authenticated\-User} $\ast$) + \hyperlink{interface_b_d_authenticated_user_a74733c1f5a2537c1dceffce72effb93e}{fetch}
+\begin{DoxyCompactList}\small\item\em B\-D\-Baasdayクラスに設定されている認証キーをもとにユーザを取得します。 \end{DoxyCompactList}\item 
+(void) + \hyperlink{interface_b_d_authenticated_user_ad51bed700833f0d6a5cc5b2b017fef97}{fetch\-In\-Background\-:}
+\begin{DoxyCompactList}\small\item\em B\-D\-Baasdayクラスに設定されている認証キーをもとにユーザを取得します。 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+N\-S\-String $\ast$ \hyperlink{interface_b_d_authenticated_user_adbd855742b73eb440cb118ff190e8851}{authentication\-Key}
+\begin{DoxyCompactList}\small\item\em 認証キー \end{DoxyCompactList}\item 
+\hyperlink{interface_b_d_device}{B\-D\-Device} $\ast$ \hyperlink{interface_b_d_authenticated_user_a7accdee844c94453ec3d8fd61c7bdc41}{current\-Device}
+\begin{DoxyCompactList}\small\item\em B\-D\-Baasdayクラスに設定されている端末\-I\-Dに対応した端末情報 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+認証済みのユーザを表すクラスです。ユーザの作成と更新はこのクラスを用いて行います。 
+
+ユーザ情報を保存する場合は最初にcreateメソッドでユーザを作成し、authentication\-Keyプロパティに設定されている認証キーをアプリケーション内に保存してください。保存した認証キーを\-B\-D\-Baasdayクラスのset\-User\-Authentication\-Key\-:メソッドで設定すれば、作成したユーザをfetchメソッドで取得できるようになります。 
+
+\subsection{Method Documentation}
+\hypertarget{interface_b_d_authenticated_user_a180aaa05728e33efacf4ca28484302f0}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!create@{create}}
+\index{create@{create}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{create}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-Authenticated\-User} $\ast$) create 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_authenticated_user_a180aaa05728e33efacf4ca28484302f0}
+
+
+ユーザを作成します。baasdayサーバへの登録は即時に行われます。 
+
+\begin{DoxyReturn}{Returns}
+作成したユーザ 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_authenticated_user_a00f0e6a4344a98ca5502b30a9b4aeffc}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!create\-In\-Background\-:@{create\-In\-Background\-:}}
+\index{create\-In\-Background\-:@{create\-In\-Background\-:}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{create\-In\-Background\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ (void) create\-In\-Background\-: 
+\begin{DoxyParamCaption}
+\item[{(B\-D\-Authenticated\-User\-Result\-Block)}]{block}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_authenticated_user_a00f0e6a4344a98ca5502b30a9b4aeffc}
+
+
+ユーザを作成します。baasdayサーバへの登録は即時に行われます。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & 作成が完了したか、失敗したときに呼び出されます \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_authenticated_user_a1ef5387cf8e1ae296bc9604c786e79f6}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!create\-In\-Background\-With\-Values\-:block\-:@{create\-In\-Background\-With\-Values\-:block\-:}}
+\index{create\-In\-Background\-With\-Values\-:block\-:@{create\-In\-Background\-With\-Values\-:block\-:}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{create\-In\-Background\-With\-Values\-:block\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ (void) create\-In\-Background\-With\-Values\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-Dictionary $\ast$)}]{values}
+\item[{block:(B\-D\-Authenticated\-User\-Result\-Block)}]{block}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_authenticated_user_a1ef5387cf8e1ae296bc9604c786e79f6}
+
+
+ユーザを作成します。baasdayサーバへの登録は即時に行われます。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em values} & ユーザが持つ値 \\
+\hline
+{\em block} & 作成が完了したか、失敗したときに呼び出されます \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_authenticated_user_a632dce13be1bb28c0e200d515411aa39}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!create\-With\-Error\-:@{create\-With\-Error\-:}}
+\index{create\-With\-Error\-:@{create\-With\-Error\-:}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{create\-With\-Error\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-Authenticated\-User} $\ast$) create\-With\-Error\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-Error $\ast$$\ast$)}]{error}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_authenticated_user_a632dce13be1bb28c0e200d515411aa39}
+
+
+ユーザを作成します。baasdayサーバへの登録は即時に行われます。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & エラーが発生した場合この引数が指す場所に格納されます \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+作成したユーザ 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_authenticated_user_a8fbfc9e494874aa7b49ccf81f82addfc}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!create\-With\-Values\-:@{create\-With\-Values\-:}}
+\index{create\-With\-Values\-:@{create\-With\-Values\-:}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{create\-With\-Values\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-Authenticated\-User} $\ast$) create\-With\-Values\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-Dictionary $\ast$)}]{values}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_authenticated_user_a8fbfc9e494874aa7b49ccf81f82addfc}
+
+
+ユーザを作成します。baasdayサーバへの登録は即時に行われます。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em values} & ユーザが持つ値 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+作成したユーザ 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_authenticated_user_a60810e84160eeb3c547db67de582db60}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!create\-With\-Values\-:error\-:@{create\-With\-Values\-:error\-:}}
+\index{create\-With\-Values\-:error\-:@{create\-With\-Values\-:error\-:}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{create\-With\-Values\-:error\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-Authenticated\-User} $\ast$) {\bf create\-With\-Values\-:} 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-Dictionary $\ast$)}]{values}
+\item[{error:(N\-S\-Error $\ast$$\ast$)}]{error}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_authenticated_user_a60810e84160eeb3c547db67de582db60}
+
+
+ユーザを作成します。baasdayサーバへの登録は即時に行われます。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em values} & ユーザが持つ値 \\
+\hline
+{\em error} & エラーが発生した場合この引数が指す場所に格納されます \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+作成したユーザ 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_authenticated_user_a74733c1f5a2537c1dceffce72effb93e}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!fetch@{fetch}}
+\index{fetch@{fetch}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{fetch}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-Authenticated\-User} $\ast$) fetch 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_authenticated_user_a74733c1f5a2537c1dceffce72effb93e}
+
+
+B\-D\-Baasdayクラスに設定されている認証キーをもとにユーザを取得します。 
+
+\begin{DoxyReturn}{Returns}
+取得したユーザ 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_authenticated_user_ad51bed700833f0d6a5cc5b2b017fef97}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!fetch\-In\-Background\-:@{fetch\-In\-Background\-:}}
+\index{fetch\-In\-Background\-:@{fetch\-In\-Background\-:}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{fetch\-In\-Background\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ (void) fetch\-In\-Background\-: 
+\begin{DoxyParamCaption}
+\item[{(B\-D\-Authenticated\-User\-Result\-Block)}]{block}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_authenticated_user_ad51bed700833f0d6a5cc5b2b017fef97}
+
+
+B\-D\-Baasdayクラスに設定されている認証キーをもとにユーザを取得します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & 取得が完了したか、失敗したときに呼び出されます \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_authenticated_user_a269a9fbd9bb90595d3b96330bc2afc1a}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!fetch\-With\-Error\-:@{fetch\-With\-Error\-:}}
+\index{fetch\-With\-Error\-:@{fetch\-With\-Error\-:}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{fetch\-With\-Error\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-Authenticated\-User} $\ast$) fetch\-With\-Error\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-Error $\ast$$\ast$)}]{error}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_authenticated_user_a269a9fbd9bb90595d3b96330bc2afc1a}
+
+
+B\-D\-Baasdayクラスに設定されている認証キーをもとにユーザを取得します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & エラーが発生した場合この引数が指す場所に格納されます \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+取得したユーザ 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_authenticated_user_a1e0ec3e8cf7bb54970fbe698c79ff404}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!update\-Device\-:@{update\-Device\-:}}
+\index{update\-Device\-:@{update\-Device\-:}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{update\-Device\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) update\-Device\-: 
+\begin{DoxyParamCaption}
+\item[{({\bf B\-D\-Device} $\ast$)}]{device}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_authenticated_user_a1e0ec3e8cf7bb54970fbe698c79ff404}
+
+
+端末情報を更新します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & 端末情報 \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_authenticated_user_a62dd555b26faa4cdf2a619a3be2f08e9}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!update\-Device\-:error\-:@{update\-Device\-:error\-:}}
+\index{update\-Device\-:error\-:@{update\-Device\-:error\-:}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{update\-Device\-:error\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) {\bf update\-Device\-:} 
+\begin{DoxyParamCaption}
+\item[{({\bf B\-D\-Device} $\ast$)}]{device}
+\item[{error:(N\-S\-Error $\ast$$\ast$)}]{error}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_authenticated_user_a62dd555b26faa4cdf2a619a3be2f08e9}
+
+
+端末情報を更新します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & 端末情報 \\
+\hline
+{\em error} & エラーが発生した場合この引数が指す場所に格納されます \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_authenticated_user_ad79404b21ac78fe5345c33460d490e0e}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!update\-Device\-In\-Background\-:block\-:@{update\-Device\-In\-Background\-:block\-:}}
+\index{update\-Device\-In\-Background\-:block\-:@{update\-Device\-In\-Background\-:block\-:}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{update\-Device\-In\-Background\-:block\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) update\-Device\-In\-Background\-: 
+\begin{DoxyParamCaption}
+\item[{({\bf B\-D\-Device} $\ast$)}]{device}
+\item[{block:({\bf id})}]{object}
+\item[{(N\-S\-Error $\ast$error)}]{block}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_authenticated_user_ad79404b21ac78fe5345c33460d490e0e}
+
+
+端末情報を更新します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & 端末情報 \\
+\hline
+{\em block} & 取得が完了したか、失敗したときに呼び出されます \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Property Documentation}
+\hypertarget{interface_b_d_authenticated_user_adbd855742b73eb440cb118ff190e8851}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!authentication\-Key@{authentication\-Key}}
+\index{authentication\-Key@{authentication\-Key}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{authentication\-Key}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\-S\-String$\ast$) authentication\-Key\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [atomic]}, {\ttfamily [assign]}}}\label{interface_b_d_authenticated_user_adbd855742b73eb440cb118ff190e8851}
+
+
+認証キー 
+
+これは\mbox{[}user object\-For\-Key\-:"\-\_\-authentication\-Key"\mbox{]}と同じです。 \hypertarget{interface_b_d_authenticated_user_a7accdee844c94453ec3d8fd61c7bdc41}{\index{B\-D\-Authenticated\-User@{B\-D\-Authenticated\-User}!current\-Device@{current\-Device}}
+\index{current\-Device@{current\-Device}!BDAuthenticatedUser@{B\-D\-Authenticated\-User}}
+\subsubsection[{current\-Device}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf B\-D\-Device}$\ast$) current\-Device\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [atomic]}, {\ttfamily [assign]}}}\label{interface_b_d_authenticated_user_a7accdee844c94453ec3d8fd61c7bdc41}
+
+
+B\-D\-Baasdayクラスに設定されている端末\-I\-Dに対応した端末情報 
+
+端末情報を取得する前に\-B\-D\-Baadayクラスのset\-Device\-Id\-:メソッドを端末\-I\-Dを設定する必要があります。詳細は\-B\-D\-Deviceクラスを参照してください。
+
+端末情報がまだ保存されていない場合は空の端末情報を返します。 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+B\-D\-Authenticated\-User.\-h\end{DoxyCompactItemize}

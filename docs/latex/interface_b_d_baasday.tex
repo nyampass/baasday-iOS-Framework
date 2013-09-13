@@ -1,0 +1,209 @@
+\hypertarget{interface_b_d_baasday}{\section{B\-D\-Baasday Class Reference}
+\label{interface_b_d_baasday}\index{B\-D\-Baasday@{B\-D\-Baasday}}
+}
+
+
+アプリケーション内でのbaasdayの設定を保持するクラスです  
+
+
+
+
+{\ttfamily \#import $<$B\-D\-Baasday.\-h$>$}
+
+
+
+Inherits N\-S\-Object.
+
+\subsection*{Class Methods}
+\begin{DoxyCompactItemize}
+\item 
+(void) + \hyperlink{interface_b_d_baasday_a28ad1db2e5669fff9a863199558875d9}{set\-Application\-Id\-:api\-Key\-:}
+\begin{DoxyCompactList}\small\item\em アプリケーション\-I\-Dと\-A\-P\-Iキーを設定します。 \end{DoxyCompactList}\item 
+(N\-S\-String $\ast$) + \hyperlink{interface_b_d_baasday_a5197d512ac471736b3cd7504eab5e616}{application\-Id}
+\begin{DoxyCompactList}\small\item\em 設定されているアプリケーション\-I\-Dを返します。 \end{DoxyCompactList}\item 
+(N\-S\-String $\ast$) + \hyperlink{interface_b_d_baasday_a77957213ffb7cfacda2fa654052ed42d}{api\-Key}
+\begin{DoxyCompactList}\small\item\em 設定されている\-A\-P\-Iキーを返します。 \end{DoxyCompactList}\item 
+(N\-S\-String $\ast$) + \hyperlink{interface_b_d_baasday_aa438f9ac3201bed6a80d61b9266da2e2}{version}
+\begin{DoxyCompactList}\small\item\em baasday S\-D\-Kのバージョンを返します。 \end{DoxyCompactList}\item 
+(void) + \hyperlink{interface_b_d_baasday_a2945ce7e7204bdd06e8aab875867b0b5}{set\-User\-Authentication\-Key\-:}
+\begin{DoxyCompactList}\small\item\em ユーザの認証キーを設定します。 \end{DoxyCompactList}\item 
+(N\-S\-String $\ast$) + \hyperlink{interface_b_d_baasday_a3d8fec4aaacd7f75f373f6d516e52335}{user\-Authentication\-Key}
+\begin{DoxyCompactList}\small\item\em 設定されているユーザの認証キーを返します。 \end{DoxyCompactList}\item 
+(void) + \hyperlink{interface_b_d_baasday_a349f6418e86a43d0822552df10b77170}{set\-Device\-Id\-:}
+\begin{DoxyCompactList}\small\item\em 端末\-I\-Dを設定します。 \end{DoxyCompactList}\item 
+(N\-S\-String $\ast$) + \hyperlink{interface_b_d_baasday_aa71a72f91c73d9a5d3fb489c2605786c}{device\-Id}
+\begin{DoxyCompactList}\small\item\em 設定されている端末\-I\-Dを返します。 \end{DoxyCompactList}\item 
+(N\-S\-String $\ast$) + \hyperlink{interface_b_d_baasday_a07fb493ae3215a3bcbbd4a70fc55a35b}{api\-U\-R\-L\-Root}
+\begin{DoxyCompactList}\small\item\em baasday Web A\-P\-Iの\-U\-R\-Lを返します。 \end{DoxyCompactList}\item 
+(void) + \hyperlink{interface_b_d_baasday_ae4cf9d5c26f6f56cda4922262d9242c5}{set\-A\-P\-I\-U\-R\-L\-Root\-:}
+\begin{DoxyCompactList}\small\item\em baasday Web A\-P\-Iの\-U\-R\-Lを設定します。通常は変更する必要はありません。 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+アプリケーション内でのbaasdayの設定を保持するクラスです 
+
+最初にset\-Application\-Id\-:api\-Key\-:でアプリケーション\-I\-Dと\-A\-P\-Iキーを設定する必要があります。
+
+以前に作成したユーザを取得したり、ユーザを更新する場合はset\-User\-Authentication\-Key\-:でユーザの認証キーを設定します。認証キーはユーザの作成時に取得できるので、アプリケーション内に保存しておく必要があります。
+
+Apple Push Notification Serviceを利用する場合はset\-Device\-Id\-:メソッドで端末\-I\-Dを設定し、\-B\-D\-Deviceクラスを利用可能にする必要があります。
+
+端末\-I\-Dの詳細は\-B\-D\-Deviceクラスを参照してください。 
+
+\subsection{Method Documentation}
+\hypertarget{interface_b_d_baasday_a77957213ffb7cfacda2fa654052ed42d}{\index{B\-D\-Baasday@{B\-D\-Baasday}!api\-Key@{api\-Key}}
+\index{api\-Key@{api\-Key}!BDBaasday@{B\-D\-Baasday}}
+\subsubsection[{api\-Key}]{\setlength{\rightskip}{0pt plus 5cm}+ (N\-S\-String $\ast$) api\-Key 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_baasday_a77957213ffb7cfacda2fa654052ed42d}
+
+
+設定されている\-A\-P\-Iキーを返します。 
+
+\begin{DoxyReturn}{Returns}
+A\-P\-Iキー 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_baasday_a07fb493ae3215a3bcbbd4a70fc55a35b}{\index{B\-D\-Baasday@{B\-D\-Baasday}!api\-U\-R\-L\-Root@{api\-U\-R\-L\-Root}}
+\index{api\-U\-R\-L\-Root@{api\-U\-R\-L\-Root}!BDBaasday@{B\-D\-Baasday}}
+\subsubsection[{api\-U\-R\-L\-Root}]{\setlength{\rightskip}{0pt plus 5cm}+ (N\-S\-String $\ast$) api\-U\-R\-L\-Root 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_baasday_a07fb493ae3215a3bcbbd4a70fc55a35b}
+
+
+baasday Web A\-P\-Iの\-U\-R\-Lを返します。 
+
+\begin{DoxyReturn}{Returns}
+baasday Web A\-P\-Iの\-U\-R\-L 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_baasday_a5197d512ac471736b3cd7504eab5e616}{\index{B\-D\-Baasday@{B\-D\-Baasday}!application\-Id@{application\-Id}}
+\index{application\-Id@{application\-Id}!BDBaasday@{B\-D\-Baasday}}
+\subsubsection[{application\-Id}]{\setlength{\rightskip}{0pt plus 5cm}+ (N\-S\-String $\ast$) application\-Id 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_baasday_a5197d512ac471736b3cd7504eab5e616}
+
+
+設定されているアプリケーション\-I\-Dを返します。 
+
+\begin{DoxyReturn}{Returns}
+アプリケーション\-I\-D 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_baasday_aa71a72f91c73d9a5d3fb489c2605786c}{\index{B\-D\-Baasday@{B\-D\-Baasday}!device\-Id@{device\-Id}}
+\index{device\-Id@{device\-Id}!BDBaasday@{B\-D\-Baasday}}
+\subsubsection[{device\-Id}]{\setlength{\rightskip}{0pt plus 5cm}+ (N\-S\-String $\ast$) device\-Id 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_baasday_aa71a72f91c73d9a5d3fb489c2605786c}
+
+
+設定されている端末\-I\-Dを返します。 
+
+\begin{DoxyReturn}{Returns}
+端末\-I\-D 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_baasday_ae4cf9d5c26f6f56cda4922262d9242c5}{\index{B\-D\-Baasday@{B\-D\-Baasday}!set\-A\-P\-I\-U\-R\-L\-Root\-:@{set\-A\-P\-I\-U\-R\-L\-Root\-:}}
+\index{set\-A\-P\-I\-U\-R\-L\-Root\-:@{set\-A\-P\-I\-U\-R\-L\-Root\-:}!BDBaasday@{B\-D\-Baasday}}
+\subsubsection[{set\-A\-P\-I\-U\-R\-L\-Root\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ (void) set\-A\-P\-I\-U\-R\-L\-Root\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{api\-U\-R\-L\-Root}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_baasday_ae4cf9d5c26f6f56cda4922262d9242c5}
+
+
+baasday Web A\-P\-Iの\-U\-R\-Lを設定します。通常は変更する必要はありません。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em api\-U\-R\-L\-Root} & baasday Web A\-P\-Iの\-U\-R\-L \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_baasday_a28ad1db2e5669fff9a863199558875d9}{\index{B\-D\-Baasday@{B\-D\-Baasday}!set\-Application\-Id\-:api\-Key\-:@{set\-Application\-Id\-:api\-Key\-:}}
+\index{set\-Application\-Id\-:api\-Key\-:@{set\-Application\-Id\-:api\-Key\-:}!BDBaasday@{B\-D\-Baasday}}
+\subsubsection[{set\-Application\-Id\-:api\-Key\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ (void) set\-Application\-Id\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{application\-Id}
+\item[{apiKey:(N\-S\-String $\ast$)}]{api\-Key}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_baasday_a28ad1db2e5669fff9a863199558875d9}
+
+
+アプリケーション\-I\-Dと\-A\-P\-Iキーを設定します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em application\-Id} & アプリケーション\-I\-D \\
+\hline
+{\em api\-Key} & A\-P\-Iキー \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_baasday_a349f6418e86a43d0822552df10b77170}{\index{B\-D\-Baasday@{B\-D\-Baasday}!set\-Device\-Id\-:@{set\-Device\-Id\-:}}
+\index{set\-Device\-Id\-:@{set\-Device\-Id\-:}!BDBaasday@{B\-D\-Baasday}}
+\subsubsection[{set\-Device\-Id\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ (void) set\-Device\-Id\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{device\-Id}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_baasday_a349f6418e86a43d0822552df10b77170}
+
+
+端末\-I\-Dを設定します。 
+
+端末\-I\-Dは\-B\-D\-Deviceクラスのgenerate\-Device\-Idで生成します 
+\begin{DoxyParams}{Parameters}
+{\em device\-Id} & 端末\-I\-D \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_baasday_a2945ce7e7204bdd06e8aab875867b0b5}{\index{B\-D\-Baasday@{B\-D\-Baasday}!set\-User\-Authentication\-Key\-:@{set\-User\-Authentication\-Key\-:}}
+\index{set\-User\-Authentication\-Key\-:@{set\-User\-Authentication\-Key\-:}!BDBaasday@{B\-D\-Baasday}}
+\subsubsection[{set\-User\-Authentication\-Key\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ (void) set\-User\-Authentication\-Key\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{key}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_baasday_a2945ce7e7204bdd06e8aab875867b0b5}
+
+
+ユーザの認証キーを設定します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & ユーザの認証キー \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_baasday_a3d8fec4aaacd7f75f373f6d516e52335}{\index{B\-D\-Baasday@{B\-D\-Baasday}!user\-Authentication\-Key@{user\-Authentication\-Key}}
+\index{user\-Authentication\-Key@{user\-Authentication\-Key}!BDBaasday@{B\-D\-Baasday}}
+\subsubsection[{user\-Authentication\-Key}]{\setlength{\rightskip}{0pt plus 5cm}+ (N\-S\-String $\ast$) user\-Authentication\-Key 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_baasday_a3d8fec4aaacd7f75f373f6d516e52335}
+
+
+設定されているユーザの認証キーを返します。 
+
+\begin{DoxyReturn}{Returns}
+ユーザの認証キー 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_baasday_aa438f9ac3201bed6a80d61b9266da2e2}{\index{B\-D\-Baasday@{B\-D\-Baasday}!version@{version}}
+\index{version@{version}!BDBaasday@{B\-D\-Baasday}}
+\subsubsection[{version}]{\setlength{\rightskip}{0pt plus 5cm}+ (N\-S\-String $\ast$) version 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_baasday_aa438f9ac3201bed6a80d61b9266da2e2}
+
+
+baasday S\-D\-Kのバージョンを返します。 
+
+\begin{DoxyReturn}{Returns}
+S\-D\-Kのバージョン 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+B\-D\-Baasday.\-h\end{DoxyCompactItemize}

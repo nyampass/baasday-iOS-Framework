@@ -1,0 +1,224 @@
+\hypertarget{interface_b_d_user}{\section{B\-D\-User Class Reference}
+\label{interface_b_d_user}\index{B\-D\-User@{B\-D\-User}}
+}
+
+
+アプリケーションのユーザを表すオブジェクトです  
+
+
+
+
+{\ttfamily \#import $<$B\-D\-User.\-h$>$}
+
+
+
+Inherits \hyperlink{interface_b_d_object}{B\-D\-Object}.
+
+
+
+Inherited by \hyperlink{interface_b_d_authenticated_user}{B\-D\-Authenticated\-User}.
+
+\subsection*{Class Methods}
+\begin{DoxyCompactItemize}
+\item 
+(\hyperlink{interface_b_d_user}{B\-D\-User} $\ast$) + \hyperlink{interface_b_d_user_a5d2d45bd4ff7e75ca443ed7962b5bc4e}{fetch\-With\-Id\-:error\-:}
+\begin{DoxyCompactList}\small\item\em 指定された\-I\-Dを持つユーザを取得します。 \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_user}{B\-D\-User} $\ast$) + \hyperlink{interface_b_d_user_aa69faa54bce830c2519854b9b74c5ace}{fetch\-With\-Id\-:}
+\begin{DoxyCompactList}\small\item\em 指定された\-I\-Dを持つユーザを取得します。 \end{DoxyCompactList}\item 
+(void) + \hyperlink{interface_b_d_user_a6837bc9c918718e81ff70c861660c923}{fetch\-In\-Background\-With\-Id\-:block\-:}
+\begin{DoxyCompactList}\small\item\em 指定された\-I\-Dを持つユーザを取得します。 \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_list_result}{B\-D\-List\-Result} $\ast$) + \hyperlink{interface_b_d_user_a5518607b1fd758a57fba44fa8ee0bcb0}{fetch\-All\-With\-Query\-:error\-:}
+\begin{DoxyCompactList}\small\item\em ユーザを取得します \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_list_result}{B\-D\-List\-Result} $\ast$) + \hyperlink{interface_b_d_user_a72818cdbdb69fad19eea5ca43136984b}{fetch\-All\-With\-Query\-:}
+\begin{DoxyCompactList}\small\item\em ユーザを取得します \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_list_result}{B\-D\-List\-Result} $\ast$) + \hyperlink{interface_b_d_user_a21903a59a77a90705ccf20f1e61d870a}{fetch\-All\-With\-Error\-:}
+\begin{DoxyCompactList}\small\item\em ユーザを取得します \end{DoxyCompactList}\item 
+(\hyperlink{interface_b_d_list_result}{B\-D\-List\-Result} $\ast$) + \hyperlink{interface_b_d_user_af14cea1b76d895f3bb37bd236815ed5f}{fetch\-All}
+\begin{DoxyCompactList}\small\item\em ユーザを取得します \end{DoxyCompactList}\item 
+(void) + \hyperlink{interface_b_d_user_ac863596c1888b8dc425c02874869ba7c}{fetch\-All\-In\-Background\-With\-Query\-:block\-:}
+\begin{DoxyCompactList}\small\item\em ユーザを取得します \end{DoxyCompactList}\item 
+(void) + \hyperlink{interface_b_d_user_a2ac11b5db62eb6b430a02214e6ff9e1d}{fetch\-All\-In\-Background\-:}
+\begin{DoxyCompactList}\small\item\em ユーザを取得します \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+アプリケーションのユーザを表すオブジェクトです 
+
+任意のフィールドを持つことができます。 このクラスから更新を行うことはできません。更新する場合は\-Authenticated\-Userクラスを利用してください。 
+
+\subsection{Method Documentation}
+\hypertarget{interface_b_d_user_af14cea1b76d895f3bb37bd236815ed5f}{\index{B\-D\-User@{B\-D\-User}!fetch\-All@{fetch\-All}}
+\index{fetch\-All@{fetch\-All}!BDUser@{B\-D\-User}}
+\subsubsection[{fetch\-All}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-List\-Result} $\ast$) fetch\-All 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_user_af14cea1b76d895f3bb37bd236815ed5f}
+
+
+ユーザを取得します 
+
+最大で100件返します。 \begin{DoxyReturn}{Returns}
+取得結果 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_user_a2ac11b5db62eb6b430a02214e6ff9e1d}{\index{B\-D\-User@{B\-D\-User}!fetch\-All\-In\-Background\-:@{fetch\-All\-In\-Background\-:}}
+\index{fetch\-All\-In\-Background\-:@{fetch\-All\-In\-Background\-:}!BDUser@{B\-D\-User}}
+\subsubsection[{fetch\-All\-In\-Background\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ (void) fetch\-All\-In\-Background\-: 
+\begin{DoxyParamCaption}
+\item[{(B\-D\-List\-Result\-Block)}]{block}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_user_a2ac11b5db62eb6b430a02214e6ff9e1d}
+
+
+ユーザを取得します 
+
+最大で100件返します。 
+\begin{DoxyParams}{Parameters}
+{\em block} & 取得が完了したか、失敗したときに呼び出されます \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_user_ac863596c1888b8dc425c02874869ba7c}{\index{B\-D\-User@{B\-D\-User}!fetch\-All\-In\-Background\-With\-Query\-:block\-:@{fetch\-All\-In\-Background\-With\-Query\-:block\-:}}
+\index{fetch\-All\-In\-Background\-With\-Query\-:block\-:@{fetch\-All\-In\-Background\-With\-Query\-:block\-:}!BDUser@{B\-D\-User}}
+\subsubsection[{fetch\-All\-In\-Background\-With\-Query\-:block\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ (void) fetch\-All\-In\-Background\-With\-Query\-: 
+\begin{DoxyParamCaption}
+\item[{({\bf B\-D\-Query} $\ast$)}]{query}
+\item[{block:(B\-D\-List\-Result\-Block)}]{block}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_user_ac863596c1888b8dc425c02874869ba7c}
+
+
+ユーザを取得します 
+
+最大待ち時間は指定できません。最大取得件数を指定しない場合や101以上を指定した場合、最大で100件返します。 
+\begin{DoxyParams}{Parameters}
+{\em query} & 抽出条件 \\
+\hline
+{\em block} & 取得が完了したか、失敗したときに呼び出されます \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_user_a21903a59a77a90705ccf20f1e61d870a}{\index{B\-D\-User@{B\-D\-User}!fetch\-All\-With\-Error\-:@{fetch\-All\-With\-Error\-:}}
+\index{fetch\-All\-With\-Error\-:@{fetch\-All\-With\-Error\-:}!BDUser@{B\-D\-User}}
+\subsubsection[{fetch\-All\-With\-Error\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-List\-Result} $\ast$) fetch\-All\-With\-Error\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-Error $\ast$$\ast$)}]{error}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_user_a21903a59a77a90705ccf20f1e61d870a}
+
+
+ユーザを取得します 
+
+最大で100件返します。 
+\begin{DoxyParams}{Parameters}
+{\em error} & エラーが発生した場合この引数が指す場所に格納されます \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+取得結果 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_user_a72818cdbdb69fad19eea5ca43136984b}{\index{B\-D\-User@{B\-D\-User}!fetch\-All\-With\-Query\-:@{fetch\-All\-With\-Query\-:}}
+\index{fetch\-All\-With\-Query\-:@{fetch\-All\-With\-Query\-:}!BDUser@{B\-D\-User}}
+\subsubsection[{fetch\-All\-With\-Query\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-List\-Result} $\ast$) fetch\-All\-With\-Query\-: 
+\begin{DoxyParamCaption}
+\item[{({\bf B\-D\-Query} $\ast$)}]{query}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_user_a72818cdbdb69fad19eea5ca43136984b}
+
+
+ユーザを取得します 
+
+最大待ち時間は指定できません。最大取得件数を指定しない場合や101以上を指定した場合、最大で100件返します。 
+\begin{DoxyParams}{Parameters}
+{\em query} & 抽出条件 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+取得結果 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_user_a5518607b1fd758a57fba44fa8ee0bcb0}{\index{B\-D\-User@{B\-D\-User}!fetch\-All\-With\-Query\-:error\-:@{fetch\-All\-With\-Query\-:error\-:}}
+\index{fetch\-All\-With\-Query\-:error\-:@{fetch\-All\-With\-Query\-:error\-:}!BDUser@{B\-D\-User}}
+\subsubsection[{fetch\-All\-With\-Query\-:error\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-List\-Result} $\ast$) {\bf fetch\-All\-With\-Query\-:} 
+\begin{DoxyParamCaption}
+\item[{({\bf B\-D\-Query} $\ast$)}]{query}
+\item[{error:(N\-S\-Error $\ast$$\ast$)}]{error}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_user_a5518607b1fd758a57fba44fa8ee0bcb0}
+
+
+ユーザを取得します 
+
+最大待ち時間は指定できません。最大取得件数を指定しない場合や101以上を指定した場合、最大で100件返します。 
+\begin{DoxyParams}{Parameters}
+{\em query} & 抽出条件 \\
+\hline
+{\em error} & エラーが発生した場合この引数が指す場所に格納されます \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+取得結果 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_user_a6837bc9c918718e81ff70c861660c923}{\index{B\-D\-User@{B\-D\-User}!fetch\-In\-Background\-With\-Id\-:block\-:@{fetch\-In\-Background\-With\-Id\-:block\-:}}
+\index{fetch\-In\-Background\-With\-Id\-:block\-:@{fetch\-In\-Background\-With\-Id\-:block\-:}!BDUser@{B\-D\-User}}
+\subsubsection[{fetch\-In\-Background\-With\-Id\-:block\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ (void) fetch\-In\-Background\-With\-Id\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{id}
+\item[{block:(B\-D\-User\-Result\-Block)}]{block}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_user_a6837bc9c918718e81ff70c861660c923}
+
+
+指定された\-I\-Dを持つユーザを取得します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & I\-D \\
+\hline
+{\em block} & 取得が完了したか、失敗したときに呼び出されます \\
+\hline
+\end{DoxyParams}
+\hypertarget{interface_b_d_user_aa69faa54bce830c2519854b9b74c5ace}{\index{B\-D\-User@{B\-D\-User}!fetch\-With\-Id\-:@{fetch\-With\-Id\-:}}
+\index{fetch\-With\-Id\-:@{fetch\-With\-Id\-:}!BDUser@{B\-D\-User}}
+\subsubsection[{fetch\-With\-Id\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-User} $\ast$) fetch\-With\-Id\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{id}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_user_aa69faa54bce830c2519854b9b74c5ace}
+
+
+指定された\-I\-Dを持つユーザを取得します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & I\-D \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ユーザ 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_user_a5d2d45bd4ff7e75ca443ed7962b5bc4e}{\index{B\-D\-User@{B\-D\-User}!fetch\-With\-Id\-:error\-:@{fetch\-With\-Id\-:error\-:}}
+\index{fetch\-With\-Id\-:error\-:@{fetch\-With\-Id\-:error\-:}!BDUser@{B\-D\-User}}
+\subsubsection[{fetch\-With\-Id\-:error\-:}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf B\-D\-User} $\ast$) {\bf fetch\-With\-Id\-:} 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{id}
+\item[{error:(N\-S\-Error $\ast$$\ast$)}]{error}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_user_a5d2d45bd4ff7e75ca443ed7962b5bc4e}
+
+
+指定された\-I\-Dを持つユーザを取得します。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & I\-D \\
+\hline
+{\em error} & エラーが発生した場合この引数が指す場所に格納されます \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ユーザ 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+B\-D\-User.\-h\end{DoxyCompactItemize}

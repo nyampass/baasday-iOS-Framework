@@ -1,0 +1,67 @@
+\hypertarget{interface_b_d_device}{\section{B\-D\-Device Class Reference}
+\label{interface_b_d_device}\index{B\-D\-Device@{B\-D\-Device}}
+}
+
+
+端末情報を保持するクラスです。  
+
+
+
+
+{\ttfamily \#import $<$B\-D\-Device.\-h$>$}
+
+
+
+Inherits \hyperlink{interface_b_d_basic_object}{B\-D\-Basic\-Object}.
+
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(void) -\/ \hyperlink{interface_b_d_device_a31bfeb9d837261aae4db0aaefeee1232}{set\-Device\-Token\-:}
+\begin{DoxyCompactList}\small\item\em Apple Push Notification Service用のデバイストークンを設定します。 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Class Methods}
+\begin{DoxyCompactItemize}
+\item 
+(N\-S\-String $\ast$) + \hyperlink{interface_b_d_device_a036ade0e1ff50bd43fee952121a5289a}{generate\-Device\-Id}
+\begin{DoxyCompactList}\small\item\em 端末\-I\-Dを生成します。 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+端末情報を保持するクラスです。 
+
+インスタンスは\-B\-D\-Authenticated\-Userクラスのcurrent\-Deviceプロパティで取得します。更新は\-B\-D\-Authenticated\-Userクラスのupdate\-Deviceメソッドを使用します。
+
+端末情報の取得、更新を行う前に\-B\-D\-Baasdayクラスのset\-Device\-Idメソッドで端末\-I\-Dを設定する必要があります。まだ一度も端末情報を保存していない場合はgenerate\-Device\-Idメソッドで端末\-I\-Dを生成し、それを\-B\-D\-Baasdayクラスに設定します。生成した端末\-I\-Dはアプリケーション内に保存してください。二度目以降は保存した端末\-I\-Dを\-B\-D\-Baasdayクラスに設定して使用します。 
+
+\subsection{Method Documentation}
+\hypertarget{interface_b_d_device_a036ade0e1ff50bd43fee952121a5289a}{\index{B\-D\-Device@{B\-D\-Device}!generate\-Device\-Id@{generate\-Device\-Id}}
+\index{generate\-Device\-Id@{generate\-Device\-Id}!BDDevice@{B\-D\-Device}}
+\subsubsection[{generate\-Device\-Id}]{\setlength{\rightskip}{0pt plus 5cm}+ (N\-S\-String $\ast$) generate\-Device\-Id 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_device_a036ade0e1ff50bd43fee952121a5289a}
+
+
+端末\-I\-Dを生成します。 
+
+\begin{DoxyReturn}{Returns}
+端末\-I\-D 
+\end{DoxyReturn}
+\hypertarget{interface_b_d_device_a31bfeb9d837261aae4db0aaefeee1232}{\index{B\-D\-Device@{B\-D\-Device}!set\-Device\-Token\-:@{set\-Device\-Token\-:}}
+\index{set\-Device\-Token\-:@{set\-Device\-Token\-:}!BDDevice@{B\-D\-Device}}
+\subsubsection[{set\-Device\-Token\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) set\-Device\-Token\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-Data $\ast$)}]{device\-Token}
+\end{DoxyParamCaption}
+}}\label{interface_b_d_device_a31bfeb9d837261aae4db0aaefeee1232}
+
+
+Apple Push Notification Service用のデバイストークンを設定します。 
+
+デバイストークンは\-U\-I\-Applicationクラスのregister\-For\-Remote\-Notification\-Types\-:メソッドおよびapplication\-:did\-Register\-For\-Remote\-Notifications\-With\-Device\-Token\-:メソッドで取得します。 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+B\-D\-Device.\-h\end{DoxyCompactItemize}

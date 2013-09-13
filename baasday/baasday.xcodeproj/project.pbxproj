@@ -11,7 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = DBC96BAB16F7D7A5001B8498 /* Build configuration list for PBXAggregateTarget "baasday.framework" */;
 			buildPhases = (
-				DBC96BAF16F7D867001B8498 /* ShellScript */,
+				DBC96BAF16F7D867001B8498 /* Run Script */,
 			);
 			dependencies = (
 				DB8E330F17280FC500AA5106 /* PBXTargetDependency */,
@@ -22,12 +22,17 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		DB14FC991727A24A002C478A /* BDBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14FC981727A24A002C478A /* BDBasicObject.m */; };
+		CA69105417299BCA00BAE086 /* BDListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA69105317299BCA00BAE086 /* BDListResult.m */; };
+		CA7EE49E17545C0B0037971C /* BDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7EE49D17545C0B0037971C /* BDUtility.m */; };
+		CAD4D1F61777EB06001CC840 /* BDDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD4D1F51777EB06001CC840 /* BDDevice.m */; };
+		CAD4D20417794549001CC840 /* BDBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD4D20317794549001CC840 /* BDBasicObject.m */; };
+		CAF389BA1753457300D86822 /* BDQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF389B91753457200D86822 /* BDQuery.m */; };
+		DB14FC991727A24A002C478A /* BDObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14FC981727A24A002C478A /* BDObject.m */; };
 		DB55A9E6172821120035291A /* BDAuthenticatedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB55A9E5172821120035291A /* BDAuthenticatedUser.m */; };
 		DB55A9E91728273B0035291A /* BDLeaderboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = DB55A9E81728273B0035291A /* BDLeaderboardEntry.m */; };
-		DB5D75FD1706DDD200B2DE4D /* BDObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75FC1706DDD200B2DE4D /* BDObject.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		DB5D75FD1706DDD200B2DE4D /* BDItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75FC1706DDD200B2DE4D /* BDItem.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		DB5D76001706DFB700B2DE4D /* BDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D75FF1706DFB700B2DE4D /* BDUser.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		DB5D76031706E03700B2DE4D /* BDConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D76021706E03600B2DE4D /* BDConnection.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		DB5D76031706E03700B2DE4D /* BDAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D76021706E03600B2DE4D /* BDAPIClient.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		DB6B71801722C4F20001E842 /* baasday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6B717F1722C4F20001E842 /* baasday.framework */; };
 		DB6B71811722C4F20001E842 /* baasday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6B717F1722C4F20001E842 /* baasday.framework */; };
 		DB80A5EB1705C57E00C8D728 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB80A5E91705C56200C8D728 /* UIKit.framework */; };
@@ -103,19 +108,37 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DB14FC971727A24A002C478A /* BDBasicObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBasicObject.h; sourceTree = "<group>"; };
-		DB14FC981727A24A002C478A /* BDBasicObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBasicObject.m; sourceTree = "<group>"; };
+		CA1AC3DC17562D1300EFC440 /* BDObject_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDObject_Private.h; sourceTree = "<group>"; };
+		CA1AC3DD17562F4C00EFC440 /* BDAuthenticatedUser_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDAuthenticatedUser_Private.h; sourceTree = "<group>"; };
+		CA1AC3DE17562F9600EFC440 /* BDItem_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDItem_Private.h; sourceTree = "<group>"; };
+		CA1AC3DF17562FC300EFC440 /* BDLeaderboardEntry_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDLeaderboardEntry_Private.h; sourceTree = "<group>"; };
+		CA1AC3E01756325B00EFC440 /* BDUser_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDUser_Private.h; sourceTree = "<group>"; };
+		CA1AC3E11756328400EFC440 /* BDListResult_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDListResult_Private.h; sourceTree = "<group>"; };
+		CA69105217299BC900BAE086 /* BDListResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDListResult.h; sourceTree = "<group>"; };
+		CA69105317299BCA00BAE086 /* BDListResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDListResult.m; sourceTree = "<group>"; };
+		CA7EE49C17545C0B0037971C /* BDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDUtility.h; sourceTree = "<group>"; };
+		CA7EE49D17545C0B0037971C /* BDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDUtility.m; sourceTree = "<group>"; };
+		CA7EE4A317562B6D0037971C /* BDQuery_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDQuery_Private.h; sourceTree = "<group>"; };
+		CAD4D1F41777EB06001CC840 /* BDDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDevice.h; sourceTree = "<group>"; };
+		CAD4D1F51777EB06001CC840 /* BDDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDDevice.m; sourceTree = "<group>"; };
+		CAD4D20217794549001CC840 /* BDBasicObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBasicObject.h; sourceTree = "<group>"; };
+		CAD4D20317794549001CC840 /* BDBasicObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBasicObject.m; sourceTree = "<group>"; };
+		CAD4D20517794566001CC840 /* BDBasicObject_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDBasicObject_Private.h; sourceTree = "<group>"; };
+		CAF389B81753457200D86822 /* BDQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDQuery.h; sourceTree = "<group>"; };
+		CAF389B91753457200D86822 /* BDQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDQuery.m; sourceTree = "<group>"; };
+		DB14FC971727A24A002C478A /* BDObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDObject.h; sourceTree = "<group>"; };
+		DB14FC981727A24A002C478A /* BDObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDObject.m; sourceTree = "<group>"; };
 		DB55A9E4172821120035291A /* BDAuthenticatedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDAuthenticatedUser.h; sourceTree = "<group>"; };
 		DB55A9E5172821120035291A /* BDAuthenticatedUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDAuthenticatedUser.m; sourceTree = "<group>"; };
 		DB55A9E71728273B0035291A /* BDLeaderboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDLeaderboardEntry.h; sourceTree = "<group>"; };
 		DB55A9E81728273B0035291A /* BDLeaderboardEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDLeaderboardEntry.m; sourceTree = "<group>"; };
-		DB5D75FA1706D2E500B2DE4D /* BDBaasday(Private).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BDBaasday(Private).h"; sourceTree = "<group>"; };
-		DB5D75FB1706DDD200B2DE4D /* BDObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDObject.h; sourceTree = "<group>"; };
-		DB5D75FC1706DDD200B2DE4D /* BDObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDObject.m; sourceTree = "<group>"; };
+		DB5D75FA1706D2E500B2DE4D /* BDBaasday_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBaasday_Private.h; sourceTree = "<group>"; };
+		DB5D75FB1706DDD200B2DE4D /* BDItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDItem.h; sourceTree = "<group>"; };
+		DB5D75FC1706DDD200B2DE4D /* BDItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDItem.m; sourceTree = "<group>"; };
 		DB5D75FE1706DFB700B2DE4D /* BDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BDUser.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		DB5D75FF1706DFB700B2DE4D /* BDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDUser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		DB5D76011706E03600B2DE4D /* BDConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDConnection.h; path = Headers/BDConnection.h; sourceTree = "<group>"; };
-		DB5D76021706E03600B2DE4D /* BDConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDConnection.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DB5D76011706E03600B2DE4D /* BDAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDAPIClient.h; sourceTree = "<group>"; };
+		DB5D76021706E03600B2DE4D /* BDAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDAPIClient.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DB5D76041706ED0200B2DE4D /* BDSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDSettings.h; sourceTree = "<group>"; };
 		DB6B717F1722C4F20001E842 /* baasday.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = baasday.framework; path = Framework/baasday.framework; sourceTree = "<group>"; };
 		DB80A5E81705C3F900C8D728 /* baasday-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "baasday-Prefix.pch"; sourceTree = "<group>"; };
@@ -208,16 +231,30 @@
 		DB8F5D181705E8B700A7E9AC /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DB5D76041706ED0200B2DE4D /* BDSettings.h */,
-				DB5D75FA1706D2E500B2DE4D /* BDBaasday(Private).h */,
-				DB8F5D1A1705ED1F00A7E9AC /* BDBaasday.m */,
-				DB14FC981727A24A002C478A /* BDBasicObject.m */,
-				DB55A9E81728273B0035291A /* BDLeaderboardEntry.m */,
-				DB5D75FC1706DDD200B2DE4D /* BDObject.m */,
-				DB5D75FF1706DFB700B2DE4D /* BDUser.m */,
-				DB5D76011706E03600B2DE4D /* BDConnection.h */,
-				DB5D76021706E03600B2DE4D /* BDConnection.m */,
+				DB5D76011706E03600B2DE4D /* BDAPIClient.h */,
+				DB5D76021706E03600B2DE4D /* BDAPIClient.m */,
 				DB55A9E5172821120035291A /* BDAuthenticatedUser.m */,
+				CA1AC3DD17562F4C00EFC440 /* BDAuthenticatedUser_Private.h */,
+				DB8F5D1A1705ED1F00A7E9AC /* BDBaasday.m */,
+				DB5D75FA1706D2E500B2DE4D /* BDBaasday_Private.h */,
+				DB5D75FC1706DDD200B2DE4D /* BDItem.m */,
+				CA1AC3DE17562F9600EFC440 /* BDItem_Private.h */,
+				DB55A9E81728273B0035291A /* BDLeaderboardEntry.m */,
+				CA1AC3DF17562FC300EFC440 /* BDLeaderboardEntry_Private.h */,
+				CA69105317299BCA00BAE086 /* BDListResult.m */,
+				DB14FC981727A24A002C478A /* BDObject.m */,
+				CA1AC3DC17562D1300EFC440 /* BDObject_Private.h */,
+				CAF389B91753457200D86822 /* BDQuery.m */,
+				CA7EE4A317562B6D0037971C /* BDQuery_Private.h */,
+				DB5D76041706ED0200B2DE4D /* BDSettings.h */,
+				DB5D75FF1706DFB700B2DE4D /* BDUser.m */,
+				CA7EE49C17545C0B0037971C /* BDUtility.h */,
+				CA7EE49D17545C0B0037971C /* BDUtility.m */,
+				CA1AC3E01756325B00EFC440 /* BDUser_Private.h */,
+				CA1AC3E11756328400EFC440 /* BDListResult_Private.h */,
+				CAD4D1F51777EB06001CC840 /* BDDevice.m */,
+				CAD4D20317794549001CC840 /* BDBasicObject.m */,
+				CAD4D20517794566001CC840 /* BDBasicObject_Private.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -301,10 +338,14 @@
 		DBC96BA416F7D5F4001B8498 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				CAD4D20217794549001CC840 /* BDBasicObject.h */,
+				CAD4D1F41777EB06001CC840 /* BDDevice.h */,
+				CAF389B81753457200D86822 /* BDQuery.h */,
 				DB8F5D191705ED1F00A7E9AC /* BDBaasday.h */,
 				DB55A9E71728273B0035291A /* BDLeaderboardEntry.h */,
-				DB14FC971727A24A002C478A /* BDBasicObject.h */,
-				DB5D75FB1706DDD200B2DE4D /* BDObject.h */,
+				DB14FC971727A24A002C478A /* BDObject.h */,
+				CA69105217299BC900BAE086 /* BDListResult.h */,
+				DB5D75FB1706DDD200B2DE4D /* BDItem.h */,
 				DB5D75FE1706DFB700B2DE4D /* BDUser.h */,
 				DB55A9E4172821120035291A /* BDAuthenticatedUser.h */,
 				DBFB0B3116F7F5AC0045338D /* baasday.h */,
@@ -530,18 +571,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
-		DBC96BAF16F7D867001B8498 /* ShellScript */ = {
+		DBC96BAF16F7D867001B8498 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# ==========\n# 変数設定\n# ==========\n\nINFOPLIST='Info.plist'\nFRAMEWORK_NAME=$(/usr/libexec/PlistBuddy -c \"Print CFBundleName\" ${INFOPLIST})\nBUILD_TARGET_NAME=$FRAMEWORK_NAME\nFRAMEWORK_BUILD_CONFIGURATION=\"Release\"\nFRAMEWORK_VERSION_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" ${INFOPLIST})\nFRAMEWORK_VERSION=A\nFRAMEWORK_BUILD_PATH=\"Framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nPACKAGENAME=\"${FRAMEWORK_NAME}.framework.${FRAMEWORK_VERSION_NUMBER}.zip\"\n\necho $BUILD_TARGET_NAME\necho $SDK_NAME\necho $IPHONEOS_DEPLOYMENT_TARGET\n\n# ==========\n# ビルド\n# ==========\nxcodebuild -configuration ${FRAMEWORK_BUILD_CONFIGURATION} -target ${BUILD_TARGET_NAME} clean\n\nxcodebuild -configuration ${FRAMEWORK_BUILD_CONFIGURATION} -target ${BUILD_TARGET_NAME} -sdk iphonesimulator4.3\n[ $? != 0 ] && exit 1\n\nxcodebuild -configuration ${FRAMEWORK_BUILD_CONFIGURATION} -target ${BUILD_TARGET_NAME} -sdk iphoneos6.1\n[ $? != 0 ] && exit 1\n\n# ==========\n# frameworkディレクトリ作成\n# ==========\n\n[ -d \"${FRAMEWORK_BUILD_PATH}\" ] && rm -rf \"${FRAMEWORK_BUILD_PATH}\"\nmkdir -p ${FRAMEWORK_DIR}\nmkdir -p ${FRAMEWORK_DIR}/Versions\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\nln -s ${FRAMEWORK_VERSION} ${FRAMEWORK_DIR}/Versions/Current\nln -s Versions/Current/Headers ${FRAMEWORK_DIR}/Headers\nln -s Versions/Current/Resources ${FRAMEWORK_DIR}/Resources\nln -s Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_DIR}/${FRAMEWORK_NAME}\n\n# ==========\n# framework作成\n# ==========\nlipo -create \\\n build/${FRAMEWORK_BUILD_CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a \\\n build/${FRAMEWORK_BUILD_CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a \\\n -o \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\necho cp ${BUILD_TARGET_NAME}/Headers/*.h ${FRAMEWORK_DIR}/Headers/\n\ncp ${BUILD_TARGET_NAME}/Headers/*.h ${FRAMEWORK_DIR}/Headers/\ncp ${BUILD_TARGET_NAME}/Resources/* ${FRAMEWORK_DIR}/Resources/\ncp ${INFOPLIST} ${FRAMEWORK_DIR}/Resources/\ncd ${FRAMEWORK_BUILD_PATH}\nchmod -fR 777 \"${FRAMEWORK_NAME}.framework\"\nzip -ry ${PACKAGENAME} $(basename $FRAMEWORK_DIR)\n";
+			shellScript = "# ==========\n# 変数設定\n# ==========\n\nINFOPLIST='Info.plist'\nFRAMEWORK_NAME=$(/usr/libexec/PlistBuddy -c \"Print CFBundleName\" ${INFOPLIST})\nBUILD_TARGET_NAME=$FRAMEWORK_NAME\nFRAMEWORK_BUILD_CONFIGURATION=\"Release\"\nFRAMEWORK_VERSION_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" ${INFOPLIST})\nFRAMEWORK_VERSION=A\nFRAMEWORK_BUILD_PATH=\"Framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nPACKAGENAME=\"${FRAMEWORK_NAME}.framework.${FRAMEWORK_VERSION_NUMBER}.zip\"\n\necho $BUILD_TARGET_NAME\necho $SDK_NAME\necho $IPHONEOS_DEPLOYMENT_TARGET\n\n# ==========\n# ビルド\n# ==========\nxcodebuild -configuration ${FRAMEWORK_BUILD_CONFIGURATION} -target ${BUILD_TARGET_NAME} clean\n\n#xcodebuild -configuration ${FRAMEWORK_BUILD_CONFIGURATION} -target ${BUILD_TARGET_NAME} -sdk iphonesimulator4.3\n#[ $? != 0 ] && exit 1\n\nxcodebuild -configuration ${FRAMEWORK_BUILD_CONFIGURATION} -target ${BUILD_TARGET_NAME} -sdk iphonesimulator5.0\n[ $? != 0 ] && exit 1\n\nxcodebuild -configuration ${FRAMEWORK_BUILD_CONFIGURATION} -target ${BUILD_TARGET_NAME} -sdk iphoneos6.1\n[ $? != 0 ] && exit 1\n\n# ==========\n# frameworkディレクトリ作成\n# ==========\n\n[ -d \"${FRAMEWORK_BUILD_PATH}\" ] && rm -rf \"${FRAMEWORK_BUILD_PATH}\"\nmkdir -p ${FRAMEWORK_DIR}\nmkdir -p ${FRAMEWORK_DIR}/Versions\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\nln -s ${FRAMEWORK_VERSION} ${FRAMEWORK_DIR}/Versions/Current\nln -s Versions/Current/Headers ${FRAMEWORK_DIR}/Headers\nln -s Versions/Current/Resources ${FRAMEWORK_DIR}/Resources\nln -s Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_DIR}/${FRAMEWORK_NAME}\n\n# ==========\n# framework作成\n# ==========\nlipo -create \\\n build/${FRAMEWORK_BUILD_CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a \\\n build/${FRAMEWORK_BUILD_CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a \\\n -o \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\necho cp ${BUILD_TARGET_NAME}/Headers/*.h ${FRAMEWORK_DIR}/Headers/\n\ncp ${BUILD_TARGET_NAME}/Headers/*.h ${FRAMEWORK_DIR}/Headers/\ncp ${BUILD_TARGET_NAME}/Resources/* ${FRAMEWORK_DIR}/Resources/\ncp ${INFOPLIST} ${FRAMEWORK_DIR}/Resources/\ncd ${FRAMEWORK_BUILD_PATH}\nchmod -fR 777 \"${FRAMEWORK_NAME}.framework\"\nzip -ry ${PACKAGENAME} $(basename $FRAMEWORK_DIR)\n";
 		};
 		DBCCA959171E418A00F090D2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -564,13 +606,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB8F5D1B1705ED1F00A7E9AC /* BDBaasday.m in Sources */,
-				DB5D75FD1706DDD200B2DE4D /* BDObject.m in Sources */,
+				DB5D75FD1706DDD200B2DE4D /* BDItem.m in Sources */,
 				DB5D76001706DFB700B2DE4D /* BDUser.m in Sources */,
-				DB5D76031706E03700B2DE4D /* BDConnection.m in Sources */,
+				DB5D76031706E03700B2DE4D /* BDAPIClient.m in Sources */,
 				DBEAFC09172259F40041B388 /* JSONKit.m in Sources */,
-				DB14FC991727A24A002C478A /* BDBasicObject.m in Sources */,
+				DB14FC991727A24A002C478A /* BDObject.m in Sources */,
 				DB55A9E6172821120035291A /* BDAuthenticatedUser.m in Sources */,
 				DB55A9E91728273B0035291A /* BDLeaderboardEntry.m in Sources */,
+				CA69105417299BCA00BAE086 /* BDListResult.m in Sources */,
+				CAF389BA1753457300D86822 /* BDQuery.m in Sources */,
+				CA7EE49E17545C0B0037971C /* BDUtility.m in Sources */,
+				CAD4D1F61777EB06001CC840 /* BDDevice.m in Sources */,
+				CAD4D20417794549001CC840 /* BDBasicObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +798,7 @@
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 					"\"$(SRCROOT)/Framework\"",
 				);
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "baasday/baasday SDK-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -818,7 +866,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleApp/SampleApp-Prefix.pch";
 				INFOPLIST_FILE = "SampleApp/SampleApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -835,7 +883,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleApp/SampleApp-Prefix.pch";
 				INFOPLIST_FILE = "SampleApp/SampleApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -853,7 +901,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleApp/SampleApp-Prefix.pch";
 				INFOPLIST_FILE = "SampleAppTests/SampleAppTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -871,7 +919,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleApp/SampleApp-Prefix.pch";
 				INFOPLIST_FILE = "SampleAppTests/SampleAppTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;

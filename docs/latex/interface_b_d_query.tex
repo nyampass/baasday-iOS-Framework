@@ -1,0 +1,114 @@
+\hypertarget{interface_b_d_query}{\section{B\-D\-Query Class Reference}
+\label{interface_b_d_query}\index{B\-D\-Query@{B\-D\-Query}}
+}
+
+
+複数のオブジェクトを取得するときの抽出条件を表すクラスです。  
+
+
+
+
+{\ttfamily \#import $<$B\-D\-Query.\-h$>$}
+
+
+
+Inherits N\-S\-Object.
+
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+N\-S\-Dictionary $\ast$ \hyperlink{interface_b_d_query_a4725c6a2f7235516b2a55f9264526c7c}{filter}
+\begin{DoxyCompactList}\small\item\em フィルタ \end{DoxyCompactList}\item 
+B\-O\-O\-L \hyperlink{interface_b_d_query_aff2b42885480ebf1d6311089f2be27be}{has\-Filter}
+\begin{DoxyCompactList}\small\item\em フィルタが設定されているかどうか \end{DoxyCompactList}\item 
+N\-S\-Array $\ast$ \hyperlink{interface_b_d_query_a6170a634653da9662cafc6fdea1b4809}{order}
+\begin{DoxyCompactList}\small\item\em ソート順 \end{DoxyCompactList}\item 
+B\-O\-O\-L \hyperlink{interface_b_d_query_a73fe1299cda260c7a06c941aaf0dd00c}{has\-Order}
+\begin{DoxyCompactList}\small\item\em ソート順が設定されているかどうか \end{DoxyCompactList}\item 
+\hypertarget{interface_b_d_query_adc131a1957691af57bf2cc34d8b96484}{N\-S\-Integer \hyperlink{interface_b_d_query_adc131a1957691af57bf2cc34d8b96484}{skip}}\label{interface_b_d_query_adc131a1957691af57bf2cc34d8b96484}
+
+\begin{DoxyCompactList}\small\item\em 取得開始位置 \end{DoxyCompactList}\item 
+B\-O\-O\-L \hyperlink{interface_b_d_query_ac5cd3fcf3939d73daada130a4838b59b}{has\-Skip}
+\begin{DoxyCompactList}\small\item\em 取得開始位置が設定されているかどうか \end{DoxyCompactList}\item 
+N\-S\-Integer \hyperlink{interface_b_d_query_ae5afba095663a23c7fcac3feaa625d84}{limit}
+\begin{DoxyCompactList}\small\item\em 最大取得件数 \end{DoxyCompactList}\item 
+B\-O\-O\-L \hyperlink{interface_b_d_query_a71b336b5fbf46e03f96fc5f36affc84f}{has\-Limit}
+\begin{DoxyCompactList}\small\item\em 最大取得件数が設定されているかどうか \end{DoxyCompactList}\item 
+N\-S\-Integer \hyperlink{interface_b_d_query_a3d8a8401c6707f4903db51621eac9a62}{wait}
+\begin{DoxyCompactList}\small\item\em 最大待ち時間 \end{DoxyCompactList}\item 
+B\-O\-O\-L \hyperlink{interface_b_d_query_ac2158b8379abefe6d5bde1cd9d39028c}{has\-Wait}
+\begin{DoxyCompactList}\small\item\em 最大待ち時間が設定されているかどうか \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+複数のオブジェクトを取得するときの抽出条件を表すクラスです。 
+
+\subsection{Property Documentation}
+\hypertarget{interface_b_d_query_a4725c6a2f7235516b2a55f9264526c7c}{\index{B\-D\-Query@{B\-D\-Query}!filter@{filter}}
+\index{filter@{filter}!BDQuery@{B\-D\-Query}}
+\subsubsection[{filter}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\-S\-Dictionary$\ast$) filter\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}, {\ttfamily [nonatomic]}, {\ttfamily [assign]}}}\label{interface_b_d_query_a4725c6a2f7235516b2a55f9264526c7c}
+
+
+フィルタ 
+
+このディクショナリに含まれるキーに対応する値を持つオブジェクトだけが返されるようになります。 特別なキーを持つディクショナリをフィルタの値として指定すると、特別な条件でフィルタリングができます(\$gtなら値より大きいものなど)。 \hypertarget{interface_b_d_query_aff2b42885480ebf1d6311089f2be27be}{\index{B\-D\-Query@{B\-D\-Query}!has\-Filter@{has\-Filter}}
+\index{has\-Filter@{has\-Filter}!BDQuery@{B\-D\-Query}}
+\subsubsection[{has\-Filter}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) has\-Filter\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [atomic]}, {\ttfamily [assign]}}}\label{interface_b_d_query_aff2b42885480ebf1d6311089f2be27be}
+
+
+フィルタが設定されているかどうか 
+
+設定されている場合は\-Y\-E\-S、設定されてない場合は\-N\-O \hypertarget{interface_b_d_query_a71b336b5fbf46e03f96fc5f36affc84f}{\index{B\-D\-Query@{B\-D\-Query}!has\-Limit@{has\-Limit}}
+\index{has\-Limit@{has\-Limit}!BDQuery@{B\-D\-Query}}
+\subsubsection[{has\-Limit}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) has\-Limit\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [atomic]}, {\ttfamily [assign]}}}\label{interface_b_d_query_a71b336b5fbf46e03f96fc5f36affc84f}
+
+
+最大取得件数が設定されているかどうか 
+
+設定されている場合は\-Y\-E\-S、設定されていない場合は\-N\-O \hypertarget{interface_b_d_query_a73fe1299cda260c7a06c941aaf0dd00c}{\index{B\-D\-Query@{B\-D\-Query}!has\-Order@{has\-Order}}
+\index{has\-Order@{has\-Order}!BDQuery@{B\-D\-Query}}
+\subsubsection[{has\-Order}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) has\-Order\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [atomic]}, {\ttfamily [assign]}}}\label{interface_b_d_query_a73fe1299cda260c7a06c941aaf0dd00c}
+
+
+ソート順が設定されているかどうか 
+
+設定されている場合は\-Y\-E\-S、設定されていない場合は\-N\-O \hypertarget{interface_b_d_query_ac5cd3fcf3939d73daada130a4838b59b}{\index{B\-D\-Query@{B\-D\-Query}!has\-Skip@{has\-Skip}}
+\index{has\-Skip@{has\-Skip}!BDQuery@{B\-D\-Query}}
+\subsubsection[{has\-Skip}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) has\-Skip\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [atomic]}, {\ttfamily [assign]}}}\label{interface_b_d_query_ac5cd3fcf3939d73daada130a4838b59b}
+
+
+取得開始位置が設定されているかどうか 
+
+設定されている場合は\-Y\-E\-S、設定されていない場合は\-N\-O \hypertarget{interface_b_d_query_ac2158b8379abefe6d5bde1cd9d39028c}{\index{B\-D\-Query@{B\-D\-Query}!has\-Wait@{has\-Wait}}
+\index{has\-Wait@{has\-Wait}!BDQuery@{B\-D\-Query}}
+\subsubsection[{has\-Wait}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\-O\-O\-L) has\-Wait\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [atomic]}, {\ttfamily [assign]}}}\label{interface_b_d_query_ac2158b8379abefe6d5bde1cd9d39028c}
+
+
+最大待ち時間が設定されているかどうか 
+
+設定されている場合は\-Y\-E\-S、設定されていない場合は\-N\-O \hypertarget{interface_b_d_query_ae5afba095663a23c7fcac3feaa625d84}{\index{B\-D\-Query@{B\-D\-Query}!limit@{limit}}
+\index{limit@{limit}!BDQuery@{B\-D\-Query}}
+\subsubsection[{limit}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\-S\-Integer) limit\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}, {\ttfamily [nonatomic]}, {\ttfamily [assign]}}}\label{interface_b_d_query_ae5afba095663a23c7fcac3feaa625d84}
+
+
+最大取得件数 
+
+101以上を指定しても最大で100件しか返されません。 \hypertarget{interface_b_d_query_a6170a634653da9662cafc6fdea1b4809}{\index{B\-D\-Query@{B\-D\-Query}!order@{order}}
+\index{order@{order}!BDQuery@{B\-D\-Query}}
+\subsubsection[{order}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\-S\-Array$\ast$) order\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}, {\ttfamily [nonatomic]}, {\ttfamily [assign]}}}\label{interface_b_d_query_a6170a634653da9662cafc6fdea1b4809}
+
+
+ソート順 
+
+D\-B\-Field\-Orderか\-N\-S\-Stringを含む\-N\-S\-Arrayです。 \hypertarget{interface_b_d_query_a3d8a8401c6707f4903db51621eac9a62}{\index{B\-D\-Query@{B\-D\-Query}!wait@{wait}}
+\index{wait@{wait}!BDQuery@{B\-D\-Query}}
+\subsubsection[{wait}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\-S\-Integer) wait\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}, {\ttfamily [nonatomic]}, {\ttfamily [assign]}}}\label{interface_b_d_query_a3d8a8401c6707f4903db51621eac9a62}
+
+
+最大待ち時間 
+
+最大待ち時間を設定すると、条件を満たすオブジェクトが存在しない場合に、条件を満たすオブジェクトが作成されるまで設定された秒数(最大で30秒)だけサーバが応答を保留します。これにより何度もリクエストしなくてもオブジェクトの作成をそれなりの精度で検出できます。サーバで応答が保留されている間は結果が返らないので、アプリケーションが停止しないように注意してください。 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+B\-D\-Query.\-h\end{DoxyCompactItemize}

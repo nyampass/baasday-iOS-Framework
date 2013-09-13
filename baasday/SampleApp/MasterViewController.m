@@ -10,9 +10,7 @@
 
 #import "DetailViewController.h"
 
-#import "BDBaasday.h"
-#import "BDAuthenticatedUser.h"
-#import "BDLeaderboardEntry.h"
+#import "baasday.h"
 
 @interface MasterViewController () {
     NSMutableArray *_objects;
@@ -147,71 +145,104 @@ static BOOL saveAuthenticationKey = NO;
 
 - (void)authorizeUser:(BOOL)showMessage
 {
-    BDUser* user = [[BDUser alloc] init];
-    BOOL success = [user save];
-    
-    NSString *message;
-    NSString *authenticationKey = [user stringForKey:@"_authenticationKey"];
-    
-    if (success) {
-        message = [NSString stringWithFormat:@"Created user\n%@",
-                   authenticationKey];
-        [BDBaasday setUserAuthenticationKey:authenticationKey];
-        saveAuthenticationKey = YES;
-
-    } else {
-        message = @"Failed create user";
-    }
-   
-    if (showMessage)
+	NSError *error;
+	BDAuthenticatedUser *user = [BDAuthenticatedUser createWithValues:@{@"registeredAt": [NSDate date]} error:&error];
+	if (error) {
+		NSLog(@"%@", error);
+		return;
+	}
+	[BDBaasday setUserAuthenticationKey:user.authenticationKey];
+    saveAuthenticationKey = YES;
+    if (showMessage) {
         [[[UIAlertView alloc] initWithTitle:nil
-                                    message:message
+                                    message:[NSString stringWithFormat:@"Created user\n%@", user.authenticationKey]
                                    delegate:nil
                           cancelButtonTitle:nil
                           otherButtonTitles:@"OK", nil] show];
+	}
 }
 
 - (void)fetchMe
 {
     if (!saveAuthenticationKey)
         [self authorizeUser:NO];
-    BDAuthenticatedUser* user = [BDAuthenticatedUser me];
+	/*
+	BDAuthenticatedUser *user = [BDAuthenticatedUser fetchWithError:nil];
     [[[UIAlertView alloc] initWithTitle:nil
                                 message:[NSString stringWithFormat:@"%@", user]
                                delegate:nil
                       cancelButtonTitle:nil
                       otherButtonTitles:@"OK", nil] show];
+	 */
+	[BDAuthenticatedUser fetchInBackground:^(BDAuthenticatedUser *user, NSError *error) {
+		[[[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"%@ : %@ in background", user, user.createdAt] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+	}];
+	[[[UIAlertView alloc] initWithTitle:nil message:@"fetch user in background" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
 }
 
 - (void)addPoint
 {
     if (!saveAuthenticationKey)
         [self authorizeUser:NO];
-    BDAuthenticatedUser* user = [BDAuthenticatedUser me];
+	/*
+	BDAuthenticatedUser *user = [BDAuthenticatedUser fetchWithError:nil];
     [user update:@{@"point": @{@"$inc": [NSNumber numberWithInt:10]}}];
-    [[[UIAlertView alloc] initWithTitle:nil
-                                message:[NSString stringWithFormat:@"Point: %@", [user valueForKey:@"point"]]
+	[[[UIAlertView alloc] initWithTitle:nil
+                                message:[NSString stringWithFormat:@"Point: %@", [user objectForKey:@"point"]]
                                delegate:nil
                       cancelButtonTitle:nil
                       otherButtonTitles:@"OK", nil] show];
+	 */
+	[BDAuthenticatedUser fetchInBackground:^(BDAuthenticatedUser *user, NSError *error) {
+		[user updateInBackground:@{@"point": @{@"$inc": [NSNumber numberWithInt:10]}} block:^(id user, NSError *error) {
+			[[[UIAlertView alloc] initWithTitle:nil
+										message:[NSString stringWithFormat:@"Point: %@ in background", [user objectForKey:@"point"]]
+									   delegate:nil
+							  cancelButtonTitle:nil
+							  otherButtonTitles:@"OK", nil] show];
+		}];
+	}];
+	[[[UIAlertView alloc] initWithTitle:nil message:@"add point in background" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
 }
 
 - (void)addScore
 {
-    BDLeaderboardEntry *entry = [BDLeaderboardEntry createWithLeaderboardName:@"normal-mode" values:@{@"_score": [NSNumber numberWithInt:100]}];
+	/*
+	BDLeaderboardEntry *entry = [BDLeaderboardEntry createWithLeaderboardName:@"normal-mode" score:100 error:nil];
     [[[UIAlertView alloc] initWithTitle:nil
-                                message:[NSString stringWithFormat:@"Rank: %@", [entry valueForKey:@"_rank"]]
+                                message:[NSString stringWithFormat:@"Rank: %d", entry.rank]
                                delegate:nil
                       cancelButtonTitle:nil
                       otherButtonTitles:@"OK", nil] show];
+	 */
+	[BDLeaderboardEntry createInBackgroundWithLeaderboardName:@"normal-mode" score:100 block:^(BDLeaderboardEntry *entry, NSError *error) {
+		[[[UIAlertView alloc] initWithTitle:nil
+									message:[NSString stringWithFormat:@"Rank: %d in background", entry.rank]
+								   delegate:nil
+						  cancelButtonTitle:nil
+						  otherButtonTitles:@"OK", nil] show];
+	}];
+	[[[UIAlertView alloc] initWithTitle:nil message:@"add score in background" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
 }
 
 - (void)viewRanking
 {
-    NSArray *entries = [BDLeaderboardEntry leaderboardEntries:@"normal-mode" skip:0 limit:100];
-    for (BDLeaderboardEntry *entry in entries) {
-        NSLog(@"%@ %@ %@", [entry valueForKey:@"_rank"], [entry valueForKey:@"_order"], [entry valueForKey:@"_score"]);
+	BDQuery *query = [[BDQuery alloc] init];
+	query.skip = 0;
+	query.limit = 100;
+	/*
+	BDListResult *entries = [BDLeaderboardEntry fetchAllWithLeaderboardName:@"normal-mode" query:query error:nil];
+    for (BDLeaderboardEntry *entry in entries.contents) {
+        NSLog(@"%d %d %d", entry.rank, entry.order, entry.score);
     }
+	 */
+	[BDLeaderboardEntry fetchAllInBackgroundWithLeaderboardName:@"normal-mode" query:query block:^(BDListResult *result, NSError *error) {
+		NSLog(@"-- leaderboard in background --");
+		for (BDLeaderboardEntry *entry in result.contents) {
+			NSLog(@"%d %d %d", entry.rank, entry.order, entry.score);
+		}
+	}];
+	NSLog(@"fetch leaderboard entries in background");
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

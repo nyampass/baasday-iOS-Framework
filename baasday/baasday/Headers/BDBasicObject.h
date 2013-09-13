@@ -2,42 +2,91 @@
 //  BDBasicObject.h
 //  baasday
 //
-//  Created by Tokusei Noborio on 13/04/24.
-//  Copyright (c) 2013年 Nyampass Corporation. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 
-#import "BDConnection.h"
+@interface BDBasicObject : NSObject
 
-@interface BDBasicObject : NSObject <BDConnectionDelegate>
+/**
+ * @brief 全てのフィールドの値
+ */
+@property (readonly) NSDictionary *values;
 
-typedef void (^BDBasicObjectResultBlock) (BDBasicObject*, BOOL, NSError*);
+/**
+ * @brief 指定されたフィールドの値を返します
+ * @param key フィールド名
+ * @return フィールドの値。フィールドが存在しない場合はnil
+ */
+- (id)objectForKey:(NSString *)key;
 
-@property (nonatomic, assign) BDBasicObjectResultBlock block;
+/**
+ * @brief 指定されたフィールドの値を返します
+ * @param keyPath フィールド名。入れ子になったフィールドの値をドットで繋げて指定できます
+ * @return フィールドの値。フィールドが存在しない場合はnil
+ */
+- (id)objectForKeyPath:(NSString *)keyPath;
 
-@property (nonatomic, strong) NSString* objectId;
+/**
+ * @brief 指定されたフィールドの値を返します
+ * @param key フィールド名
+ * @return フィールドの値。フィールドが存在しない場合はnil
+ */
+- (id)objectForKeyedSubscript:(NSString *)key;
 
-@property (readonly) NSString *collectionPath;
-@property (readonly) NSString *path;
-@property (readonly) NSString *pathForFetch;
-@property (readonly) NSString *pathForUpdate;
-@property (readonly) NSString *pathForDelete;
+/**
+ * @brief 指定されたフィールドが存在するかどうかを返します
+ * @param key フィールド名
+ * @return フィールドが存在する場合はYES、存在しない場合はNO
+ */
+- (BOOL)containsKey:(NSString *)key;
 
-- (id)initWithDictionary:(NSDictionary *)dictionary;
+/**
+ * @brief 指定されたフィールドが値としてnilを持つかどうかを返します
+ * @param key フィールド名
+ * @return フィールドが存在し、値がnilの場合はture、それ以外はfalse
+ */
+- (BOOL)isNil:(NSString *)key;
 
-- (BOOL)update:(NSDictionary *)values;
+/**
+ * @brief 指定されたフィールドの値を整数として返します
+ * @param key フィールド名
+ * @return フィールドの値。フィールドが存在しない場合は0
+ */
+- (NSInteger)integerForKey:(NSString *)key;
 
-- (BOOL)save;
-- (void)saveWithBlock:(BDBasicObjectResultBlock)block;
+/**
+ * @brief 指定されたフィールドの値を整数として返します
+ * @param keyPath フィールド名。入れ子になったフィールドの値をドットで繋げて指定できます
+ * @return フィールドの値。フィールドが存在しない場合は0
+ */
+- (NSInteger)integerForKeyPath:(NSString *)keyPath;
 
-- (void)incrementKey:(NSString *)key amountBy:(double)amount;
+/**
+ * @brief 指定されたフィールドの値を数値として返します
+ * @param key フィールド名
+ * @return フィールドの値。フィールドが存在しない場合は0
+ */
+- (double)doubleForKey:(NSString *)key;
 
-- (NSString *)stringForKey:(NSString *)key;
-- (NSNumber *)numberForKey:(NSString *)key;
+/**
+ * @brief 指定されたフィールドの値を数値として返します
+ * @param keyPath フィールド名。入れ子になったフィールドの値をドットで繋げて指定できます
+ * @return フィールドの値。フィールドが存在しない場合は0
+ */
+- (double)doubleForKeyPath:(NSString *)keyPath;
 
-+ (BDBasicObject *)findWithPath:(NSString *)path;
-+ (NSDictionary *)createWithPath:(NSString *)path values:(NSDictionary *)values;
-+ (NSArray *)fetchWithPath:(NSString *)path skip:(NSInteger)skip limit:(NSInteger)limit;
+/**
+ * @brief 指定されたフィールドの値をブール値として返します
+ * @param key フィールド名
+ * @return フィールドの値。フィールドが存在しない場合はNO
+ */
+- (BOOL)boolForKey:(NSString *)key;
+
+/**
+ * @brief 指定されたフィールドの値をブール値として返します
+ * @param keyPath フィールド名。入れ子になったフィールドの値をドットで繋げて指定できます
+ * @return フィールドの値。フィールドが存在しない場合はNO
+ */
+- (BOOL)boolForKeyPath:(NSString *)keyPath;
 
 @end
