@@ -1,4 +1,4 @@
-# baasday SDK 0.1 (alpha release)
+# baasday SDK 0.7
 
 baasday SDK is an iOS and Android library for accessing the baasday Backend as a Service platform for mobile applications. It is being developed by Nyampass[1] alongside the baasday platform.
 
