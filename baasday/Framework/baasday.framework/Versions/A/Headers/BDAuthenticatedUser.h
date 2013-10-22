@@ -28,6 +28,8 @@ typedef void (^BDAuthenticatedUserResultBlock)(BDAuthenticatedUser *user, NSErro
 /**
  * @brief BDBaasdayクラスに設定されている端末IDに対応した端末情報
  *
+ * 端末情報を取得する前にBDBaadayクラスのsetDeviceId:メソッドを端末IDを設定する必要があります。詳細はBDDeviceクラスを参照してください。
+ *
  * 端末情報がまだ保存されていない場合は空の端末情報を返します。
  */
 @property (readonly) BDDevice *currentDevice;

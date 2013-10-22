@@ -14,7 +14,7 @@
  *
  * Apple Push Notification Serviceを利用する場合はsetDeviceId:メソッドで端末IDを設定し、BDDeviceクラスを利用可能にする必要があります。
  *
- * 端末IDは詳細はBDDeviceクラスを参照してください。
+ * 端末IDの詳細はBDDeviceクラスを参照してください。
  */
 @interface BDBaasday : NSObject
 

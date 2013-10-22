@@ -12,6 +12,13 @@
 
 @implementation BDUtility
 
++ (NSDateFormatter *)dateFormatter // fix japanege environment datetime setting
+{
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"US"]];
+    return formatter;
+}
+
 + (id)fixObjectForJSON:(id)object {
 	if (object == nil) {
 		return nil;
@@ -24,7 +31,7 @@
 		for (id value in object) [fixed addObject:[self fixObjectForJSON:value]];
 		return fixed;
 	} else if ([object isKindOfClass:[NSDate class]]) {
-		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+		NSDateFormatter *dateFormatter = [self dateFormatter];
 		dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 		return @{@"$type": @"datetime", @"$value": [dateFormatter stringFromDate:object]};
     } else if ([object isKindOfClass:[BDBasicObject class]]) {
@@ -45,7 +52,7 @@
 		NSDictionary *dictionary = (NSDictionary *) object;
 		NSArray *fields = dictionary.allKeys;
 		if ([fields containsObject:@"$type"] && [[dictionary valueForKey:@"$type"] isEqualToString:@"datetime"] && [fields containsObject:@"$value"]) {
-			NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+			NSDateFormatter *dateFormatter = [self dateFormatter];
 			NSDate *date = nil;
 			NSError *error = nil;
 			dateFormatter.dateFormat = @"yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSSZ";

@@ -58,7 +58,7 @@
 
 + (void)createInBackgroundWithCollectionName:(NSString *)collectionName values:(NSDictionary *)values block:(BDItemResultBlock)block {
 	[[self apiClientForCreateWithCollectionName:collectionName values:values] doRequestInBackground:^(NSDictionary *result, NSError *error) {
-		block(result ? [[self alloc] initWithCollectionName:collectionName values:values] : nil, error);
+		block(result ? [[self alloc] initWithCollectionName:collectionName values:result] : nil, error);
 	}];
 }
 
