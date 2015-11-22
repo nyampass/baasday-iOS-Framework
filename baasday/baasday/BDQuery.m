@@ -8,7 +8,6 @@
 
 #import "BDQuery_Private.h"
 #import "BDUtility.h"
-#import "JSONKit.h"
 
 @implementation BDFieldOrder
 
@@ -106,7 +105,14 @@
 }
 
 - (NSString *)fixedFilter {
-	return [[BDUtility fixObjectForJSON:self.filter] JSONString];
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[BDUtility fixObjectForJSON:self.filter]
+                                                       options:NSJSONWritingPrettyPrinted error:&error];
+    if (!jsonData) {
+        NSLog(@"Error creating JSON object %@", error);
+    }
+
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
 - (NSString *)fixedOrder {

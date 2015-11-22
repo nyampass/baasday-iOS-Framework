@@ -8,7 +8,6 @@
 
 #import "BDUtility.h"
 #import "BDBasicObject.h"
-#import "JSONKit.h"
 
 @implementation BDUtility
 
@@ -42,7 +41,13 @@
 }
 
 + (NSData *)jsonDataFromDictionary:(NSDictionary *)dictionary {
-	return [[BDUtility fixObjectForJSON:dictionary] JSONData];
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[BDUtility fixObjectForJSON:dictionary]
+                                                       options:NSJSONWritingPrettyPrinted error:&error];
+    if (!jsonData) {
+        NSLog(@"Error creating JSON object %@", error);
+    }
+    return jsonData;
 }
 
 + (id)fixObjectInJSON:(id)object {
@@ -78,7 +83,10 @@
 }
 
 + (NSDictionary *)dictionaryFromJSONData:(NSData *)jsonData errr:(NSError **)error {
-	return [self fixObjectInJSON:[[JSONDecoder decoder] objectWithData:jsonData error:error]];
+    return [NSJSONSerialization
+            JSONObjectWithData:jsonData
+            options:kNilOptions
+            error:error];
 }
 
 + (NSString *)base64Encode:(NSData *)data {
